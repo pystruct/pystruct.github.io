@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pystruct 0.1-alpha documentation" href="../index.html" />
     <link rel="next" title="pystruct.learners.NSlackSSVM" href="pystruct.learners.NSlackSSVM.html" />
-    <link rel="prev" title="pystruct.utils.SaveLogger" href="pystruct.utils.SaveLogger.html" /> 
+    <link rel="prev" title="pystruct.plot_learning.plot_learning" href="pystruct.plot_learning.plot_learning.html" /> 
   </head>
   <body>
     <div class="related">
@@ -45,7 +45,7 @@
           <a href="pystruct.learners.NSlackSSVM.html" title="pystruct.learners.NSlackSSVM"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="pystruct.utils.SaveLogger.html" title="pystruct.utils.SaveLogger"
+          <a href="pystruct.plot_learning.plot_learning.html" title="pystruct.plot_learning.plot_learning"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li> 
       </ul>
@@ -60,7 +60,7 @@
 <h1>pystruct.learners.OneSlackSSVM<a class="headerlink" href="#pystruct-learners-oneslackssvm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.OneSlackSSVM">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">OneSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=1</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=1e-05</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to_ad3=False</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">OneSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=1</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=1e-05</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structured SVM solver for the 1-slack QP with l1 slack penalty.</p>
 <blockquote>
 <div>Implements margin rescaled structural SVM using
@@ -133,10 +133,9 @@ learning.</p>
 <tt class="docutils literal"><span class="pre">inactive_window</span></tt> iterations, it will be pruned from the QP.
 If set to 0, no constraints will be removed.</p>
 </dd>
-<dt>switch_to_ad3 <span class="classifier-delimiter">:</span> <span class="classifier">bool, default=False</span></dt>
-<dd><p class="first last">Whether to switch inference method of model to &#8216;ad3&#8217; if
-no more constraints can be found. AD3 finds exact solutions
-in many cases but is slower than QPBO alpha expansion.</p>
+<dt>switch_to <span class="classifier-delimiter">:</span> <span class="classifier">None or string, default=None</span></dt>
+<dd><p class="first last">Switch to the given inference method if the previous method does not
+find any more constraints.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -174,7 +173,7 @@ in many cases but is slower than QPBO alpha expansion.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=1</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=1e-05</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to_ad3=False</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=1</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=1e-05</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -215,15 +214,9 @@ Needs to have the same length as X.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong> :</p>
-<blockquote>
+<blockquote class="last">
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>params</strong> : mapping of string to any</p>
-<blockquote class="last">
-<div><p>Parameter names mapped to their values.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -313,8 +306,8 @@ component of a nested object.</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="pystruct.utils.SaveLogger.html"
-                        title="previous chapter">pystruct.utils.SaveLogger</a></p>
+  <p class="topless"><a href="pystruct.plot_learning.plot_learning.html"
+                        title="previous chapter">pystruct.plot_learning.plot_learning</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="pystruct.learners.NSlackSSVM.html"
                         title="next chapter">pystruct.learners.NSlackSSVM</a></p>
@@ -338,7 +331,7 @@ component of a nested object.</p>
           <a href="pystruct.learners.NSlackSSVM.html" title="pystruct.learners.NSlackSSVM"
              >next</a> |</li>
         <li class="right" >
-          <a href="pystruct.utils.SaveLogger.html" title="pystruct.utils.SaveLogger"
+          <a href="pystruct.plot_learning.plot_learning.html" title="pystruct.plot_learning.plot_learning"
              >previous</a> |</li>
         <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li> 
       </ul>

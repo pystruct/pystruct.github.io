@@ -25,6 +25,7 @@
         background-repeat: no-repeat;
         /* --> Thumbnail image size */
         width: 150px;
+        height: 200px;
         -webkit-background-size: 150px 100px; /* Saf3-4 */
         -moz-background-size: 150px 100px; /* FF3.6 */
         background-size: 150px 100px; /* Opera, IE9, Saf5, Chrome, FF4 */
@@ -57,10 +58,10 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/latent_svm.png
-   :target: ./latent_svm.html
+.. figure:: ./images/thumb/plot_objective_curve.png
+   :target: ./plot_objective_curve.html
 
-   :ref:`latent_svm.py`
+   :ref:`plot_objective_curve.py`
 
 
 .. raw:: html
@@ -71,7 +72,30 @@ Examples
 .. toctree::
    :hidden:
 
-   ./latent_svm
+   ./plot_objective_curve
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/plot_exact_learning.png
+   :target: ./plot_exact_learning.html
+
+   :ref:`plot_exact_learning.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_exact_learning
 
 
 

@@ -62,9 +62,7 @@
 <dt id="pystruct.models.BinarySVMModel">
 <em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">BinarySVMModel</tt><big>(</big><em>n_features</em><big>)</big><a class="headerlink" href="#pystruct.models.BinarySVMModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Formulate standard linear binary SVM in CRF framework.</p>
-<p>Inputs x are simply feature arrays, labels y are -1 or 1.
-No bias / intercept is learned. It is recommended to add a constant one
-feature to the data.</p>
+<p>Inputs x are simply feature arrays, labels y are -1 or 1.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -77,6 +75,12 @@ feature to the data.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>No bias / intercept is learned. It is recommended to add a constant one
+feature to the data.</p>
+<p>It is also highly recommended to use n_jobs=1 in the learner when using
+this model. Trying to parallelize the trivial inference will slow
+the infernce down a lot!</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>

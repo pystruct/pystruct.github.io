@@ -60,10 +60,10 @@
 <h1>pystruct.learners.StructuredPerceptron<a class="headerlink" href="#pystruct-learners-structuredperceptron" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.StructuredPerceptron">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">StructuredPerceptron</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">StructuredPerceptron</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>n_jobs=1</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structured Perceptron training.</p>
 <blockquote>
-<div>Implements a simple structured perceptron without regularization.
+<div>Implements a simple structured perceptron.
 The structured perceptron approximately minimizes the zero-one loss.
 Therefore the learning does not take model.loss into account.
 It is just shown to illustrate the learning progress.
@@ -87,10 +87,21 @@ parameters.</p>
 <dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">int (default=0)</span></dt>
 <dd><p class="first last">Verbosity</p>
 </dd>
-<dt>batch: bool (default=False)</dt>
+<dt>batch <span class="classifier-delimiter">:</span> <span class="classifier">bool (default=False)</span></dt>
 <dd><p class="first last">Whether to do batch learning or online learning.</p>
 </dd>
+<dt>decay_exponent <span class="classifier-delimiter">:</span> <span class="classifier">float, default=0</span></dt>
+<dd><p class="first last">Exponent for decaying learning rate. Effective learning rate is
+<tt class="docutils literal"><span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.
+Ignored if adagrad=True.</p>
+</dd>
+<dt>decay_t0 <span class="classifier-delimiter">:</span> <span class="classifier">float, default=10</span></dt>
+<dd><p class="first last">Offset for decaying learning rate. Effective learning rate is
+<tt class="docutils literal"><span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.
+Ignored if adagrad=True.</p>
+</dd>
 </dl>
+<p>logger : logger object.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -140,7 +151,7 @@ parameters.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>n_jobs=1</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -176,15 +187,9 @@ Needs to have the same length as X.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong> :</p>
-<blockquote>
+<blockquote class="last">
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>params</strong> : mapping of string to any</p>
-<blockquote class="last">
-<div><p>Parameter names mapped to their values.</p>
 </div></blockquote>
 </td>
 </tr>

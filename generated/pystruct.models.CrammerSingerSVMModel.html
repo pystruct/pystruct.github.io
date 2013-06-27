@@ -62,9 +62,7 @@
 <dt id="pystruct.models.CrammerSingerSVMModel">
 <em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">CrammerSingerSVMModel</tt><big>(</big><em>n_features</em>, <em>n_classes=2</em>, <em>class_weight=None</em>, <em>rescale_C=False</em><big>)</big><a class="headerlink" href="#pystruct.models.CrammerSingerSVMModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Formulate linear multiclass SVM in C-S style in CRF framework.</p>
-<p>Inputs x are simply feature arrays, labels y are 0 to n_classes.
-No bias / intercept is learned. It is recommended to add a constant one
-feature to the data.</p>
+<p>Inputs x are simply feature arrays, labels y are 0 to n_classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -91,6 +89,12 @@ or just rescale the loss.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>No bias / intercept is learned. It is recommended to add a constant one
+feature to the data.</p>
+<p>It is also highly recommended to use n_jobs=1 in the learner when using
+this model. Trying to parallelize the trivial inference will slow
+the infernce down a lot!</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>

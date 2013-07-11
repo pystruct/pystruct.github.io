@@ -60,7 +60,7 @@
 <h1>pystruct.learners.NSlackSSVM<a class="headerlink" href="#pystruct-learners-nslackssvm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.NSlackSSVM">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">NSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=1</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>batch_size=100</em>, <em>tol=-10</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=0</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.NSlackSSVM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">NSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>batch_size=100</em>, <em>tol=-10</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=0</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.NSlackSSVM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structured SVM solver for the n-slack QP with l1 slack penalty.</p>
 <blockquote>
 <div>Implements margin rescaled structural SVM using
@@ -83,13 +83,13 @@ The optimization is restarted in each iteration.</div></blockquote>
 <dt>C <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
 <dd><p class="first last">Regularization parameter</p>
 </dd>
-<dt>check_constraints <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dt>check_constraints <span class="classifier-delimiter">:</span> <span class="classifier">bool (default=True)</span></dt>
 <dd><p class="first last">Whether to check if the new &#8220;most violated constraint&#8221; is
 more violated than previous constraints. Helpful for stopping
 and debugging, but costly.</p>
 </dd>
-<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Verbosity</p>
+<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">int (default=0)</span></dt>
+<dd><p class="first last">Verbosity.</p>
 </dd>
 <dt>positive_constraint: list of ints</dt>
 <dd><p class="first last">Indices of parmeters that are constraint to be positive.</p>
@@ -187,7 +187,7 @@ If set to 0, no constraints will be removed.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.NSlackSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=1</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>batch_size=100</em>, <em>tol=-10</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=0</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.NSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>batch_size=100</em>, <em>tol=-10</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=0</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.NSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -232,9 +232,15 @@ y.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong> :</p>
-<blockquote class="last">
+<blockquote>
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>params</strong> : mapping of string to any</p>
+<blockquote class="last">
+<div><p>Parameter names mapped to their values.</p>
 </div></blockquote>
 </td>
 </tr>

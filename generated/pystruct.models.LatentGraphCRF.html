@@ -60,7 +60,7 @@
 <h1>pystruct.models.LatentGraphCRF<a class="headerlink" href="#pystruct-models-latentgraphcrf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.models.LatentGraphCRF">
-<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">LatentGraphCRF</tt><big>(</big><em>n_labels</em>, <em>n_features=None</em>, <em>n_states_per_label=2</em>, <em>inference_method='qpbo'</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentGraphCRF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">LatentGraphCRF</tt><big>(</big><em>n_labels</em>, <em>n_features=None</em>, <em>n_states_per_label=2</em>, <em>inference_method='lp'</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentGraphCRF" title="Permalink to this definition">¶</a></dt>
 <dd><p>CRF with latent states for variables.</p>
 <p>This is also called &#8220;hidden dynamics CRF&#8221;.
 For each output variable there is an additional variable which
@@ -85,7 +85,7 @@ Can be either an integer, which means the same number
 of hidden states will be used for all observable states, or a list
 of integers of length <tt class="docutils literal"><span class="pre">n_labels</span></tt>.</p>
 </div></blockquote>
-<p><strong>inference_method</strong> : string, default=&#8221;qpbo&#8221;</p>
+<p><strong>inference_method</strong> : string, default=&#8221;lp&#8221;</p>
 <blockquote class="last">
 <div><p>Function to call to do inference and loss-augmented inference.
 Possible values are:</p>
@@ -167,7 +167,7 @@ Possible values are:</p>
 </table>
 <dl class="method">
 <dt id="pystruct.models.LatentGraphCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_labels</em>, <em>n_features=None</em>, <em>n_states_per_label=2</em>, <em>inference_method='qpbo'</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentGraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_labels</em>, <em>n_features=None</em>, <em>n_states_per_label=2</em>, <em>inference_method='lp'</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentGraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

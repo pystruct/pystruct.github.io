@@ -60,7 +60,7 @@
 <h1>pystruct.models.GridCRF<a class="headerlink" href="#pystruct-models-gridcrf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.models.GridCRF">
-<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GridCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='qpbo'</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GridCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='lp'</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pairwise CRF on a 2d grid.</p>
 <p>Pairwise potentials are symmetric and the same for all edges.
 This leads to n_classes parameters for unary potentials and
@@ -76,7 +76,7 @@ need to be constant over the dataset.</p>
 <blockquote>
 <div><p>Number of states for all variables.</p>
 </div></blockquote>
-<p><strong>inference_method</strong> : string, default=&#8221;qpbo&#8221;</p>
+<p><strong>inference_method</strong> : string, default=&#8221;lp&#8221;</p>
 <blockquote>
 <div><p>Function to call do do inference and loss-augmented inference.
 Possible values are:</p>
@@ -151,7 +151,7 @@ Possible choices are 4 and 8.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.models.GridCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='qpbo'</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='lp'</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

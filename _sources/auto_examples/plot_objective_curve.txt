@@ -64,5 +64,5 @@ See plot_exact_learning.py for a way to deal with this.
 .. literalinclude:: plot_objective_curve.py
     :lines: 32-
 
-**Total running time of the example:**  9.70 seconds
+**Total running time of the example:**  19.08 seconds
     

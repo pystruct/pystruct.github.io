@@ -60,7 +60,7 @@
 <h1>pystruct.models.EdgeFeatureGraphCRF<a class="headerlink" href="#pystruct-models-edgefeaturegraphcrf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.models.EdgeFeatureGraphCRF">
-<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">EdgeFeatureGraphCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>n_edge_features=1</em>, <em>inference_method='qpbo'</em>, <em>class_weight=None</em>, <em>symmetric_edge_features=None</em>, <em>antisymmetric_edge_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">EdgeFeatureGraphCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>n_edge_features=1</em>, <em>inference_method='lp'</em>, <em>class_weight=None</em>, <em>symmetric_edge_features=None</em>, <em>antisymmetric_edge_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pairwise CRF with features/strength associated to each edge.</p>
 <p>Pairwise potentials are asymmetric and shared over all edges.
 They are weighted by an edge-specific features, though.
@@ -89,7 +89,7 @@ representing the graph.</p>
 <blockquote>
 <div><p>Number of features per edge.</p>
 </div></blockquote>
-<p><strong>inference_method</strong> : string, default=&#8221;qpbo&#8221;</p>
+<p><strong>inference_method</strong> : string, default=&#8221;lp&#8221;</p>
 <blockquote>
 <div><p>Function to call do do inference and loss-augmented inference.
 Possible values are:</p>
@@ -173,7 +173,7 @@ Often the direction of the edge has no immediate meaning.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.models.EdgeFeatureGraphCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>n_edge_features=1</em>, <em>inference_method='qpbo'</em>, <em>class_weight=None</em>, <em>symmetric_edge_features=None</em>, <em>antisymmetric_edge_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>n_edge_features=1</em>, <em>inference_method='lp'</em>, <em>class_weight=None</em>, <em>symmetric_edge_features=None</em>, <em>antisymmetric_edge_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

@@ -60,7 +60,7 @@
 <h1>pystruct.models.GraphCRF<a class="headerlink" href="#pystruct-models-graphcrf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.models.GraphCRF">
-<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GraphCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='qpbo'</em>, <em>class_weight=None</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GraphCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='lp'</em>, <em>class_weight=None</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pairwise CRF on a general graph.</p>
 <p>Pairwise potentials are symmetric and the same for all edges.
 This leads to n_classes parameters for unary potentials and
@@ -81,7 +81,7 @@ where edges is an array of shape (n_edges, 2), representing the graph.</p>
 <blockquote>
 <div><p>Number of features per node. None means n_states.</p>
 </div></blockquote>
-<p><strong>inference_method</strong> : string, default=&#8221;qpbo&#8221;</p>
+<p><strong>inference_method</strong> : string, default=&#8221;lp&#8221;</p>
 <blockquote>
 <div><p>Function to call do do inference and loss-augmented inference.
 Possible values are:</p>
@@ -156,7 +156,7 @@ n_classes. None means equal class weights.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.models.GraphCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='qpbo'</em>, <em>class_weight=None</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='lp'</em>, <em>class_weight=None</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

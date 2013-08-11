@@ -39,12 +39,12 @@ demonstration of the CRF than to show its superiority.
 
     *
 
-      .. image:: images/plot_letters_2.png
+      .. image:: images/plot_letters_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_letters_1.png
+      .. image:: images/plot_letters_2.png
             :scale: 47
 
 
@@ -67,5 +67,5 @@ demonstration of the CRF than to show its superiority.
 .. literalinclude:: plot_letters.py
     :lines: 31-
 
-**Total running time of the example:**  159.88 seconds
+**Total running time of the example:**  148.01 seconds
     

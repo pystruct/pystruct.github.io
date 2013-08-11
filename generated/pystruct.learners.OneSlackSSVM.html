@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pystruct.learners.OneSlackSSVM &mdash; pystruct 0.1-alpha documentation</title>
+    <title>pystruct.learners.OneSlackSSVM &mdash; pystruct 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -20,7 +20,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1-alpha',
+        VERSION:     '0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1-alpha documentation" href="../index.html" />
+    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.learners.NSlackSSVM" href="pystruct.learners.NSlackSSVM.html" />
     <link rel="prev" title="pystruct.plot_learning.plot_learning" href="pystruct.plot_learning.plot_learning.html" />
@@ -56,7 +56,7 @@
         </button>
 
         <a class="brand" href="../index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1-alpha</b></span>
+        <span class="navbar-text pull-left"><b>0.1</b></span>
 
         <div class="nav-collapse">
           <ul class="nav">
@@ -91,7 +91,7 @@
 <h1>pystruct.learners.OneSlackSSVM<a class="headerlink" href="#pystruct-learners-oneslackssvm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.OneSlackSSVM">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">OneSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=10000</em>, <em>C=1.0</em>, <em>check_constraints=False</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=0.001</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-05</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">OneSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=10000</em>, <em>C=1.0</em>, <em>check_constraints=False</em>, <em>verbose=0</em>, <em>negativity_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=0.001</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-05</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structured SVM solver for the 1-slack QP with l1 slack penalty.</p>
 <p>Implements margin rescaled structural SVM using
 the 1-slack formulation and cutting plane method, solved using CVXOPT.
@@ -123,9 +123,11 @@ and debugging, but costly.</p>
 <blockquote>
 <div><p>Verbosity</p>
 </div></blockquote>
-<p><strong>positive_constraint: list of ints</strong> :</p>
+<p><strong>negativity_constraint: list of ints</strong> :</p>
 <blockquote>
-<div><p>Indices of parmeters that are constraint to be positive.</p>
+<div><p>Indices of parmeters that are constraint to be negative.
+This is useful for learning submodular CRFs (inference is formulated
+as maximization in SSVMs, flipping some signs).</p>
 </div></blockquote>
 <p><strong>break_on_bad: bool (default=False)</strong> :</p>
 <blockquote>
@@ -246,7 +248,7 @@ find any more constraints.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=10000</em>, <em>C=1.0</em>, <em>check_constraints=False</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=0.001</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-05</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=10000</em>, <em>C=1.0</em>, <em>check_constraints=False</em>, <em>verbose=0</em>, <em>negativity_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=0.001</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-05</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

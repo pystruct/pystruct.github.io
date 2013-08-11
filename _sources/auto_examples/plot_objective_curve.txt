@@ -49,7 +49,7 @@ See plot_exact_learning.py for a way to deal with this.
          inactive_threshold=1e-05, inactive_window=50, inference_cache=100,
          logger=None, max_iter=10000,
          model=DirectionalGridCRF(n_states: 3, inference_method: qpbo, n_features: 3, n_edge_features: 2),
-         n_jobs=-1, positive_constraint=None, show_loss_every=10,
+         n_jobs=-1, negativity_constraint=None, show_loss_every=10,
          switch_to=None, tol=0.1, verbose=0)
   Iterations: 139
   Objective: 490.677066
@@ -62,5 +62,5 @@ See plot_exact_learning.py for a way to deal with this.
 .. literalinclude:: plot_objective_curve.py
     :lines: 32-
 
-**Total running time of the example:**  6.06 seconds
+**Total running time of the example:**  5.89 seconds
     

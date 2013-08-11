@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>PyStruct - Structured Learning in Python &mdash; pystruct 0.1-alpha documentation</title>
+    <title>PyStruct - Structured Learning in Python &mdash; pystruct 0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -20,7 +20,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1-alpha',
+        VERSION:     '0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1-alpha documentation" href="#" />
+    <link rel="top" title="pystruct 0.1 documentation" href="#" />
     <link rel="next" title="Examples" href="auto_examples/index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -54,7 +54,7 @@
         </button>
 
         <a class="brand" href="#">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1-alpha</b></span>
+        <span class="navbar-text pull-left"><b>0.1</b></span>
 
         <div class="nav-collapse">
           <ul class="nav">
@@ -96,7 +96,7 @@ The design tries to stay as close as possible to the interface and conventions
 of <a class="reference external" href="http://scikit-learn.org/dev">scikit-learn</a>.</p>
 <p>PyStruct 0.1 is out now! Install it via pip:</p>
 <blockquote>
-<div>pip install -U pystruct</div></blockquote>
+<div>pip install pystruct</div></blockquote>
 <p>Starting with this first stable release, PyStruct will remain
 stable with respect to API and will provide backward compatibility.</p>
 <p>You can contact the authors either via the <a class="reference external" href="https://groups.google.com/forum/#!forum/pystruct">mailing list</a>
@@ -104,13 +104,11 @@ or on <a class="reference external" href="https://github.com/pystruct/pystruct">
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>To install pystruct, you need cvxopt, cython and scikit-learn.</p>
 <p>The easiest way to install pystruct is using pip:</p>
 <blockquote>
 <div>pip install pystruct</div></blockquote>
-<p>You also need cvxopt and scikit-learn installed, and it is suggested that you
-also install additional packages for inference. The easiest way to get ready is:</p>
-<blockquote>
-<div>pip install -r requirements.txt</div></blockquote>
+<p>This will also install the additional inference packages ad3 and pyqpbo.</p>
 <p>You might also want to check out <a class="reference external" href="http://ipa.iwr.uni-heidelberg.de/jkappes/opengm2/">OpenGM</a>,
 a library containing many many inference algorithms that can be used with
 PyStruct.</p>

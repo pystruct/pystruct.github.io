@@ -16,12 +16,12 @@ variables.
 
     *
 
-      .. image:: images/plot_latent_node_1.png
+      .. image:: images/plot_latent_node_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_latent_node_2.png
+      .. image:: images/plot_latent_node_1.png
             :scale: 47
 
     *

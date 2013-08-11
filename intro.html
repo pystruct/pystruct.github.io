@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What is structured learning? &mdash; pystruct 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="pystruct 0.1 documentation" href="index.html" />
+    <link rel="prev" title="pystruct.plot_learning.plot_learning" href="generated/pystruct.plot_learning.plot_learning.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="#">Introduction</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
+  <div class="section" id="what-is-structured-learning">
+<span id="intro"></span><h1>What is structured learning?<a class="headerlink" href="#what-is-structured-learning" title="Permalink to this headline">¶</a></h1>
+<p>Structured prediction is a generalization of the standard paradigms of
+supervised learning, classification and regression. All of these can be thought
+of finding a function that minimizes some loss over a training set. The
+differences are in the kind of functions that are used and the losses.</p>
+<p>In classification, the target domain are discrete class labels, and the loss
+is usually the 0-1 loss, i.e. counting the misclassifications. In regression,
+the target domain is the real numbers, and the loss is usually mean squared
+error.
+In structured prediction, both the target domain and the loss are
+more or less arbitrary. This means the goal is not to predict a label or a
+number, but a possibly much more complicated object like a sequence or a
+graph.</p>
+<div class="section" id="what-does-that-mean">
+<h2>What does that mean?<a class="headerlink" href="#what-does-that-mean" title="Permalink to this headline">¶</a></h2>
+<p>In structured prediction, we often deal with finite, but large output spaces Y.
+This situation could be dealt with using classification with a very large
+number of classes. The idea behind structured prediction is that we can do
+better than this, by making use of the structure of the output space.</p>
+</div>
+<div class="section" id="a-very-simplified-example">
+<h2>A (very simplified) example<a class="headerlink" href="#a-very-simplified-example" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s say we want to generate text from spoken sentences. Viewed as a pure
+classification problem, we could see each possible sentence as a class. This
+has several drawbacks: we have many classes, and to do correct predictions, we
+have to have all possible sentences in the training set. That doesn&#8217;t work
+well. Also, we might not care about getting the sentence completely right.</p>
+<p>If we misinterpret a single word, this might be not as bad as
+misinterpreting every word. So a 0-1 loss on sentences seems inappropriate.
+We could also try to view every word as a separate class and try to predict
+each word individually. This seems somehow better, since we could learn to get
+most of the word in a sentence right. On the other hand, we lose all context.
+So for example the expression &#8220;car door&#8221; is way more likely than &#8220;car boar&#8221;,
+while predicted individually these could be easily confused.
+For a similar example, see <a class="reference internal" href="auto_examples/plot_letters.html#plot-letters-py"><em>OCR Letter sequence recognition</em></a>.</p>
+<p>Structured prediction tries to overcome these problems by considering the
+output (here the sentence) as a whole and using a loss function that is
+appropriate for this domain.</p>
+</div>
+<div class="section" id="a-formalism">
+<h2>A formalism<a class="headerlink" href="#a-formalism" title="Permalink to this headline">¶</a></h2>
+<p>I hope I have convinced you that structured prediction is a useful thing. So
+how are we going to formalize this? Having functions that produce arbitrary
+objects seem a bit hard to handle. There is one very basic formula at the heart
+of structured prediction:</p>
+<div class="math">
+<p><img src="_images/math/f3e7a9e86532481fa1308c35f0c0633f5c105530.png" alt="y^* = \arg \max_{y \in Y} f(x, y)"/></p>
+</div><p>Here x is the input, Y is the set of all possible outputs and f is a
+compatibility function that says how well y fits the input x. The prediction
+for x is y*, the element of Y that maximizes the compatibility.</p>
+<p>This very simple formula allows us to predict arbitrarily complex outputs, as
+long as we can say how compatible a given output is with the input.</p>
+<p>This approach opens up two questions:</p>
+<p>How do we specify f? How do we compute y*?</p>
+<p>As I said above, the output set Y is usually a finite but very large set (all
+graphs, all sentences in the English language, all images of a given
+resolution). Finding the argmax in the above equation by exhaustive search is
+therefore out of the question. So we need to restrict ourselves to f such that
+we can do the maximization over y efficiently. The most popular tool for
+building such f is using energy functions or conditional random fields (CRFs)
+[which are basically the same for finding y*].</p>
+<p>There are basically three challenges in doing structured learning and prediction:</p>
+<ul class="simple">
+<li>Choosing a parametric form of f</li>
+<li>solving <img class="math" src="_images/math/306725f99352abed8e80839b423bd4e5657370a1.png" alt="\arg\max_y f(x, y)"/></li>
+<li>learning parameters for f to minimize a loss.</li>
+</ul>
+<p>PyStruct takes <img class="math" src="_images/math/bb2c93730dbb48558bb3c4738c956c4e8f816437.png" alt="f"/> to be a linear function of some parameters and a feature function <img class="math" src="_images/math/bc1da45a0f6a8ae8c1483978b48fafad65c58568.png" alt="Psi"/>.
+Then the parametric form is given by the <a class="reference internal" href="references.html#models"><em>Models</em></a>.
+The second problem, computation of the argmax, is done via third party inference solvers.
+The interfaces to these are explained at <a class="reference internal" href="references.html#inference"><em>Inference</em></a>.
+The last part, the learning is actually the core part of PyStruct.
+There are several different algorithms implemented, which you can find under <a class="reference internal" href="references.html#learning"><em>Learning</em></a>.</p>
+<p>There have been many publications and book on this topics. For a nice introduction (in the context of computer vision), I recommend
+Sebastian Nowozin, Christoph H. Lampert:</p>
+<p><a class="reference external" href="http://pub.ist.ac.at/%7Echl/papers/nowozin-fnt2011.pdf">Structured Learning and Prediction in Computer Vision</a></p>
+<p>Two of the founding publications on the topic of learning structured models are:</p>
+<ul class="simple">
+<li>Ben Taskar, Carlos Guestrin, Daphne Koller <a class="reference external" href="http://machinelearning.wustl.edu/mlpapers/paper_files/NIPS2003_AA04.pdf">Max-Margin Markov Networks</a></li>
+<li>Tsochantaridis, T. Joachims, T. Hofmann, and Y. Altun <a class="reference external" href="http://www.jmlr.org/papers/volume6/tsochantaridis05a/tsochantaridis05a.pdf">Large Margin Methods for Structured and Interdependent Output Variables</a></li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

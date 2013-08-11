@@ -1,6 +1,6 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,8 +9,13 @@
     
     <title>pystruct.learners.OneSlackSSVM &mdash; pystruct 0.1-alpha documentation</title>
     
-    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,126 +29,194 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1-alpha documentation" href="../index.html" />
+    <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.learners.NSlackSSVM" href="pystruct.learners.NSlackSSVM.html" />
-    <link rel="prev" title="pystruct.plot_learning.plot_learning" href="pystruct.plot_learning.plot_learning.html" /> 
+    <link rel="prev" title="pystruct.plot_learning.plot_learning" href="pystruct.plot_learning.plot_learning.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
   </head>
   <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pystruct.learners.NSlackSSVM.html" title="pystruct.learners.NSlackSSVM"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pystruct.plot_learning.plot_learning.html" title="pystruct.plot_learning.plot_learning"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="../index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1-alpha</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
             
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="../search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
   <div class="section" id="pystruct-learners-oneslackssvm">
 <h1>pystruct.learners.OneSlackSSVM<a class="headerlink" href="#pystruct-learners-oneslackssvm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.OneSlackSSVM">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">OneSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=1e-05</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">OneSlackSSVM</tt><big>(</big><em>model</em>, <em>max_iter=10000</em>, <em>C=1.0</em>, <em>check_constraints=False</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=0.001</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-05</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structured SVM solver for the 1-slack QP with l1 slack penalty.</p>
-<blockquote>
-<div>Implements margin rescaled structural SVM using
+<p>Implements margin rescaled structural SVM using
 the 1-slack formulation and cutting plane method, solved using CVXOPT.
-The optimization is restarted in each iteration.</div></blockquote>
+The optimization is restarted in each iteration.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>model</strong> : StructuredModel</p>
-<blockquote class="last">
-<div><blockquote>
+<blockquote>
 <div><p>Object containing the model structure. Has to implement
 <cite>loss</cite>, <cite>inference</cite> and <cite>loss_augmented_inference</cite>.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>max_iter <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Maximum number of passes over dataset to find constraints.</p>
-</dd>
-<dt>C <span class="classifier-delimiter">:</span> <span class="classifier">float (default=1)</span></dt>
-<dd><p class="first last">Regularization parameter</p>
-</dd>
-<dt>check_constraints <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Whether to check if the new &#8220;most violated constraint&#8221; is
+<p><strong>max_iter</strong> : int</p>
+<blockquote>
+<div><p>Maximum number of passes over dataset to find constraints.</p>
+</div></blockquote>
+<p><strong>C</strong> : float (default=1)</p>
+<blockquote>
+<div><p>Regularization parameter</p>
+</div></blockquote>
+<p><strong>check_constraints</strong> : bool</p>
+<blockquote>
+<div><p>Whether to check if the new &#8220;most violated constraint&#8221; is
 more violated than previous constraints. Helpful for stopping
 and debugging, but costly.</p>
-</dd>
-<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Verbosity</p>
-</dd>
-<dt>positive_constraint: list of ints</dt>
-<dd><p class="first last">Indices of parmeters that are constraint to be positive.</p>
-</dd>
-<dt>break_on_bad: bool (default=False)</dt>
-<dd><p class="first last">Whether to break (start debug mode) when inference was approximate.</p>
-</dd>
-<dt>n_jobs <span class="classifier-delimiter">:</span> <span class="classifier">int, default=1</span></dt>
-<dd><p class="first last">Number of parallel jobs for inference. -1 means as many as cpus.</p>
-</dd>
-<dt>show_loss_every <span class="classifier-delimiter">:</span> <span class="classifier">int, default=0</span></dt>
-<dd><p class="first last">Controlls how often the hamming loss is computed (for monitoring
+</div></blockquote>
+<p><strong>verbose</strong> : int</p>
+<blockquote>
+<div><p>Verbosity</p>
+</div></blockquote>
+<p><strong>positive_constraint: list of ints</strong> :</p>
+<blockquote>
+<div><p>Indices of parmeters that are constraint to be positive.</p>
+</div></blockquote>
+<p><strong>break_on_bad: bool (default=False)</strong> :</p>
+<blockquote>
+<div><p>Whether to break (start debug mode) when inference was approximate.</p>
+</div></blockquote>
+<p><strong>n_jobs</strong> : int, default=1</p>
+<blockquote>
+<div><p>Number of parallel jobs for inference. -1 means as many as cpus.</p>
+</div></blockquote>
+<p><strong>show_loss_every</strong> : int, default=0</p>
+<blockquote>
+<div><p>Controlls how often the hamming loss is computed (for monitoring
 purposes). Zero means never, otherwise it will be computed very
 show_loss_every&#8217;th epoch.</p>
-</dd>
-<dt>tol <span class="classifier-delimiter">:</span> <span class="classifier">float, default=1e-5</span></dt>
-<dd><p class="first last">Convergence tolerance. If dual objective decreases less than tol,
+</div></blockquote>
+<p><strong>tol</strong> : float, default=1e-3</p>
+<blockquote>
+<div><p>Convergence tolerance. If dual objective decreases less than tol,
 learning is stopped. The default corresponds to ignoring the behavior
 of the dual objective and stop only if no more constraints can be
 found.</p>
-</dd>
-<dt>inference_cache <span class="classifier-delimiter">:</span> <span class="classifier">int, default=0</span></dt>
-<dd><p class="first last">How many results of loss_augmented_inference to cache per sample.
+</div></blockquote>
+<p><strong>inference_cache</strong> : int, default=0</p>
+<blockquote>
+<div><p>How many results of loss_augmented_inference to cache per sample.
 If &gt; 0 the most violating of the cached examples will be used to
 construct a global constraint. Only if this constraint is not violated,
 inference will be run again. This parameter poses a memory /
 computation tradeoff. Storing more constraints might lead to RAM being
 exhausted. Using inference_cache &gt; 0 is only advisable if computation
 time is dominated by inference.</p>
-</dd>
-<dt>cache_tol <span class="classifier-delimiter">:</span> <span class="classifier">float, default=None</span></dt>
-<dd><p class="first last">Tolerance when to reject a constraint from cache (and do inference).
+</div></blockquote>
+<p><strong>cache_tol</strong> : float, default=None</p>
+<blockquote>
+<div><p>Tolerance when to reject a constraint from cache (and do inference).
 If None, <tt class="docutils literal"><span class="pre">tol</span></tt> will be used. Higher values might lead to faster
 learning.</p>
-</dd>
-<dt>inactive_threshold <span class="classifier-delimiter">:</span> <span class="classifier">float, default=1e-5</span></dt>
-<dd><p class="first last">Threshold for dual variable of a constraint to be considered inactive.</p>
-</dd>
-<dt>inactive_window <span class="classifier-delimiter">:</span> <span class="classifier">float, default=50</span></dt>
-<dd><p class="first last">Window for measuring inactivity. If a constraint is inactive for
+</div></blockquote>
+<p><strong>inactive_threshold</strong> : float, default=1e-5</p>
+<blockquote>
+<div><p>Threshold for dual variable of a constraint to be considered inactive.</p>
+</div></blockquote>
+<p><strong>inactive_window</strong> : float, default=50</p>
+<blockquote>
+<div><p>Window for measuring inactivity. If a constraint is inactive for
 <tt class="docutils literal"><span class="pre">inactive_window</span></tt> iterations, it will be pruned from the QP.
 If set to 0, no constraints will be removed.</p>
-</dd>
-<dt>switch_to <span class="classifier-delimiter">:</span> <span class="classifier">None or string, default=None</span></dt>
-<dd><p class="first last">Switch to the given inference method if the previous method does not
+</div></blockquote>
+<p><strong>switch_to</strong> : None or string, default=None</p>
+<blockquote class="last">
+<div><p>Switch to the given inference method if the previous method does not
 find any more constraints.</p>
-</dd>
-</dl>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="28%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>w</td>
+<td>nd-array, shape=(model.size_psi,)</td>
+<td>The learned weights of the SVM.</td>
+</tr>
+<tr class="row-even"><td>old_solution</td>
+<td>dict</td>
+<td>The last solution found by the qp solver.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">loss_curve_</span></tt></td>
+<td>list of float</td>
+<td>List of loss values if show_loss_every &gt; 0.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">objective_curve_</span></tt></td>
+<td>list of float</td>
+<td>Cutting plane objective after each pass through the dataset.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">primal_objective_curve_</span></tt></td>
+<td>list of float</td>
+<td>Primal objective after each pass through the dataset.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">timestamps_</span></tt></td>
+<td>list of int</td>
+<td>Total training time stored before each iteration.</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -151,11 +224,11 @@ find any more constraints.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.OneSlackSSVM.fit" title="pystruct.learners.OneSlackSSVM.fit"><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt></a>(X,&nbsp;Y[,&nbsp;constraints,&nbsp;warm_start])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.OneSlackSSVM.fit" title="pystruct.learners.OneSlackSSVM.fit"><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt></a>(X,&nbsp;Y[,&nbsp;constraints,&nbsp;warm_start,&nbsp;initialize])</td>
 <td>Learn parameters using cutting plane method.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.OneSlackSSVM.get_params" title="pystruct.learners.OneSlackSSVM.get_params"><tt class="xref py py-obj docutils literal"><span class="pre">get_params</span></tt></a>([deep])</td>
-<td>Get parameters for the estimator</td>
+<td>Get parameters for this estimator.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.OneSlackSSVM.predict" title="pystruct.learners.OneSlackSSVM.predict"><tt class="xref py py-obj docutils literal"><span class="pre">predict</span></tt></a>(X)</td>
 <td>Predict output on examples in X.</td>
@@ -167,18 +240,18 @@ find any more constraints.</p>
 <td>Compute score as 1 - loss over whole data set.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.OneSlackSSVM.set_params" title="pystruct.learners.OneSlackSSVM.set_params"><tt class="xref py py-obj docutils literal"><span class="pre">set_params</span></tt></a>(**params)</td>
-<td>Set the parameters of the estimator.</td>
+<td>Set the parameters of this estimator.</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>check_constraints=True</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=1e-05</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-10</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=10000</em>, <em>C=1.0</em>, <em>check_constraints=False</em>, <em>verbose=0</em>, <em>positive_constraint=None</em>, <em>n_jobs=1</em>, <em>break_on_bad=False</em>, <em>show_loss_every=0</em>, <em>tol=0.001</em>, <em>inference_cache=0</em>, <em>inactive_threshold=1e-05</em>, <em>inactive_window=50</em>, <em>logger=None</em>, <em>cache_tol='auto'</em>, <em>switch_to=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>constraints=None</em>, <em>warm_start=False</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>constraints=None</em>, <em>warm_start=False</em>, <em>initialize=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn parameters using cutting plane method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -196,8 +269,13 @@ Needs to have the same length as X.</p>
 </div></blockquote>
 <p><strong>contraints</strong> : ignored</p>
 <p><strong>warm_start</strong> : bool, default=False</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Whether we are warmstarting from a previous fit.</p>
+</div></blockquote>
+<p><strong>initialize</strong> : boolean, default=True</p>
+<blockquote class="last">
+<div><p>Whether to initialize the model for the data.
+Leave this true except if you really know what you are doing.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -208,7 +286,7 @@ Needs to have the same length as X.</p>
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.get_params">
 <tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.get_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get parameters for the estimator</p>
+<dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -233,17 +311,18 @@ contained subobjects that are estimators.</p>
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.predict">
 <tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Predict output on examples in X.
-Parameters
-&#8212;&#8212;&#8212;-
-X : iterable</p>
-<blockquote>
-<div>Traing instances. Contains the structured input objects.</div></blockquote>
+<dd><p>Predict output on examples in X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>Y_pred</strong> : list</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>X</strong> : iterable</p>
+<blockquote>
+<div><p>Traing instances. Contains the structured input objects.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>Y_pred</strong> : list</p>
 <blockquote class="last">
 <div><p>List of inference results for X using the learned parameters.</p>
 </div></blockquote>
@@ -286,7 +365,7 @@ over X and Y.</p>
 <dl class="method">
 <dt id="pystruct.learners.OneSlackSSVM.set_params">
 <tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#pystruct.learners.OneSlackSSVM.set_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the parameters of the estimator.</p>
+<dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
 <tt class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></tt> so that it&#8217;s possible to update each
@@ -306,45 +385,18 @@ component of a nested object.</p>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pystruct.plot_learning.plot_learning.html"
-                        title="previous chapter">pystruct.plot_learning.plot_learning</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pystruct.learners.NSlackSSVM.html"
-                        title="next chapter">pystruct.learners.NSlackSSVM</a></p>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pystruct.learners.NSlackSSVM.html" title="pystruct.learners.NSlackSSVM"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pystruct.plot_learning.plot_learning.html" title="pystruct.plot_learning.plot_learning"
-             >previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2013, Andreas Mueller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

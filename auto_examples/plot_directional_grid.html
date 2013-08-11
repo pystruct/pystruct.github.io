@@ -1,6 +1,6 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,8 +9,13 @@
     
     <title>Learning directed interactions on a 2d grid &mdash; pystruct 0.1-alpha documentation</title>
     
-    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,40 +29,64 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1-alpha documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
     <link rel="next" title="Learning interactions on a 2d grid" href="plot_grid_crf.html" />
-    <link rel="prev" title="Latent SVM" href="latent_svm_as_crf.html" /> 
+    <link rel="prev" title="SVM objective values" href="plot_svm_objectives.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
   </head>
   <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="plot_grid_crf.html" title="Learning interactions on a 2d grid"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="latent_svm_as_crf.html" title="Latent SVM"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Examples</a> &raquo;</li> 
-      </ul>
-    </div>  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="../index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1-alpha</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
             
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="../search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
   <div class="section" id="learning-directed-interactions-on-a-2d-grid">
 <span id="plot-directional-grid-py"></span><h1>Learning directed interactions on a 2d grid<a class="headerlink" href="#learning-directed-interactions-on-a-2d-grid" title="Permalink to this headline">¶</a></h1>
 <p>Simple pairwise model with arbitrary interactions on a 4-connected grid.
@@ -76,10 +105,8 @@ there is a specific order in the horizontal direction (see off-diagonal).</p>
 <div class="highlight-python"><pre>Training 1-slack dual structural SVM
 new constraint too weak.
 new constraint too weak.
-new constraint too weak.
-new constraint too weak.
 no additional constraints
-overall accuracy (training set): 0.954167</pre>
+overall accuracy (training set): 0.945417</pre>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_directional_grid.py"><tt class="xref download docutils literal"><span class="pre">plot_directional_grid.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -87,17 +114,15 @@ overall accuracy (training set): 0.954167</pre>
 
 <span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">DirectionalGridCRF</span>
 <span class="kn">import</span> <span class="nn">pystruct.learners</span> <span class="kn">as</span> <span class="nn">ssvm</span>
-<span class="kn">import</span> <span class="nn">pystruct.toy_datasets</span> <span class="kn">as</span> <span class="nn">toy</span>
+<span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">generate_blocks_multinomial</span>
 
 
-<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">toy</span><span class="o">.</span><span class="n">generate_blocks_multinomial</span><span class="p">(</span><span class="n">noise</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">n_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.unique.html#numpy.unique"><span class="n">np</span><span class="o">.</span><span class="n">unique</span></a><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
-<span class="n">crf</span> <span class="o">=</span> <span class="n">DirectionalGridCRF</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="n">n_labels</span><span class="p">,</span> <span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;qpbo&quot;</span><span class="p">,</span>
-                         <span class="n">neighborhood</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">crf</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                        <span class="n">check_constraints</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-                        <span class="n">inference_cache</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">inactive_window</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">generate_blocks_multinomial</span><span class="p">(</span><span class="n">noise</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">crf</span> <span class="o">=</span> <span class="n">DirectionalGridCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;qpbo&quot;</span><span class="p">,</span> <span class="n">neighborhood</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">crf</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
 <span class="n">Y_pred</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.array.html#numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;overall accuracy (training set): </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">))</span>
 
@@ -134,50 +159,22 @@ overall accuracy (training set): 0.954167</pre>
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  10.66 seconds</p>
+<p><strong>Total running time of the example:</strong>  4.74 seconds</p>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="latent_svm_as_crf.html"
-                        title="previous chapter">Latent SVM</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="plot_grid_crf.html"
-                        title="next chapter">Learning interactions on a 2d grid</a></p>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="plot_grid_crf.html" title="Learning interactions on a 2d grid"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="latent_svm_as_crf.html" title="Latent SVM"
-             >previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li>
-          <li><a href="index.html" >Examples</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2013, Andreas Mueller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

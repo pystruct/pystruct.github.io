@@ -1,6 +1,6 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,8 +9,13 @@
     
     <title>Crammer-Singer Multi-Class SVM &mdash; pystruct 0.1-alpha documentation</title>
     
-    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,40 +29,64 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1-alpha documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
-    <link rel="next" title="Binary SVM as SSVM" href="plot_binary_svm.html" />
-    <link rel="prev" title="Learning interactions on a 2d grid" href="plot_grid_crf.html" /> 
+    <link rel="next" title="Latent SVM for odd vs. even digit classification" href="plot_latent_svm_as_crf.html" />
+    <link rel="prev" title="OCR Letter sequence recognition" href="plot_letters.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
   </head>
   <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="plot_binary_svm.html" title="Binary SVM as SSVM"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="plot_grid_crf.html" title="Learning interactions on a 2d grid"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Examples</a> &raquo;</li> 
-      </ul>
-    </div>  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="../index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1-alpha</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
             
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="../search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
   <div class="section" id="crammer-singer-multi-class-svm">
 <span id="multi-class-svm-py"></span><h1>Crammer-Singer Multi-Class SVM<a class="headerlink" href="#crammer-singer-multi-class-svm" title="Permalink to this headline">¶</a></h1>
 <p>Comparing different solvers on a standard multi-class SVM problem.</p>
@@ -65,35 +94,33 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<span class="c">#from sklearn.datasets import fetch_mldata</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_mldata</span>
+<span class="c">#from sklearn.datasets import load_digits</span>
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="c">#from sklearn.svm import LinearSVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
 
-<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">CrammerSingerSVMModel</span>
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">MultiClassClf</span>
 <span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="p">(</span><span class="n">NSlackSSVM</span><span class="p">,</span> <span class="n">OneSlackSSVM</span><span class="p">,</span>
                                <span class="n">SubgradientSSVM</span><span class="p">)</span>
 
 <span class="c"># do a binary digit classification</span>
-<span class="c">#digits = fetch_mldata(&quot;MNIST original&quot;)</span>
-<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="n">digits</span> <span class="o">=</span> <span class="n">fetch_mldata</span><span class="p">(</span><span class="s">&quot;USPS&quot;</span><span class="p">)</span>
+<span class="c">#digits = load_digits()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
 <span class="c">#X = X / 255.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">X</span> <span class="o">/</span> <span class="mf">16.</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+<span class="c">#X = X / 16.</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
 
 <span class="c"># we add a constant 1 feature for the bias</span>
 <span class="n">X_train_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
 <span class="n">X_test_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
 
-<span class="n">pbl</span> <span class="o">=</span> <span class="n">CrammerSingerSVMModel</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="n">X_train_bias</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">n_slack_svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">check_constraints</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-                         <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
-<span class="n">one_slack_svm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">check_constraints</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">20</span><span class="p">,</span>
-                             <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">001</span><span class="p">,</span> <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">subgradient_svm</span> <span class="o">=</span> <span class="n">SubgradientSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">,</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MultiClassClf</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="n">X_train_bias</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">n_slack_svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">check_constraints</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                         <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="n">one_slack_svm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">10</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">001</span><span class="p">)</span>
+<span class="n">subgradient_svm</span> <span class="o">=</span> <span class="n">SubgradientSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">,</span>
                                   <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c"># n-slack cutting plane ssvm</span>
@@ -124,7 +151,7 @@
 <span class="c"># because of the way I construct psi, we use half the C</span>
 <span class="c"># the standard one-vs-rest multi-class would probably be as good and faster</span>
 <span class="c"># but solving a different model</span>
-<span class="c">#libsvm = LinearSVC(multi_class=&#39;crammer_singer&#39;, C=10)</span>
+<span class="c">#libsvm = LinearSVC(multi_class=&#39;crammer_singer&#39;, C=.1)</span>
 <span class="c">#start = time()</span>
 <span class="c">#libsvm.fit(X_train, y_train)</span>
 <span class="c">#time_libsvm = time() - start</span>
@@ -138,46 +165,18 @@
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="plot_grid_crf.html"
-                        title="previous chapter">Learning interactions on a 2d grid</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="plot_binary_svm.html"
-                        title="next chapter">Binary SVM as SSVM</a></p>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="plot_binary_svm.html" title="Binary SVM as SSVM"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="plot_grid_crf.html" title="Learning interactions on a 2d grid"
-             >previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li>
-          <li><a href="index.html" >Examples</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2013, Andreas Mueller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

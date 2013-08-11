@@ -36,7 +36,7 @@
         }
 
     .figure .caption {
-        width: 170px;
+        width: 150px;
         text-align: center !important;
     }
     </style>
@@ -50,29 +50,6 @@ Examples
 
 
 
-
-
-
-.. raw:: html
-
-    <div class="thumbnailContainer">
-
-
-.. figure:: ./images/thumb/latent_svm.png
-   :target: ./latent_svm.html
-
-   :ref:`latent_svm.py`
-
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./latent_svm
 
 
 
@@ -150,10 +127,10 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/svm_objectives.png
-   :target: ./svm_objectives.html
+.. figure:: ./images/thumb/image_segmentation.png
+   :target: ./image_segmentation.html
 
-   :ref:`svm_objectives.py`
+   :ref:`image_segmentation.py`
 
 
 .. raw:: html
@@ -164,7 +141,7 @@ Examples
 .. toctree::
    :hidden:
 
-   ./svm_objectives
+   ./image_segmentation
 
 
 
@@ -196,10 +173,10 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/latent_svm_as_crf.png
-   :target: ./latent_svm_as_crf.html
+.. figure:: ./images/thumb/plot_svm_objectives.png
+   :target: ./plot_svm_objectives.html
 
-   :ref:`latent_svm_as_crf.py`
+   :ref:`plot_svm_objectives.py`
 
 
 .. raw:: html
@@ -210,7 +187,7 @@ Examples
 .. toctree::
    :hidden:
 
-   ./latent_svm_as_crf
+   ./plot_svm_objectives
 
 
 
@@ -265,6 +242,29 @@ Examples
     <div class="thumbnailContainer">
 
 
+.. figure:: ./images/thumb/plot_letters.png
+   :target: ./plot_letters.html
+
+   :ref:`plot_letters.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_letters
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
 .. figure:: ./images/thumb/multi_class_svm.png
    :target: ./multi_class_svm.html
 
@@ -280,6 +280,75 @@ Examples
    :hidden:
 
    ./multi_class_svm
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/plot_latent_svm_as_crf.png
+   :target: ./plot_latent_svm_as_crf.html
+
+   :ref:`plot_latent_svm_as_crf.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_latent_svm_as_crf
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/multi_label.png
+   :target: ./multi_label.html
+
+   :ref:`multi_label.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./multi_label
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/plot_latent_node.png
+   :target: ./plot_latent_node.html
+
+   :ref:`plot_latent_node.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_latent_node
 
 
 
@@ -311,10 +380,10 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/latent_node.png
-   :target: ./latent_node.html
+.. figure:: ./images/thumb/multiclass_comparision_svm_struct.png
+   :target: ./multiclass_comparision_svm_struct.html
 
-   :ref:`latent_node.py`
+   :ref:`multiclass_comparision_svm_struct.py`
 
 
 .. raw:: html
@@ -325,7 +394,7 @@ Examples
 .. toctree::
    :hidden:
 
-   ./latent_node
+   ./multiclass_comparision_svm_struct
 
 
 .. raw:: html

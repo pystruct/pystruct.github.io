@@ -20,12 +20,12 @@ solved without pairwise interactions.
 
     *
 
-      .. image:: images/plot_grid_crf_2.png
+      .. image:: images/plot_grid_crf_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_grid_crf_1.png
+      .. image:: images/plot_grid_crf_2.png
             :scale: 47
 
 
@@ -37,7 +37,7 @@ solved without pairwise interactions.
   new constraint too weak.
   new constraint too weak.
   no additional constraints
-  overall accuracy (training set): 0.975309
+  overall accuracy (training set): 0.985926
 
 
 
@@ -46,5 +46,5 @@ solved without pairwise interactions.
 .. literalinclude:: plot_grid_crf.py
     :lines: 12-
 
-**Total running time of the example:**  44.55 seconds
+**Total running time of the example:**  11.94 seconds
     

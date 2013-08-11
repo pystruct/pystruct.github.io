@@ -1,0 +1,42 @@
+
+
+.. _plot_svm_objectives.py:
+
+
+====================
+SVM objective values
+====================
+Showing the relation between cutting plane and primal objectives,
+as well as the different algorithms.
+We use exact inference here, so the plots are easier to interpret.
+
+As this is a small toy example, it is hard to generalize
+the results indicated in the plot to more realistic settigs.
+
+
+
+.. image:: images/plot_svm_objectives_1.png
+    :align: center
+
+
+**Script output**::
+
+  Training n-slack dual structural SVM
+  objective converged.
+  Training 1-slack dual structural SVM
+  new constraint too weak.
+  new constraint too weak.
+  new constraint too weak.
+  no additional constraints
+  Training primal subgradient structural SVM
+  final objective: 361.352536
+
+
+
+**Python source code:** :download:`plot_svm_objectives.py <plot_svm_objectives.py>`
+
+.. literalinclude:: plot_svm_objectives.py
+    :lines: 12-
+
+**Total running time of the example:**  15.22 seconds
+    

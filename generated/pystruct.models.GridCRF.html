@@ -1,6 +1,6 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,8 +9,13 @@
     
     <title>pystruct.models.GridCRF &mdash; pystruct 0.1-alpha documentation</title>
     
-    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -24,43 +29,69 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1-alpha documentation" href="../index.html" />
+    <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.models.DirectionalGridCRF" href="pystruct.models.DirectionalGridCRF.html" />
-    <link rel="prev" title="pystruct.models.LatentNodeCRF" href="pystruct.models.LatentNodeCRF.html" /> 
+    <link rel="prev" title="pystruct.models.LatentNodeCRF" href="pystruct.models.LatentNodeCRF.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
   </head>
   <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pystruct.models.DirectionalGridCRF.html" title="pystruct.models.DirectionalGridCRF"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pystruct.models.LatentNodeCRF.html" title="pystruct.models.LatentNodeCRF"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="../index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1-alpha</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
             
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="../search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
   <div class="section" id="pystruct-models-gridcrf">
 <h1>pystruct.models.GridCRF<a class="headerlink" href="#pystruct-models-gridcrf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.models.GridCRF">
-<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GridCRF</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='lp'</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GridCRF</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pairwise CRF on a 2d grid.</p>
 <p>Pairwise potentials are symmetric and the same for all edges.
 This leads to n_classes parameters for unary potentials and
@@ -76,7 +107,7 @@ need to be constant over the dataset.</p>
 <blockquote>
 <div><p>Number of states for all variables.</p>
 </div></blockquote>
-<p><strong>inference_method</strong> : string, default=&#8221;lp&#8221;</p>
+<p><strong>inference_method</strong> : string, default=&#8221;ad3&#8221;</p>
 <blockquote>
 <div><p>Function to call do do inference and loss-augmented inference.
 Possible values are:</p>
@@ -120,95 +151,30 @@ Possible choices are 4 and 8.</p>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">continuous_loss</span></tt>(y,&nbsp;y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get_edges</span></tt>(x)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">get_features</span></tt>(x)</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.GridCRF.get_pairwise_potentials" title="pystruct.models.GridCRF.get_pairwise_potentials"><tt class="xref py py-obj docutils literal"><span class="pre">get_pairwise_potentials</span></tt></a>(x,&nbsp;w)</td>
-<td>Computes pairwise potentials for x and w.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.models.GridCRF.get_unary_potentials" title="pystruct.models.GridCRF.get_unary_potentials"><tt class="xref py py-obj docutils literal"><span class="pre">get_unary_potentials</span></tt></a>(x,&nbsp;w)</td>
-<td>Computes unary potentials for x and w.</td>
-</tr>
 <tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">inference</span></tt>(x,&nbsp;w[,&nbsp;relaxed,&nbsp;return_energy])</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">initialize</span></tt>(X,&nbsp;Y)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.GridCRF.psi" title="pystruct.models.GridCRF.psi"><tt class="xref py py-obj docutils literal"><span class="pre">psi</span></tt></a>(x,&nbsp;y)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.models.GridCRF.psi" title="pystruct.models.GridCRF.psi"><tt class="xref py py-obj docutils literal"><span class="pre">psi</span></tt></a>(x,&nbsp;y)</td>
 <td>Feature vector associated with instance (x, y).</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pystruct.models.GridCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=2</em>, <em>n_features=None</em>, <em>inference_method='lp'</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>neighborhood=4</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="method">
-<dt id="pystruct.models.GridCRF.get_pairwise_potentials">
-<tt class="descname">get_pairwise_potentials</tt><big>(</big><em>x</em>, <em>w</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF.get_pairwise_potentials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes pairwise potentials for x and w.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : tuple</p>
-<blockquote>
-<div><p>Instance Representation.</p>
-</div></blockquote>
-<p><strong>w</strong> : ndarray, shape=(size_psi,)</p>
-<blockquote>
-<div><p>Weight vector for CRF instance.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>pairwise</strong> : ndarray, shape=(n_states, n_states)</p>
-<blockquote class="last">
-<div><p>Pairwise weights.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pystruct.models.GridCRF.get_unary_potentials">
-<tt class="descname">get_unary_potentials</tt><big>(</big><em>x</em>, <em>w</em><big>)</big><a class="headerlink" href="#pystruct.models.GridCRF.get_unary_potentials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes unary potentials for x and w.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : tuple</p>
-<blockquote>
-<div><p>Instance Representation.</p>
-</div></blockquote>
-<p><strong>w</strong> : ndarray, shape=(size_psi,)</p>
-<blockquote>
-<div><p>Weight vector for CRF instance.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>unary</strong> : ndarray, shape=(n_states)</p>
-<blockquote class="last">
-<div><p>Unary weights.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
 
 <dl class="method">
 <dt id="pystruct.models.GridCRF.psi">
@@ -248,45 +214,18 @@ case, <tt class="docutils literal"><span class="pre">y=(unary_marginals,</span> 
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pystruct.models.LatentNodeCRF.html"
-                        title="previous chapter">pystruct.models.LatentNodeCRF</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pystruct.models.DirectionalGridCRF.html"
-                        title="next chapter">pystruct.models.DirectionalGridCRF</a></p>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="pystruct.models.DirectionalGridCRF.html" title="pystruct.models.DirectionalGridCRF"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pystruct.models.LatentNodeCRF.html" title="pystruct.models.LatentNodeCRF"
-             >previous</a> |</li>
-        <li><a href="../index.html">pystruct 0.1-alpha documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2013, Andreas Mueller.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

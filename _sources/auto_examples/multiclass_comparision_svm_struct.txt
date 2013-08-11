@@ -1,0 +1,34 @@
+
+
+.. _multiclass_comparision_svm_struct.py:
+
+
+==================================================================
+Comparing PyStruct and SVM-Struct for multi-class classification
+==================================================================
+This example compares the performance of pystruct and SVM^struct on a
+multi-class problem.
+For the example to work, you need to install SVM^multiclass and
+set the path in this file.
+We are not using SVM^python, as that would be much slower, and we would
+need to implement our own model in a SVM^python compatible way.
+Instead, we just call the SVM^multiclass binary.
+
+This comparison is only meaningful in the sense that both libraries
+use general structured prediction solvers to solve the task.
+The specialized implementation of the Crammer-Singer SVM in LibLinear
+is much faster than either one.
+
+For SVM^struct, the plot show CPU time as reportet by SVM^struct.
+For pystruct, the plot shows the time spent in the fit function
+according to time.clock.
+
+Both models have disabled constraint caching. With constraint caching,
+SVM^struct is somewhat faster, but PyStruct doesn't gain anything.
+
+
+**Python source code:** :download:`multiclass_comparision_svm_struct.py <multiclass_comparision_svm_struct.py>`
+
+.. literalinclude:: multiclass_comparision_svm_struct.py
+    :lines: 25-
+    

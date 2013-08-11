@@ -31,7 +31,6 @@ state (the cross) in the ground truth.
   new constraint too weak.
   new constraint too weak.
   new constraint too weak.
-  new constraint too weak.
   no additional constraints
   LATENT SVM ITERATION 1
   no changes in latent variables of ground truth. stopping.
@@ -45,5 +44,5 @@ state (the cross) in the ground truth.
 .. literalinclude:: plot_latent_crf.py
     :lines: 15-
 
-**Total running time of the example:**  6.96 seconds
+**Total running time of the example:**  3.76 seconds
     

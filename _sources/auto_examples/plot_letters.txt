@@ -58,7 +58,7 @@ demonstration of the CRF than to show its superiority.
   new constraint too weak.
   no additional constraints
   Test score with chain CRF: 0.773671
-  Test score with linear SVM: 0.713791
+  Test score with linear SVM: 0.713812
 
 
 
@@ -67,5 +67,5 @@ demonstration of the CRF than to show its superiority.
 .. literalinclude:: plot_letters.py
     :lines: 31-
 
-**Total running time of the example:**  148.01 seconds
+**Total running time of the example:**  388.39 seconds
     

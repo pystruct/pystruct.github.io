@@ -95,7 +95,19 @@ as well as the different algorithms.
 We use exact inference here, so the plots are easier to interpret.</p>
 <p>As this is a small toy example, it is hard to generalize
 the results indicated in the plot to more realistic settigs.</p>
-<p class="horizontal"><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_svm_objectives.py"><tt class="xref download docutils literal"><span class="pre">plot_svm_objectives.py</span></tt></a></p>
+<img alt="../_images/plot_svm_objectives_1.png" class="align-center" src="../_images/plot_svm_objectives_1.png" />
+<p><strong>Script output</strong>:</p>
+<div class="highlight-python"><pre>Training n-slack dual structural SVM
+objective converged.
+Training 1-slack dual structural SVM
+new constraint too weak.
+new constraint too weak.
+new constraint too weak.
+no additional constraints
+Training primal subgradient structural SVM
+final objective: 361.352536</pre>
+</div>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_svm_objectives.py"><tt class="xref download docutils literal"><span class="pre">plot_svm_objectives.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -104,7 +116,7 @@ the results indicated in the plot to more realistic settigs.</p>
 <span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">generate_crosses_explicit</span>
 
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">generate_crosses_explicit</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">n_crosses</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">n_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+<span class="n">n_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.unique.html#numpy.unique"><span class="n">np</span><span class="o">.</span><span class="n">unique</span></a><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
 <span class="n">crf</span> <span class="o">=</span> <span class="n">GridCRF</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="n">n_labels</span><span class="p">,</span> <span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;dai&quot;</span><span class="p">)</span>
 
 <span class="n">n_slack_svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">crf</span><span class="p">,</span> <span class="n">check_constraints</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
@@ -124,29 +136,29 @@ the results indicated in the plot to more realistic settigs.</p>
 <span class="n">subgradient_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 
 <span class="c"># don&#39;t plot objective from chached inference for 1-slack</span>
-<span class="n">inference_run</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">cached_constraint_</span><span class="p">)</span>
-<span class="n">time_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])[</span><span class="n">inference_run</span><span class="p">]</span>
+<span class="n">inference_run</span> <span class="o">=</span> <span class="o">~</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.array.html#numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">cached_constraint_</span><span class="p">)</span>
+<span class="n">time_one</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.array.html#numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])[</span><span class="n">inference_run</span><span class="p">]</span>
 
 <span class="c"># plot stuff</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_slack_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">n_slack_svm</span><span class="o">.</span><span class="n">objective_curve_</span><span class="p">,</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">n_slack_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">n_slack_svm</span><span class="o">.</span><span class="n">objective_curve_</span><span class="p">,</span>
          <span class="n">label</span><span class="o">=</span><span class="s">&quot;n-slack cutting plane&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_slack_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">n_slack_svm</span><span class="o">.</span><span class="n">primal_objective_curve_</span><span class="p">,</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">n_slack_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">n_slack_svm</span><span class="o">.</span><span class="n">primal_objective_curve_</span><span class="p">,</span>
          <span class="n">label</span><span class="o">=</span><span class="s">&quot;n-slack primal&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_one</span><span class="p">,</span>
-         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">objective_curve_</span><span class="p">)[</span><span class="n">inference_run</span><span class="p">],</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">time_one</span><span class="p">,</span>
+         <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.array.html#numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">objective_curve_</span><span class="p">)[</span><span class="n">inference_run</span><span class="p">],</span>
          <span class="n">label</span><span class="o">=</span><span class="s">&quot;one-slack cutting_plane&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_one</span><span class="p">,</span>
-         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">primal_objective_curve_</span><span class="p">)[</span><span class="n">inference_run</span><span class="p">],</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">time_one</span><span class="p">,</span>
+         <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.array.html#numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">primal_objective_curve_</span><span class="p">)[</span><span class="n">inference_run</span><span class="p">],</span>
          <span class="n">label</span><span class="o">=</span><span class="s">&quot;one-slack primal&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subgradient_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">subgradient_svm</span><span class="o">.</span><span class="n">objective_curve_</span><span class="p">,</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">subgradient_svm</span><span class="o">.</span><span class="n">timestamps_</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">subgradient_svm</span><span class="o">.</span><span class="n">objective_curve_</span><span class="p">,</span>
          <span class="n">label</span><span class="o">=</span><span class="s">&quot;subgradient&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;training time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a href="http://matplotlib.org/api/legend_api.html#matplotlib.legend"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span></a><span class="p">()</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yscale"><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span></a><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xlabel"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span></a><span class="p">(</span><span class="s">&quot;training time&quot;</span><span class="p">)</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  0.00 seconds</p>
+<p><strong>Total running time of the example:</strong>  58.53 seconds</p>
 </div>
 
 

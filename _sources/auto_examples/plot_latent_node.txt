@@ -21,12 +21,12 @@ variables.
 
     *
 
-      .. image:: images/plot_latent_node_1.png
+      .. image:: images/plot_latent_node_3.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_latent_node_3.png
+      .. image:: images/plot_latent_node_1.png
             :scale: 47
 
 
@@ -213,5 +213,5 @@ variables.
 .. literalinclude:: plot_latent_node.py
     :lines: 8-
 
-**Total running time of the example:**  11.73 seconds
+**Total running time of the example:**  25.07 seconds
     

@@ -44,5 +44,5 @@ there is a specific order in the horizontal direction (see off-diagonal).
 .. literalinclude:: plot_directional_grid.py
     :lines: 12-
 
-**Total running time of the example:**  4.47 seconds
+**Total running time of the example:**  9.57 seconds
     

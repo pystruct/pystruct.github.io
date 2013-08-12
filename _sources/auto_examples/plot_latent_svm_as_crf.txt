@@ -47,5 +47,5 @@ the problem as a binary one, discriminating between even and odd digits.
 .. literalinclude:: plot_latent_svm_as_crf.py
     :lines: 14-
 
-**Total running time of the example:**  31.42 seconds
+**Total running time of the example:**  69.71 seconds
     

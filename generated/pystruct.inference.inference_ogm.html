@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pystruct.plot_learning.plot_learning &mdash; pystruct 0.1 documentation</title>
+    <title>pystruct.inference.inference_ogm &mdash; pystruct 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -35,8 +35,8 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
-    <link rel="next" title="What is structured learning?" href="../intro.html" />
-    <link rel="prev" title="pystruct.utils.SaveLogger" href="pystruct.utils.SaveLogger.html" />
+    <link rel="next" title="pystruct.utils.SaveLogger" href="pystruct.utils.SaveLogger.html" />
+    <link rel="prev" title="pystruct.inference.inference_ad3" href="pystruct.inference.inference_ad3.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -88,37 +88,62 @@
 
 <div class="container content-container">
   
-  <div class="section" id="pystruct-plot-learning-plot-learning">
-<h1>pystruct.plot_learning.plot_learning<a class="headerlink" href="#pystruct-plot-learning-plot-learning" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pystruct-inference-inference-ogm">
+<h1>pystruct.inference.inference_ogm<a class="headerlink" href="#pystruct-inference-inference-ogm" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="pystruct.plot_learning.plot_learning">
-<tt class="descclassname">pystruct.plot_learning.</tt><tt class="descname">plot_learning</tt><big>(</big><em>ssvm</em>, <em>time=True</em><big>)</big><a class="reference internal" href="../_modules/pystruct/plot_learning.html#plot_learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pystruct.plot_learning.plot_learning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot optimization curves and cache hits.</p>
-<p>Create a plot summarizing the optimization / learning process of an SSVM.
-It plots the primal and cutting plane objective (if applicable) and also
-the target loss on the training set against training time.
-For one-slack SSVMs with constraint caching, cached constraints are also
-contrasted against inference runs.</p>
+<dt id="pystruct.inference.inference_ogm">
+<tt class="descclassname">pystruct.inference.</tt><tt class="descname">inference_ogm</tt><big>(</big><em>unary_potentials</em>, <em>pairwise_potentials</em>, <em>edges</em>, <em>return_energy=False</em>, <em>alg='dd'</em>, <em>init=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pystruct.inference.inference_ogm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference with OpenGM backend.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssvm</strong> : object</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array</p>
 <blockquote>
-<div><p>SSVM learner to evaluate. Should work with all learners.</p>
+<div><p>Unary potentials of energy function.</p>
 </div></blockquote>
-<p><strong>time</strong> : boolean, default=True</p>
+<p><strong>pairwise_potentials</strong> : nd-array</p>
+<blockquote>
+<div><p>Pairwise potentials of energy function.</p>
+</div></blockquote>
+<p><strong>edges</strong> : nd-array</p>
+<blockquote>
+<div><p>Edges of energy function.</p>
+</div></blockquote>
+<p><strong>alg</strong> : string</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Possible choices currently are:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;bp&#8217; for Loopy Belief Propagation.</li>
+<li>&#8216;dd&#8217; for Dual Decomposition via Subgradients.</li>
+<li>&#8216;trws&#8217; for Vladimirs TRWs implementation.</li>
+<li>&#8216;trw&#8217; for OGM  TRW.</li>
+<li>&#8216;gibbs&#8217; for Gibbs sampling.</li>
+<li>&#8216;lf&#8217; for Lazy Flipper</li>
+<li>&#8216;fm&#8217; for Fusion Moves (alpha-expansion fusion)</li>
+<li>&#8216;dyn&#8217; for Dynamic Programming (message passing in trees)</li>
+<li>&#8216;gc&#8217; for Graph Cut</li>
+<li>&#8216;alphaexp&#8217; for Alpha Expansion using Graph Cuts</li>
+<li>&#8216;mqpbo&#8217; for multi-label qpbo</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>init</strong> : nd-array</p>
+<blockquote>
+<div><p>Initial solution for starting inference (ignored by some algorithms).</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>labels</strong> : nd-array</p>
 <blockquote class="last">
-<div><p>Whether to use wall clock time instead of iterations as the x-axis.</p>
+<div><p>Approximate (usually) MAP variable assignment.</p>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Notes</p>
-<p>Warm-starting a model might mess up the alignment of the curves.
-So if you warm-started a model, please don&#8217;t count on proper alignment
-of time, cache hits and objective.</p>
 </dd></dl>
 
 </div>

@@ -38,5 +38,5 @@ the results indicated in the plot to more realistic settigs.
 .. literalinclude:: plot_svm_objectives.py
     :lines: 12-
 
-**Total running time of the example:**  58.53 seconds
+**Total running time of the example:**  35.33 seconds
     

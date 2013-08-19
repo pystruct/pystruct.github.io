@@ -35,7 +35,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
-    <link rel="next" title="Comparing PyStruct and SVM-Struct for multi-class classification" href="multiclass_comparision_svm_struct.html" />
+    <link rel="next" title="Comparing PyStruct and SVM-Struct" href="multiclass_comparision_svm_struct.html" />
     <link rel="prev" title="Latent Variable Hierarchical CRF" href="plot_latent_node.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -99,15 +99,15 @@ We don&#8217;t really have a chance to beat LibSVM but that&#8217;s ok ;)</p>
 <p><strong>Script output</strong>:</p>
 <div class="highlight-python"><pre>Training n-slack dual structural SVM
 no additional constraints
-Score with pystruct n-slack ssvm: 0.922222 (took 18.368342 seconds)
+Score with pystruct n-slack ssvm: 0.922222 (took 31.188345 seconds)
 Training 1-slack dual structural SVM
 new constraint too weak.
 no additional constraints
-Score with pystruct 1-slack ssvm: 0.908889 (took 0.660036 seconds)
+Score with pystruct 1-slack ssvm: 0.908889 (took 0.661547 seconds)
 Training primal subgradient structural SVM
 final objective: 2421.468743
-Score with pystruct subgradient ssvm: 0.908889 (took 4.889867 seconds)
-Score with sklearn and libsvm: 0.920000 (took 0.199777 seconds)</pre>
+Score with pystruct subgradient ssvm: 0.908889 (took 6.291266 seconds)
+Score with sklearn and libsvm: 0.920000 (took 0.549010 seconds)</pre>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_binary_svm.py"><tt class="xref download docutils literal"><span class="pre">plot_binary_svm.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
@@ -199,7 +199,7 @@ Score with sklearn and libsvm: 0.920000 (took 0.199777 seconds)</pre>
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  25.32 seconds</p>
+<p><strong>Total running time of the example:</strong>  40.73 seconds</p>
 </div>
 
 

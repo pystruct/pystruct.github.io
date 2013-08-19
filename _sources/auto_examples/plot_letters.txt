@@ -67,5 +67,5 @@ demonstration of the CRF than to show its superiority.
 .. literalinclude:: plot_letters.py
     :lines: 31-
 
-**Total running time of the example:**  388.39 seconds
+**Total running time of the example:**  397.09 seconds
     

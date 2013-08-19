@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Latent SVM for odd vs. even digit classification &mdash; pystruct 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="Mult-label classification" href="multi_label.html" />
+    <link rel="prev" title="Crammer-Singer Multi-Class SVM" href="multi_class_svm.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="../index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../intro.html">Introduction</a></li>
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="../search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
+  <div class="section" id="latent-svm-for-odd-vs-even-digit-classification">
+<span id="plot-latent-svm-as-crf-py"></span><h1>Latent SVM for odd vs. even digit classification<a class="headerlink" href="#latent-svm-for-odd-vs-even-digit-classification" title="Permalink to this headline">¶</a></h1>
+<p>A Latent CRF with one node is the same as a latent multiclass SVM
+Using the latent variables, we can learn non-linear models. This is the
+same as a simple Latent SVM model. It would obviously be more effiencent
+to implement a special case for Latent SVMs so we don&#8217;t have to run an
+inference procedure.</p>
+<p>This example uses the scikit-learn digit classification dataset, but poses
+the problem as a binary one, discriminating between even and odd digits.</p>
+<img alt="../_images/plot_latent_svm_as_crf_1.png" class="align-center" src="../_images/plot_latent_svm_as_crf_1.png" />
+<p><strong>Script output</strong>:</p>
+<div class="highlight-python"><pre>Training n-slack dual structural SVM
+no additional constraints
+LATENT SVM ITERATION 0
+Training n-slack dual structural SVM
+objective converged.
+LATENT SVM ITERATION 1
+changes in H: 63
+Training n-slack dual structural SVM
+objective converged.
+Score with binary SVM:
+Train: 0.93
+Test: 0.92
+Score with latent SVM:
+Train: 1.00
+Test: 0.98
+Latent class counts: array([ 71,  96,  85,  97,  96,  76, 183,  95,  86,  14])</pre>
+</div>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_latent_svm_as_crf.py"><tt class="xref download docutils literal"><span class="pre">plot_latent_svm_as_crf.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">GraphCRF</span><span class="p">,</span> <span class="n">LatentGraphCRF</span>
+<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">NSlackSSVM</span><span class="p">,</span> <span class="n">LatentSSVM</span>
+
+<span class="c"># Load the scikit-learn digits classification dataset.</span>
+<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y_org</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
+<span class="n">X</span> <span class="o">/=</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c"># Make binary task by doing odd vs even numers.</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y_org</span> <span class="o">%</span> <span class="mi">2</span>
+
+<span class="c"># Make each example into a tuple of a single feature vector and an empty edge</span>
+<span class="c"># list</span>
+<span class="n">X_</span> <span class="o">=</span> <span class="p">[(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.atleast_2d.html#numpy.atleast_2d"><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span></a><span class="p">(</span><span class="n">x</span><span class="p">),</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.empty.html#numpy.empty"><span class="n">np</span><span class="o">.</span><span class="n">empty</span></a><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">X_train_</span><span class="p">,</span> <span class="n">X_test_</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_org_train</span><span class="p">,</span> <span class="n">y_org_test</span> <span class="o">=</span>\
+    <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">y_org</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c"># First, perform the equivalent of the usual SVM.  This is represented as</span>
+<span class="c"># a CRF problem with no edges.</span>
+
+<span class="n">pbl</span> <span class="o">=</span> <span class="n">GraphCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
+<span class="c"># We use batch_size=-1 as a binary problem can be solved in one go.</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c"># Now, use a latent-variabile CRF model with SVM training.</span>
+<span class="c"># 5 states per label is enough capacity to encode the 5 digit classes.</span>
+
+<span class="n">latent_pbl</span> <span class="o">=</span> <span class="n">LatentGraphCRF</span><span class="p">(</span><span class="n">n_states_per_label</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                            <span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
+<span class="n">base_ssvm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">latent_pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">01</span><span class="p">,</span>
+                       <span class="n">inactive_threshold</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">latent_svm</span> <span class="o">=</span> <span class="n">LatentSSVM</span><span class="p">(</span><span class="n">base_ssvm</span><span class="o">=</span><span class="n">base_ssvm</span><span class="p">,</span> <span class="n">latent_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">latent_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with binary SVM:&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Train: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Test: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with latent SVM:&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Train: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">latent_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Test: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">latent_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+
+<span class="n">h_pred</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">latent_svm</span><span class="o">.</span><span class="n">predict_latent</span><span class="p">(</span><span class="n">X_test_</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Latent class counts: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.bincount.html#numpy.bincount"><span class="n">np</span><span class="o">.</span><span class="n">bincount</span></a><span class="p">(</span><span class="n">h_pred</span><span class="p">)))</span>
+
+<span class="c"># plot first few digits from each latent class</span>
+
+<a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.suptitle"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span></a><span class="p">(</span><span class="s">&quot;Example digits from each of</span><span class="se">\n</span><span class="s">the ten latent classes.&quot;</span><span class="p">)</span>
+<span class="n">n_latent_classes</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n_examples</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">for</span> <span class="n">latent_class</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n_latent_classes</span><span class="p">):</span>
+    <span class="n">examples</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">h_pred</span> <span class="o">==</span> <span class="n">latent_class</span><span class="p">][:</span><span class="n">n_examples</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+        <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span></a><span class="p">(</span><span class="n">n_latent_classes</span><span class="p">,</span> <span class="n">n_examples</span><span class="p">,</span>
+                    <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_examples</span> <span class="o">*</span> <span class="n">latent_class</span> <span class="o">+</span> <span class="n">k</span><span class="p">))</span>
+        <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.imshow"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span></a><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">)</span>
+        <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks"><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span></a><span class="p">(())</span>
+        <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks"><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span></a><span class="p">(())</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust"><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span></a><span class="p">(</span><span class="o">.</span><span class="mo">02</span><span class="p">,</span> <span class="o">.</span><span class="mo">04</span><span class="p">,</span> <span class="o">.</span><span class="mi">96</span><span class="p">,</span> <span class="o">.</span><span class="mi">88</span><span class="p">,</span> <span class="o">.</span><span class="mi">12</span><span class="p">,</span> <span class="o">.</span><span class="mi">18</span><span class="p">)</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the example:</strong>  60.89 seconds</p>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

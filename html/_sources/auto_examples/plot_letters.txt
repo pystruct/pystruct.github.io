@@ -1,0 +1,71 @@
+
+
+.. _plot_letters.py:
+
+
+===============================
+OCR Letter sequence recognition
+===============================
+This example illustrates the use of a chain CRF for optical character
+recognition. The example is taken from Taskar et al "Max-margin markov random
+fields".
+
+Each example consists of a handwritten word, that was presegmented into
+characters.  Each character is represented as a 16x8 binary image. The task is
+to classify the image into one of the 26 characters a-z. The first letter of
+every word was ommited as it was capitalized and the task does only consider
+small caps letters.
+
+We compare classification using a standard linear SVM that classifies
+each letter individually with a chain CRF that can exploit correlations
+between neighboring letters (the correlation is particularly strong
+as the same words are used during training and testsing).
+
+The first figures shows the segmented letters of four words from the test set.
+In set are the ground truth (green), the prediction using SVM (blue) and the
+prediction using a chain CRF (red).
+
+The second figure shows the pairwise potentials learned by the chain CRF.
+The strongest patterns are "y after l" and "n after i".
+
+There are obvious extensions that both methods could benefit from, such as
+window features or non-linear kernels. This example is more meant to give a
+demonstration of the CRF than to show its superiority.
+
+
+
+.. rst-class:: horizontal
+
+
+    *
+
+      .. image:: images/plot_letters_2.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_letters_1.png
+            :scale: 47
+
+
+**Script output**::
+
+  Training 1-slack dual structural SVM
+  new constraint too weak.
+  new constraint too weak.
+  new constraint too weak.
+  new constraint too weak.
+  new constraint too weak.
+  no additional constraints
+  Test score with chain CRF: 0.773671
+  Test score with linear SVM: 0.713812
+
+
+
+**Python source code:** :download:`plot_letters.py <plot_letters.py>`
+
+.. literalinclude:: plot_letters.py
+    :lines: 31-
+
+**Total running time of the example:**  397.09 seconds
+    

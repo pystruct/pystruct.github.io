@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Semantic Image Segmentation on Pascal VOC &mdash; pystruct 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="Latent Dynamics CRF" href="plot_latent_crf.html" />
+    <link rel="prev" title="SVM as CRF" href="svm_as_crf.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="../index.html">PyStruct</a>
+        <span class="navbar-text pull-left"><b>0.1</b></span>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../intro.html">Introduction</a></li>
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+
+            
+
+            
+          </ul>
+
+          
+            
+<form class="navbar-search pull-right" action="../search.html" method="get">
+  <input type="text" name="q" class="search-query" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
+  <div class="section" id="semantic-image-segmentation-on-pascal-voc">
+<span id="image-segmentation-py"></span><h1>Semantic Image Segmentation on Pascal VOC<a class="headerlink" href="#semantic-image-segmentation-on-pascal-voc" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates learning a superpixel CRF
+for semantic image segmentation.
+To run the experiment, please download the pre-processed data from:
+<a class="reference external" href="http://www.ais.uni-bonn.de/~amueller/data/">http://www.ais.uni-bonn.de/~amueller/data/</a></p>
+<p>The data consists of superpixels, unary potentials, and the connectivity
+structure of the superpixels.
+The unary potentials were originally provided by Philipp Kraehenbuehl:
+<a class="reference external" href="http://graphics.stanford.edu/projects/densecrf/">http://graphics.stanford.edu/projects/densecrf/</a></p>
+<p>The superpixels were extracted using SLIC.
+The code for generating the connectivity graph and edge features will be made
+available soon.</p>
+<p>This example does not contain the proper evaluation on pixel level, as that
+would need the Pascal VOC 2010 dataset.</p>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/image_segmentation.py"><tt class="xref download docutils literal"><span class="pre">image_segmentation.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cPickle</span>
+
+<span class="kn">from</span> <span class="nn">pystruct</span> <span class="kn">import</span> <span class="n">learners</span>
+<span class="kn">import</span> <span class="nn">pystruct.models</span> <span class="kn">as</span> <span class="nn">crfs</span>
+<span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">SaveLogger</span>
+
+
+<span class="n">data_train</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_train.pickle&quot;</span><span class="p">))</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">n_states</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;number of samples: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">X</span><span class="p">))</span>
+<span class="n">class_weights</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="n">class_weights</span> <span class="o">*=</span> <span class="mf">21.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">crfs</span><span class="o">.</span><span class="n">EdgeFeatureGraphCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;qpbo&#39;</span><span class="p">,</span>
+                                 <span class="n">class_weight</span><span class="o">=</span><span class="n">class_weights</span><span class="p">,</span>
+                                 <span class="n">symmetric_edge_features</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                                 <span class="n">antisymmetric_edge_features</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">experiment_name</span> <span class="o">=</span> <span class="s">&quot;edge_features_one_slack_trainval_</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">C</span>
+
+<span class="n">ssvm</span> <span class="o">=</span> <span class="n">learners</span><span class="o">.</span><span class="n">NSlackSSVM</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">SaveLogger</span><span class="p">(</span><span class="n">experiment_name</span> <span class="o">+</span> <span class="s">&quot;.pickle&quot;</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">inactive_threshold</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">inactive_window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">data_train</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="n">data_val</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_val.pickle&quot;</span><span class="p">))</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_val</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c"># we throw away void superpixels and flatten everything</span>
+<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_val</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">y_true</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">]</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">y_true</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Score on validation set: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

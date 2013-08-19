@@ -1,0 +1,11 @@
+pystruct.models.MultiLabelClf
+=============================
+
+.. currentmodule:: pystruct.models
+
+.. autoclass:: MultiLabelClf
+
+   
+   .. automethod:: __init__
+   
+

@@ -1,0 +1,11 @@
+pystruct.models.BinaryClf
+=========================
+
+.. currentmodule:: pystruct.models
+
+.. autoclass:: BinaryClf
+
+   
+   .. automethod:: __init__
+   
+

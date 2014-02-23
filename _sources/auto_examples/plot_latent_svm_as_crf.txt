@@ -16,38 +16,8 @@ This example uses the scikit-learn digit classification dataset, but poses
 the problem as a binary one, discriminating between even and odd digits.
 
 
-
-.. image:: images/plot_latent_svm_as_crf_1.png
-    :align: center
-
-
-**Script output**::
-
-  Training n-slack dual structural SVM
-  no additional constraints
-  LATENT SVM ITERATION 0
-  Training n-slack dual structural SVM
-  no additional constraints
-  objective converged.
-  LATENT SVM ITERATION 1
-  changes in H: 55
-  Training n-slack dual structural SVM
-  no additional constraints
-  objective converged.
-  Score with binary SVM:
-  Train: 0.92
-  Test: 0.92
-  Score with latent SVM:
-  Train: 1.00
-  Test: 0.98
-  Latent class counts: array([ 87, 103,  93,  79,  83,  94,  70,  19, 183,  88])
-
-
-
 **Python source code:** :download:`plot_latent_svm_as_crf.py <plot_latent_svm_as_crf.py>`
 
 .. literalinclude:: plot_latent_svm_as_crf.py
     :lines: 14-
-
-**Total running time of the example:**  28.26 seconds
     

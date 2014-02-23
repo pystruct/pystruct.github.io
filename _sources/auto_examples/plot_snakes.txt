@@ -35,17 +35,8 @@ PS: This example runs a bit (5 minutes on 12 cores, 20 minutes on one core for m
 But it does work as well as Decision Tree Fields ;)
 
 
-
-.. rst-class:: horizontal
-
-
-
-
-
 **Python source code:** :download:`plot_snakes.py <plot_snakes.py>`
 
 .. literalinclude:: plot_snakes.py
     :lines: 33-
-
-**Total running time of the example:**  0.05 seconds
     

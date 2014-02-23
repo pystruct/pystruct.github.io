@@ -1,0 +1,11 @@
+pystruct.learners.FrankWolfeSSVM
+================================
+
+.. currentmodule:: pystruct.learners
+
+.. autoclass:: FrankWolfeSSVM
+
+   
+   .. automethod:: __init__
+   
+

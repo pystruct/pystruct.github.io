@@ -15,27 +15,8 @@ We don't really have a chance to beat LibSVM but that's ok ;)
 
 
 
-
-.. image:: images/plot_binary_svm_1.png
-    :align: center
-
-
-**Script output**::
-
-  Training n-slack dual structural SVM
-  no additional constraints
-  Score with pystruct n-slack ssvm: 0.922222 (took 2.798912 seconds)
-  Score with pystruct 1-slack ssvm: 0.908889 (took 0.295631 seconds)
-  Training primal subgradient structural SVM
-  Score with pystruct subgradient ssvm: 0.857778 (took 13.084294 seconds)
-  Score with sklearn and libsvm: 0.920000 (took 0.125072 seconds)
-
-
-
 **Python source code:** :download:`plot_binary_svm.py <plot_binary_svm.py>`
 
 .. literalinclude:: plot_binary_svm.py
     :lines: 13-
-
-**Total running time of the example:**  16.72 seconds
     

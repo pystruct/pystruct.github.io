@@ -106,13 +106,13 @@ The optimization is restarted in each iteration.</p>
 <div><p>Object containing the model structure. Has to implement
 <cite>loss</cite>, <cite>inference</cite> and <cite>loss_augmented_inference</cite>.</p>
 </div></blockquote>
-<p><strong>max_iter</strong> : int</p>
+<p><strong>max_iter</strong> : int, default=10000</p>
 <blockquote>
 <div><p>Maximum number of passes over dataset to find constraints.</p>
 </div></blockquote>
-<p><strong>C</strong> : float (default=1)</p>
+<p><strong>C</strong> : float, default=1</p>
 <blockquote>
-<div><p>Regularization parameter</p>
+<div><p>Regularization parameter.</p>
 </div></blockquote>
 <p><strong>check_constraints</strong> : bool</p>
 <blockquote>
@@ -122,15 +122,15 @@ and debugging, but costly.</p>
 </div></blockquote>
 <p><strong>verbose</strong> : int</p>
 <blockquote>
-<div><p>Verbosity</p>
+<div><p>Verbosity.</p>
 </div></blockquote>
-<p><strong>negativity_constraint: list of ints</strong> :</p>
+<p><strong>negativity_constraint</strong> : list of ints</p>
 <blockquote>
 <div><p>Indices of parmeters that are constraint to be negative.
 This is useful for learning submodular CRFs (inference is formulated
 as maximization in SSVMs, flipping some signs).</p>
 </div></blockquote>
-<p><strong>break_on_bad: bool (default=False)</strong> :</p>
+<p><strong>break_on_bad</strong> : bool default=False</p>
 <blockquote>
 <div><p>Whether to break (start debug mode) when inference was approximate.</p>
 </div></blockquote>
@@ -178,24 +178,38 @@ learning.</p>
 If set to 0, no constraints will be removed.</p>
 </div></blockquote>
 <p><strong>switch_to</strong> : None or string, default=None</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Switch to the given inference method if the previous method does not
 find any more constraints.</p>
+</div></blockquote>
+<p><strong>logger</strong> : logger object, default=None</p>
+<blockquote class="last">
+<div><p>Pystruct logger for storing the model or extracting additional
+information.</p>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">References</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Joachims, Thorsten and Finley, Thomas and Yu, Chun-Nam John:</dt>
+<dd><p class="first last">Cutting-plane training of structural SVMs, JMLR 2009</p>
+</dd>
+</dl>
+</li>
+</ul>
 <p class="rubric">Attributes</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="23%" />
-<col width="28%" />
-<col width="50%" />
+<col width="21%" />
+<col width="33%" />
+<col width="46%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>w</td>
-<td>nd-array, shape=(model.size_psi,)</td>
+<td>nd-array, shape=(model.size_joint_feature,)</td>
 <td>The learned weights of the SVM.</td>
 </tr>
 <tr class="row-even"><td>old_solution</td>

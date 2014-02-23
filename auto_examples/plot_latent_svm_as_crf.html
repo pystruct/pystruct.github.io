@@ -35,8 +35,8 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
-    <link rel="next" title="Mult-label classification" href="multi_label.html" />
-    <link rel="prev" title="Crammer-Singer Multi-Class SVM" href="multi_class_svm.html" />
+    <link rel="next" title="Crammer-Singer Multi-Class SVM" href="multi_class_svm.html" />
+    <link rel="prev" title="OCR Letter sequence recognition" href="plot_letters.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -103,31 +103,33 @@ the problem as a binary one, discriminating between even and odd digits.</p>
 no additional constraints
 LATENT SVM ITERATION 0
 Training n-slack dual structural SVM
+no additional constraints
 objective converged.
 LATENT SVM ITERATION 1
-changes in H: 63
+changes in H: 55
 Training n-slack dual structural SVM
+no additional constraints
 objective converged.
 Score with binary SVM:
-Train: 0.93
+Train: 0.92
 Test: 0.92
 Score with latent SVM:
 Train: 1.00
 Test: 0.98
-Latent class counts: array([ 71,  96,  85,  97,  96,  76, 183,  95,  86,  14])</pre>
+Latent class counts: array([ 87, 103,  93,  79,  83,  94,  70,  19, 183,  88])</pre>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_latent_svm_as_crf.py"><tt class="xref download docutils literal"><span class="pre">plot_latent_svm_as_crf.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split"><span class="n">train_test_split</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html#sklearn.datasets.load_digits"><span class="n">load_digits</span></a>
 
-<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">GraphCRF</span><span class="p">,</span> <span class="n">LatentGraphCRF</span>
-<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">NSlackSSVM</span><span class="p">,</span> <span class="n">LatentSSVM</span>
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">GraphCRF</span></a><span class="p">,</span> <a href="../generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF"><span class="n">LatentGraphCRF</span></a>
+<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">,</span> <a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">LatentSSVM</span></a>
 
 <span class="c"># Load the scikit-learn digits classification dataset.</span>
-<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="n">digits</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html#sklearn.datasets.load_digits"><span class="n">load_digits</span></a><span class="p">()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y_org</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
 <span class="n">X</span> <span class="o">/=</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
@@ -140,36 +142,36 @@ Latent class counts: array([ 71,  96,  85,  97,  96,  76, 183,  95,  86,  14])</
 <span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">X_train_</span><span class="p">,</span> <span class="n">X_test_</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_org_train</span><span class="p">,</span> <span class="n">y_org_test</span> <span class="o">=</span>\
-    <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">y_org</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+    <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split"><span class="n">train_test_split</span></a><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">y_org</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c"># First, perform the equivalent of the usual SVM.  This is represented as</span>
 <span class="c"># a CRF problem with no edges.</span>
 
-<span class="n">pbl</span> <span class="o">=</span> <span class="n">GraphCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
+<a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">pbl</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">GraphCRF</span></a><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
 <span class="c"># We use batch_size=-1 as a binary problem can be solved in one go.</span>
-<span class="n">svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">pbl</span></a><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="c"># Now, use a latent-variabile CRF model with SVM training.</span>
 <span class="c"># 5 states per label is enough capacity to encode the 5 digit classes.</span>
 
-<span class="n">latent_pbl</span> <span class="o">=</span> <span class="n">LatentGraphCRF</span><span class="p">(</span><span class="n">n_states_per_label</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<a href="../generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF"><span class="n">latent_pbl</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF"><span class="n">LatentGraphCRF</span></a><span class="p">(</span><span class="n">n_states_per_label</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                             <span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
-<span class="n">base_ssvm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">latent_pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">01</span><span class="p">,</span>
+<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">base_ssvm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF"><span class="n">latent_pbl</span></a><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">01</span><span class="p">,</span>
                        <span class="n">inactive_threshold</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">latent_svm</span> <span class="o">=</span> <span class="n">LatentSSVM</span><span class="p">(</span><span class="n">base_ssvm</span><span class="o">=</span><span class="n">base_ssvm</span><span class="p">,</span> <span class="n">latent_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">latent_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">LatentSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">base_ssvm</span></a><span class="o">=</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">base_ssvm</span></a><span class="p">,</span> <span class="n">latent_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with binary SVM:&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Train: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Test: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Train: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Test: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with latent SVM:&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Train: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">latent_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Test: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">latent_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Train: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Test: {:2.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 
-<span class="n">h_pred</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">latent_svm</span><span class="o">.</span><span class="n">predict_latent</span><span class="p">(</span><span class="n">X_test_</span><span class="p">))</span>
+<span class="n">h_pred</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">predict_latent</span><span class="p">(</span><span class="n">X_test_</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Latent class counts: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.bincount.html#numpy.bincount"><span class="n">np</span><span class="o">.</span><span class="n">bincount</span></a><span class="p">(</span><span class="n">h_pred</span><span class="p">)))</span>
 
 <span class="c"># plot first few digits from each latent class</span>
@@ -190,7 +192,7 @@ Latent class counts: array([ 71,  96,  85,  97,  96,  76, 183,  95,  86,  14])</
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  60.89 seconds</p>
+<p><strong>Total running time of the example:</strong>  28.26 seconds</p>
 </div>
 
 

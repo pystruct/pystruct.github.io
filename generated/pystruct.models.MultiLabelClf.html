@@ -140,13 +140,13 @@ of edges for a custom dependency structure.</p>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_inference</span></tt>(X,&nbsp;w[,&nbsp;relaxed])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss</span></tt>(Y,&nbsp;Y_hat)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_joint_feature</span></tt>(X,&nbsp;Y[,&nbsp;Y_true])</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss_augmented_inference</span></tt>(X,&nbsp;Y,&nbsp;w[,&nbsp;...])</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss</span></tt>(Y,&nbsp;Y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_psi</span></tt>(X,&nbsp;Y[,&nbsp;Y_true])</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss_augmented_inference</span></tt>(X,&nbsp;Y,&nbsp;w[,&nbsp;...])</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">continuous_loss</span></tt>(y,&nbsp;y_hat)</td>
@@ -158,16 +158,16 @@ of edges for a custom dependency structure.</p>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">initialize</span></tt>(X,&nbsp;Y)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">joint_feature</span></tt>(x,&nbsp;y)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.models.MultiLabelClf.loss_augmented_inference" title="pystruct.models.MultiLabelClf.loss_augmented_inference"><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt></a>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.MultiLabelClf.loss_augmented_inference" title="pystruct.models.MultiLabelClf.loss_augmented_inference"><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt></a>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
 <td>Loss-augmented Inference for x relative to y using parameters w.</td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">psi</span></tt>(x,&nbsp;y)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
 <td></td>
 </tr>
 </tbody>
@@ -182,7 +182,7 @@ of edges for a custom dependency structure.</p>
 <tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiLabelClf.inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference for x using parameters w.</p>
 <p>Finds (approximately)
-armin_y np.dot(w, psi(x, y))
+armin_y np.dot(w, joint_feature(x, y))
 using self.inference_method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -195,7 +195,7 @@ x=(unaries, edges)
 unaries are an nd-array of shape (n_nodes, n_states),
 edges are an nd-array of shape (n_edges, 2)</p>
 </div></blockquote>
-<p><strong>w</strong> : ndarray, shape=(size_psi,)</p>
+<p><strong>w</strong> : ndarray, shape=(size_joint_feature,)</p>
 <blockquote>
 <div><p>Parameters for the CRF energy function.</p>
 </div></blockquote>
@@ -234,7 +234,7 @@ shape (n_states, n_states) of accumulated pairwise marginals.</p>
 <tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiLabelClf.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loss-augmented Inference for x relative to y using parameters w.</p>
 <p>Finds (approximately)
-armin_y_hat np.dot(w, psi(x, y_hat)) + loss(y, y_hat)
+armin_y_hat np.dot(w, joint_feature(x, y_hat)) + loss(y, y_hat)
 using self.inference_method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -252,7 +252,7 @@ edges are an nd-array of shape (n_edges, 2)</p>
 <div><p>Ground truth labeling relative to which the loss
 will be measured.</p>
 </div></blockquote>
-<p><strong>w</strong> : ndarray, shape=(size_psi,)</p>
+<p><strong>w</strong> : ndarray, shape=(size_joint_feature,)</p>
 <blockquote>
 <div><p>Parameters for the CRF energy function.</p>
 </div></blockquote>

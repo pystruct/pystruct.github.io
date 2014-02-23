@@ -153,13 +153,13 @@ the number of features is the same as for visible nodes.</p>
 <tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_inference</span></tt>(X,&nbsp;w[,&nbsp;relaxed])</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss</span></tt>(Y,&nbsp;Y_hat)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_joint_feature</span></tt>(X,&nbsp;Y[,&nbsp;Y_true])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss_augmented_inference</span></tt>(X,&nbsp;Y,&nbsp;w[,&nbsp;...])</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss</span></tt>(Y,&nbsp;Y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_psi</span></tt>(X,&nbsp;Y[,&nbsp;Y_true])</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss_augmented_inference</span></tt>(X,&nbsp;Y,&nbsp;w[,&nbsp;...])</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">continuous_loss</span></tt>(y,&nbsp;y_hat)</td>
@@ -174,23 +174,23 @@ the number of features is the same as for visible nodes.</p>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">initialize</span></tt>(X,&nbsp;Y)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">label_from_latent</span></tt>(h)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">latent</span></tt>(x,&nbsp;y,&nbsp;w)</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(h,&nbsp;h_hat)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt>(x,&nbsp;h,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(h)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.models.LatentNodeCRF.psi" title="pystruct.models.LatentNodeCRF.psi"><tt class="xref py py-obj docutils literal"><span class="pre">psi</span></tt></a>(x,&nbsp;y)</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.LatentNodeCRF.joint_feature" title="pystruct.models.LatentNodeCRF.joint_feature"><tt class="xref py py-obj docutils literal"><span class="pre">joint_feature</span></tt></a>(x,&nbsp;y)</td>
 <td>Feature vector associated with instance (x, y).</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">label_from_latent</span></tt>(h)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">latent</span></tt>(x,&nbsp;y,&nbsp;w)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(h,&nbsp;h_hat)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt>(x,&nbsp;h,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(h)</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -204,7 +204,7 @@ the number of features is the same as for visible nodes.</p>
 <tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference for x using parameters w.</p>
 <p>Finds (approximately)
-armin_y np.dot(w, psi(x, y))
+armin_y np.dot(w, joint_feature(x, y))
 using self.inference_method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -217,7 +217,7 @@ x=(unaries, edges)
 unaries are an nd-array of shape (n_nodes, n_states),
 edges are an nd-array of shape (n_edges, 2)</p>
 </div></blockquote>
-<p><strong>w</strong> : ndarray, shape=(size_psi,)</p>
+<p><strong>w</strong> : ndarray, shape=(size_joint_feature,)</p>
 <blockquote>
 <div><p>Parameters for the CRF energy function.</p>
 </div></blockquote>
@@ -252,11 +252,12 @@ shape (n_states, n_states) of accumulated pairwise marginals.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pystruct.models.LatentNodeCRF.psi">
-<tt class="descname">psi</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.psi" title="Permalink to this definition">¶</a></dt>
+<dt id="pystruct.models.LatentNodeCRF.joint_feature">
+<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Feature vector associated with instance (x, y).</p>
-<p>Feature representation psi, such that the energy of the configuration
-(x, y) and a weight vector w is given by np.dot(w, psi(x, y)).</p>
+<p>Feature representation joint_feature, such that the energy of the
+configuration (x, y) and a weight vector w is given by
+np.dot(w, joint_feature(x, y)).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -274,7 +275,7 @@ case, <tt class="docutils literal"><span class="pre">y=(unary_marginals,</span> 
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>p</strong> : ndarray, shape (size_psi,)</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>p</strong> : ndarray, shape (size_joint_feature,)</p>
 <blockquote class="last">
 <div><p>Feature vector associated with state (x, y).</p>
 </div></blockquote>

@@ -1,0 +1,51 @@
+
+
+.. _plot_snakes.py:
+
+
+==============================================
+Conditional Interactions on the Snakes Dataset
+==============================================
+This example uses the snake dataset introduced in
+Nowozin, Rother, Bagon, Sharp, Yao, Kohli: Decision Tree Fields ICCV 2011
+
+This dataset is specifically designed to require the pairwise interaction terms
+to be conditioned on the input, in other words to use non-trival edge-features.
+
+The task is as following: a "snake" of length ten wandered over a grid. For
+each cell, it had the option to go up, down, left or right (unless it came from
+there). The input consists of these decisions, while the desired output is an
+annotation of the snake from 0 (head) to 9 (tail).  See the plots for an
+example.
+
+As input features we use a 3x3 window around each pixel (and pad with background
+where necessary). We code the five different input colors (for up, down, left, right,
+background) using a one-hot encoding. This is a rather naive approach, not using any
+information about the dataset (other than that it is a 2d grid).
+
+The task can not be solved using the simple DirectionalGridCRF - which can only
+infer head and tail (which are also possible to infer just from the unary
+features). If we add edge-features that contain the features of the nodes that are
+connected by the edge, the CRF can solve the task.
+
+From an inference point of view, this task is very hard.  QPBO move-making is
+not able to solve it alone, so we use the relaxed AD3 inference for learning.
+
+PS: This example runs a bit (5 minutes on 12 cores, 20 minutes on one core for me).
+But it does work as well as Decision Tree Fields ;)
+
+
+
+.. rst-class:: horizontal
+
+
+
+
+
+**Python source code:** :download:`plot_snakes.py <plot_snakes.py>`
+
+.. literalinclude:: plot_snakes.py
+    :lines: 33-
+
+**Total running time of the example:**  0.05 seconds
+    

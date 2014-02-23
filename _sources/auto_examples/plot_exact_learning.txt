@@ -30,14 +30,6 @@ primal objective.
 
 **Script output**::
 
-  Training 1-slack dual structural SVM
-  new constraint too weak.
-  new constraint too weak.
-  no additional constraints
-  Switching to ('ad3', {'branch_and_bound': True}) inference
-  new constraint too weak.
-  new constraint too weak.
-  no additional constraints
   OneSlackSSVM(C=1.0, break_on_bad=False, cache_tol=auto,
          check_constraints=False, inactive_threshold=1e-05,
          inactive_window=50, inference_cache=100, logger=None,
@@ -56,5 +48,5 @@ primal objective.
 .. literalinclude:: plot_exact_learning.py
     :lines: 21-
 
-**Total running time of the example:**  148.31 seconds
+**Total running time of the example:**  28.54 seconds
     

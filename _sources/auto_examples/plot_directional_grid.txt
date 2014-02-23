@@ -31,10 +31,6 @@ there is a specific order in the horizontal direction (see off-diagonal).
 
 **Script output**::
 
-  Training 1-slack dual structural SVM
-  new constraint too weak.
-  new constraint too weak.
-  no additional constraints
   overall accuracy (training set): 0.945417
 
 
@@ -44,5 +40,5 @@ there is a specific order in the horizontal direction (see off-diagonal).
 .. literalinclude:: plot_directional_grid.py
     :lines: 12-
 
-**Total running time of the example:**  18.57 seconds
+**Total running time of the example:**  4.94 seconds
     

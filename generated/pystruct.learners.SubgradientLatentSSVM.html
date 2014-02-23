@@ -92,7 +92,7 @@
 <h1>pystruct.learners.SubgradientLatentSSVM<a class="headerlink" href="#pystruct-learners-subgradientlatentssvm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.SubgradientLatentSSVM">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">SubgradientLatentSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>momentum=0.9</em>, <em>learning_rate=0.001</em>, <em>adagrad=False</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>break_on_no_constraints=True</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">SubgradientLatentSSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>momentum=0.0</em>, <em>learning_rate='auto'</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>decay_exponent=1</em>, <em>decay_t0=10</em>, <em>break_on_no_constraints=True</em>, <em>logger=None</em>, <em>averaging=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Latent Variable Structured SVM solver using subgradient descent.</p>
 <p>Implements a margin rescaled with l1 slack penalty.
 By default, a constant learning rate is used.
@@ -122,18 +122,14 @@ updates.</p>
 <blockquote>
 <div><p>Verbosity.</p>
 </div></blockquote>
-<p><strong>learning_rate</strong> : float, default=0.001</p>
+<p><strong>learning_rate</strong> : float or &#8216;auto&#8217;, default=&#8217;auto&#8217;</p>
 <blockquote>
-<div><p>Learning rate used in subgradient descent.</p>
+<div><p>Learning rate used in subgradient descent. If &#8216;auto&#8217;, the pegasos
+schedule is used, which starts with <tt class="docutils literal"><span class="pre">learning_rate</span> <span class="pre">=</span> <span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">C</span></tt>.</p>
 </div></blockquote>
-<p><strong>momentum</strong> : float, default=0.9</p>
+<p><strong>momentum</strong> : float, default=0.0</p>
 <blockquote>
 <div><p>Momentum used in subgradient descent.</p>
-</div></blockquote>
-<p><strong>adagrad</strong> : bool (default=False)</p>
-<blockquote>
-<div><p>Whether to use adagrad gradient scaling.
-Ignores if True, momentum is ignored.</p>
 </div></blockquote>
 <p><strong>n_jobs</strong> : int, default=1</p>
 <blockquote>
@@ -145,21 +141,32 @@ Ignores if True, momentum is ignored.</p>
 purposes). Zero means never, otherwise it will be computed very
 show_loss_every&#8217;th epoch.</p>
 </div></blockquote>
-<p><strong>decay_exponent</strong> : float, default=0</p>
+<p><strong>decay_exponent</strong> : float, default=1</p>
 <blockquote>
 <div><p>Exponent for decaying learning rate. Effective learning rate is
-<tt class="docutils literal"><span class="pre">learning_rate</span> <span class="pre">/</span> <span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.
-Ignored if adagrad=True.</p>
+<tt class="docutils literal"><span class="pre">learning_rate</span> <span class="pre">/</span> <span class="pre">(decay_t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.</p>
 </div></blockquote>
 <p><strong>decay_t0</strong> : float, default=10</p>
 <blockquote>
 <div><p>Offset for decaying learning rate. Effective learning rate is
-<tt class="docutils literal"><span class="pre">learning_rate</span> <span class="pre">/</span> <span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.
-Ignored if adagrad=True.</p>
+<tt class="docutils literal"><span class="pre">learning_rate</span> <span class="pre">/</span> <span class="pre">(decay_t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>.</p>
 </div></blockquote>
 <p><strong>break_on_no_constraints</strong> : bool, default=True</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Break when there are no new constraints found.</p>
+</div></blockquote>
+<p><strong>averaging</strong> : string, default=None</p>
+<blockquote class="last">
+<div><p>Whether and how to average weights. Possible options are &#8216;linear&#8217;, &#8216;squared&#8217; and None.
+The string reflects the weighting of the averaging:</p>
+<blockquote>
+<div><ul class="simple">
+<li>linear: <tt class="docutils literal"><span class="pre">w_avg</span> <span class="pre">~</span> <span class="pre">w_1</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">w_2</span> <span class="pre">+</span> <span class="pre">...</span> <span class="pre">+</span> <span class="pre">t</span> <span class="pre">*</span> <span class="pre">w_t</span></tt></li>
+<li>squared: <tt class="docutils literal"><span class="pre">w_avg</span> <span class="pre">~</span> <span class="pre">w_1</span> <span class="pre">+</span> <span class="pre">4</span> <span class="pre">*</span> <span class="pre">w_2</span> <span class="pre">+</span> <span class="pre">...</span> <span class="pre">+</span> <span class="pre">t**2</span> <span class="pre">*</span> <span class="pre">w_t</span></tt></li>
+</ul>
+</div></blockquote>
+<p>Uniform averaging is not implemented as it is worse than linear
+weighted averaging or no averaging.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -168,13 +175,13 @@ Ignored if adagrad=True.</p>
 <p class="rubric">Attributes</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
-<col width="31%" />
-<col width="50%" />
+<col width="17%" />
+<col width="37%" />
+<col width="46%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>w</td>
-<td>nd-array, shape=(model.size_psi,)</td>
+<td>nd-array, shape=(model.size_joint_feature,)</td>
 <td>The learned weights of the SVM.</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">loss_curve_</span></tt></td>
@@ -220,7 +227,7 @@ Ignored if adagrad=True.</p>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.SubgradientLatentSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>momentum=0.9</em>, <em>learning_rate=0.001</em>, <em>adagrad=False</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>break_on_no_constraints=True</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>momentum=0.0</em>, <em>learning_rate='auto'</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>decay_exponent=1</em>, <em>decay_t0=10</em>, <em>break_on_no_constraints=True</em>, <em>logger=None</em>, <em>averaging=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

@@ -169,29 +169,6 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/plot_svm_objectives.png
-   :target: ./plot_svm_objectives.html
-
-   :ref:`plot_svm_objectives.py`
-
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_svm_objectives
-
-
-
-.. raw:: html
-
-    <div class="thumbnailContainer">
-
-
 .. figure:: ./images/thumb/plot_directional_grid.png
    :target: ./plot_directional_grid.html
 
@@ -238,6 +215,29 @@ Examples
     <div class="thumbnailContainer">
 
 
+.. figure:: ./images/thumb/plot_svm_objectives.png
+   :target: ./plot_svm_objectives.html
+
+   :ref:`plot_svm_objectives.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_svm_objectives
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
 .. figure:: ./images/thumb/plot_letters.png
    :target: ./plot_letters.html
 
@@ -261,29 +261,6 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/multi_class_svm.png
-   :target: ./multi_class_svm.html
-
-   :ref:`multi_class_svm.py`
-
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./multi_class_svm
-
-
-
-.. raw:: html
-
-    <div class="thumbnailContainer">
-
-
 .. figure:: ./images/thumb/plot_latent_svm_as_crf.png
    :target: ./plot_latent_svm_as_crf.html
 
@@ -299,6 +276,29 @@ Examples
    :hidden:
 
    ./plot_latent_svm_as_crf
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/multi_class_svm.png
+   :target: ./multi_class_svm.html
+
+   :ref:`multi_class_svm.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./multi_class_svm
 
 
 
@@ -368,6 +368,29 @@ Examples
    :hidden:
 
    ./plot_binary_svm
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/plot_snakes.png
+   :target: ./plot_snakes.html
+
+   :ref:`plot_snakes.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_snakes
 
 
 

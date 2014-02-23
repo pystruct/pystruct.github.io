@@ -9,7 +9,7 @@ Semantic Image Segmentation on Pascal VOC
 This example demonstrates learning a superpixel CRF
 for semantic image segmentation.
 To run the experiment, please download the pre-processed data from:
-http://www.ais.uni-bonn.de/~amueller/data/
+http://www.ais.uni-bonn.de/deep_learning/downloads.html
 
 The data consists of superpixels, unary potentials, and the connectivity
 structure of the superpixels.

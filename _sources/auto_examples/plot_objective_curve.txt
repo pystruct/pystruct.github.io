@@ -41,10 +41,6 @@ See plot_exact_learning.py for a way to deal with this.
 
 **Script output**::
 
-  Training 1-slack dual structural SVM
-  new constraint too weak.
-  new constraint too weak.
-  no additional constraints
   OneSlackSSVM(C=1, break_on_bad=False, cache_tol=auto, check_constraints=False,
          inactive_threshold=1e-05, inactive_window=50, inference_cache=100,
          logger=None, max_iter=10000,
@@ -53,7 +49,7 @@ See plot_exact_learning.py for a way to deal with this.
          switch_to=None, tol=0.1, verbose=0)
   Iterations: 139
   Objective: 490.677066
-  Gap: -61.469824
+  Gap: -23.425085
 
 
 
@@ -62,5 +58,5 @@ See plot_exact_learning.py for a way to deal with this.
 .. literalinclude:: plot_objective_curve.py
     :lines: 32-
 
-**Total running time of the example:**  16.94 seconds
+**Total running time of the example:**  6.73 seconds
     

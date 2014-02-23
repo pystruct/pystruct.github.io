@@ -137,13 +137,13 @@ the infernce down a lot!</p>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_inference</span></tt>(X,&nbsp;w[,&nbsp;relaxed])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss</span></tt>(Y,&nbsp;Y_hat)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_joint_feature</span></tt>(X,&nbsp;Y[,&nbsp;Y_true])</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss_augmented_inference</span></tt>(X,&nbsp;Y,&nbsp;w[,&nbsp;...])</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss</span></tt>(Y,&nbsp;Y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_psi</span></tt>(X,&nbsp;Y[,&nbsp;Y_true])</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">batch_loss_augmented_inference</span></tt>(X,&nbsp;Y,&nbsp;w[,&nbsp;...])</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">continuous_loss</span></tt>(y,&nbsp;y_hat)</td>
@@ -155,17 +155,17 @@ the infernce down a lot!</p>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">initialize</span></tt>(X,&nbsp;Y)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.MultiClassClf.joint_feature" title="pystruct.models.MultiClassClf.joint_feature"><tt class="xref py py-obj docutils literal"><span class="pre">joint_feature</span></tt></a>(x,&nbsp;y[,&nbsp;y_true])</td>
+<td>Compute joint feature vector of x and y.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.models.MultiClassClf.loss_augmented_inference" title="pystruct.models.MultiClassClf.loss_augmented_inference"><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt></a>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.MultiClassClf.loss_augmented_inference" title="pystruct.models.MultiClassClf.loss_augmented_inference"><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt></a>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
 <td>Loss-augmented inference for x and y using parameters w.</td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
 <td></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.models.MultiClassClf.psi" title="pystruct.models.MultiClassClf.psi"><tt class="xref py py-obj docutils literal"><span class="pre">psi</span></tt></a>(x,&nbsp;y[,&nbsp;y_true])</td>
-<td>Compute joint feature vector of x and y.</td>
 </tr>
 </tbody>
 </table>
@@ -178,7 +178,7 @@ the infernce down a lot!</p>
 <dt id="pystruct.models.MultiClassClf.inference">
 <tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=None</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiClassClf.inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference for x using parameters w.</p>
-<p>Finds armin_y np.dot(w, psi(x, y)), i.e. best possible prediction.</p>
+<p>Finds armin_y np.dot(w, joint_feature(x, y)), i.e. best possible prediction.</p>
 <p>For an unstructured multi-class model (this model), this
 can easily done by enumerating all possible y.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -189,7 +189,7 @@ can easily done by enumerating all possible y.</p>
 <blockquote>
 <div><p>Input sample features.</p>
 </div></blockquote>
-<p><strong>w</strong> : ndarray, shape=(size_psi,)</p>
+<p><strong>w</strong> : ndarray, shape=(size_joint_feature,)</p>
 <blockquote>
 <div><p>Parameters of the SVM.</p>
 </div></blockquote>
@@ -207,46 +207,11 @@ can easily done by enumerating all possible y.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pystruct.models.MultiClassClf.loss_augmented_inference">
-<tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=None</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiClassClf.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loss-augmented inference for x and y using parameters w.</p>
-<p>Minimizes over y_hat:
-np.dot(psi(x, y_hat), w) + loss(y, y_hat)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : ndarray, shape (n_features,)</p>
-<blockquote>
-<div><p>Unary evidence / input to augment.</p>
-</div></blockquote>
-<p><strong>y</strong> : int</p>
-<blockquote>
-<div><p>Ground truth labeling relative to which the loss
-will be measured.</p>
-</div></blockquote>
-<p><strong>w</strong> : ndarray, shape (size_psi,)</p>
-<blockquote>
-<div><p>Weights that will be used for inference.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>y_hat</strong> : int</p>
-<blockquote class="last">
-<div><p>Label with highest sum of loss and score.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pystruct.models.MultiClassClf.psi">
-<tt class="descname">psi</tt><big>(</big><em>x</em>, <em>y</em>, <em>y_true=None</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiClassClf.psi" title="Permalink to this definition">¶</a></dt>
+<dt id="pystruct.models.MultiClassClf.joint_feature">
+<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em>, <em>y_true=None</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiClassClf.joint_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute joint feature vector of x and y.</p>
-<p>Feature representation psi, such that the energy of the configuration
-(x, y) and a weight vector w is given by np.dot(w, psi(x, y)).</p>
+<p>Feature representation joint_feature, such that the energy of the configuration
+(x, y) and a weight vector w is given by np.dot(w, joint_feature(x, y)).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -265,9 +230,44 @@ will be measured.</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>p</strong> : ndarray, shape (size_psi,)</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>p</strong> : ndarray, shape (size_joint_feature,)</p>
 <blockquote class="last">
 <div><p>Feature vector associated with state (x, y).</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pystruct.models.MultiClassClf.loss_augmented_inference">
+<tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=None</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.MultiClassClf.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loss-augmented inference for x and y using parameters w.</p>
+<p>Minimizes over y_hat:
+np.dot(joint_feature(x, y_hat), w) + loss(y, y_hat)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : ndarray, shape (n_features,)</p>
+<blockquote>
+<div><p>Unary evidence / input to augment.</p>
+</div></blockquote>
+<p><strong>y</strong> : int</p>
+<blockquote>
+<div><p>Ground truth labeling relative to which the loss
+will be measured.</p>
+</div></blockquote>
+<p><strong>w</strong> : ndarray, shape (size_joint_feature,)</p>
+<blockquote>
+<div><p>Weights that will be used for inference.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>y_hat</strong> : int</p>
+<blockquote class="last">
+<div><p>Label with highest sum of loss and score.</p>
 </div></blockquote>
 </td>
 </tr>

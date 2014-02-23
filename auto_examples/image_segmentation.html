@@ -93,7 +93,7 @@
 <p>This example demonstrates learning a superpixel CRF
 for semantic image segmentation.
 To run the experiment, please download the pre-processed data from:
-<a class="reference external" href="http://www.ais.uni-bonn.de/~amueller/data/">http://www.ais.uni-bonn.de/~amueller/data/</a></p>
+<a class="reference external" href="http://www.ais.uni-bonn.de/deep_learning/downloads.html">http://www.ais.uni-bonn.de/deep_learning/downloads.html</a></p>
 <p>The data consists of superpixels, unary potentials, and the connectivity
 structure of the superpixels.
 The unary potentials were originally provided by Philipp Kraehenbuehl:
@@ -112,12 +112,12 @@ would need the Pascal VOC 2010 dataset.</p>
 <span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">SaveLogger</span>
 
 
-<span class="n">data_train</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_train.pickle&quot;</span><span class="p">))</span>
+<span class="n">data_train</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_train_dict.pickle&quot;</span><span class="p">))</span>
 <span class="n">C</span> <span class="o">=</span> <span class="mf">0.01</span>
 
 <span class="n">n_states</span> <span class="o">=</span> <span class="mi">21</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;number of samples: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">X</span><span class="p">))</span>
-<span class="n">class_weights</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;number of samples: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">]))</span>
+<span class="n">class_weights</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">]))</span>
 <span class="n">class_weights</span> <span class="o">*=</span> <span class="mf">21.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
 
@@ -133,13 +133,13 @@ would need the Pascal VOC 2010 dataset.</p>
     <span class="n">tol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">SaveLogger</span><span class="p">(</span><span class="n">experiment_name</span> <span class="o">+</span> <span class="s">&quot;.pickle&quot;</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
     <span class="n">inactive_threshold</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">inactive_window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">data_train</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">])</span>
 
-<span class="n">data_val</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_val.pickle&quot;</span><span class="p">))</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_val</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<span class="n">data_val</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_val_dict.pickle&quot;</span><span class="p">))</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_val</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">])</span>
 
 <span class="c"># we throw away void superpixels and flatten everything</span>
-<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_val</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_val</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">])</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">y_true</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">]</span>
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">y_true</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">]</span>
 

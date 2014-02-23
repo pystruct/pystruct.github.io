@@ -35,7 +35,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
-    <link rel="next" title="Comparing PyStruct and SVM-Struct" href="multiclass_comparision_svm_struct.html" />
+    <link rel="next" title="Conditional Interactions on the Snakes Dataset" href="plot_snakes.html" />
     <link rel="prev" title="Latent Variable Hierarchical CRF" href="plot_latent_node.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -99,15 +99,11 @@ We don&#8217;t really have a chance to beat LibSVM but that&#8217;s ok ;)</p>
 <p><strong>Script output</strong>:</p>
 <div class="highlight-python"><pre>Training n-slack dual structural SVM
 no additional constraints
-Score with pystruct n-slack ssvm: 0.922222 (took 31.188345 seconds)
-Training 1-slack dual structural SVM
-new constraint too weak.
-no additional constraints
-Score with pystruct 1-slack ssvm: 0.908889 (took 0.661547 seconds)
+Score with pystruct n-slack ssvm: 0.922222 (took 2.798912 seconds)
+Score with pystruct 1-slack ssvm: 0.908889 (took 0.295631 seconds)
 Training primal subgradient structural SVM
-final objective: 2421.468743
-Score with pystruct subgradient ssvm: 0.908889 (took 6.291266 seconds)
-Score with sklearn and libsvm: 0.920000 (took 0.549010 seconds)</pre>
+Score with pystruct subgradient ssvm: 0.857778 (took 13.084294 seconds)
+Score with sklearn and libsvm: 0.920000 (took 0.125072 seconds)</pre>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_binary_svm.py"><tt class="xref download docutils literal"><span class="pre">plot_binary_svm.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
@@ -116,16 +112,16 @@ Score with sklearn and libsvm: 0.920000 (took 0.549010 seconds)</pre>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html#sklearn.datasets.load_digits"><span class="n">load_digits</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split"><span class="n">train_test_split</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC"><span class="n">SVC</span></a>
 
-<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">BinaryClf</span>
-<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="p">(</span><span class="n">NSlackSSVM</span><span class="p">,</span> <span class="n">OneSlackSSVM</span><span class="p">,</span>
-                               <span class="n">SubgradientSSVM</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf"><span class="n">BinaryClf</span></a>
+<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="p">(</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">,</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">,</span>
+                               <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">SubgradientSSVM</span></a><span class="p">)</span>
 
 <span class="c"># do a binary digit classification</span>
-<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="n">digits</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html#sklearn.datasets.load_digits"><span class="n">load_digits</span></a><span class="p">()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
 
 <span class="c"># make binary task by doing odd vs even numers</span>
@@ -134,12 +130,12 @@ Score with sklearn and libsvm: 0.920000 (took 0.549010 seconds)</pre>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">X</span> <span class="o">/=</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split"><span class="n">train_test_split</span></a><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">pbl</span> <span class="o">=</span> <span class="n">BinaryClf</span><span class="p">()</span>
-<span class="n">n_slack_svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">one_slack_svm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">subgradient_svm</span> <span class="o">=</span> <span class="n">SubgradientSSVM</span><span class="p">(</span><span class="n">pbl</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<a href="../generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf"><span class="n">pbl</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf"><span class="n">BinaryClf</span></a><span class="p">()</span>
+<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">n_slack_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf"><span class="n">pbl</span></a><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">one_slack_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf"><span class="n">pbl</span></a><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">subgradient_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">SubgradientSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf"><span class="n">pbl</span></a><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                                   <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c"># we add a constant 1 feature for the bias</span>
@@ -148,34 +144,34 @@ Score with sklearn and libsvm: 0.920000 (took 0.549010 seconds)</pre>
 
 <span class="c"># n-slack cutting plane ssvm</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-<span class="n">n_slack_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">n_slack_svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">time_n_slack_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
-<span class="n">acc_n_slack</span> <span class="o">=</span> <span class="n">n_slack_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">acc_n_slack</span> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">n_slack_svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct n-slack ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">acc_n_slack</span><span class="p">,</span> <span class="n">time_n_slack_svm</span><span class="p">))</span>
 
 <span class="c">## 1-slack cutting plane ssvm</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-<span class="n">one_slack_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">one_slack_svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">time_one_slack_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
-<span class="n">acc_one_slack</span> <span class="o">=</span> <span class="n">one_slack_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">acc_one_slack</span> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">one_slack_svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct 1-slack ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">acc_one_slack</span><span class="p">,</span> <span class="n">time_one_slack_svm</span><span class="p">))</span>
 
 <span class="c"># online subgradient ssvm</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-<span class="n">subgradient_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">subgradient_svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">time_subgradient_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
-<span class="n">acc_subgradient</span> <span class="o">=</span> <span class="n">subgradient_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">acc_subgradient</span> <span class="o">=</span> <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">subgradient_svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct subgradient ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">acc_subgradient</span><span class="p">,</span> <span class="n">time_subgradient_svm</span><span class="p">))</span>
 
-<span class="n">libsvm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC"><span class="n">libsvm</span></a> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC"><span class="n">SVC</span></a><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-<span class="n">libsvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC"><span class="n">libsvm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">time_libsvm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
-<span class="n">acc_libsvm</span> <span class="o">=</span> <span class="n">libsvm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">acc_libsvm</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC"><span class="n">libsvm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with sklearn and libsvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">acc_libsvm</span><span class="p">,</span> <span class="n">time_libsvm</span><span class="p">))</span>
 
@@ -199,7 +195,7 @@ Score with sklearn and libsvm: 0.920000 (took 0.549010 seconds)</pre>
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  40.73 seconds</p>
+<p><strong>Total running time of the example:</strong>  16.72 seconds</p>
 </div>
 
 

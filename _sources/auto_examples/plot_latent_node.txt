@@ -10,8 +10,195 @@ Solving a 2d grid toy problem by introducing an additional layer of latent
 variables.
 
 
+
+.. rst-class:: horizontal
+
+
+    *
+
+      .. image:: images/plot_latent_node_2.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_latent_node_1.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_latent_node_3.png
+            :scale: 47
+
+
+**Script output**::
+
+  Training n-slack dual structural SVM
+  objective converged.
+  Training score binary grid CRF: 0.903125
+  LATENT SVM ITERATION 0
+  Training 1-slack dual structural SVM
+  iteration 0
+  current loss: 0.387500
+  cutting plane objective: 0.195307, primal objective 31999.999587
+  iteration 1
+  new constraint too weak.
+  cutting plane objective: 0.387930, primal objective 14222.521269
+  iteration 2
+  cutting plane objective: 0.391256, primal objective 171.339567
+  iteration 3
+  cutting plane objective: 0.909278, primal objective 21347.666461
+  iteration 4
+  cutting plane objective: 0.922303, primal objective 358.605653
+  iteration 5
+  cutting plane objective: 1.283191, primal objective 16698.103546
+  iteration 6
+  cutting plane objective: 1.412470, primal objective 2074.927321
+  iteration 7
+  cutting plane objective: 1.874259, primal objective 14162.708154
+  iteration 8
+  cutting plane objective: 2.347416, primal objective 2196.605912
+  iteration 9
+  cutting plane objective: 2.797206, primal objective 8188.977708
+  iteration 10
+  current loss: 0.100000
+  cutting plane objective: 4.244688, primal objective 3725.589238
+  iteration 11
+  cutting plane objective: 5.000952, primal objective 4630.941008
+  iteration 12
+  cutting plane objective: 7.158810, primal objective 4314.127648
+  iteration 13
+  cutting plane objective: 7.482255, primal objective 2958.918907
+  iteration 14
+  cutting plane objective: 7.570284, primal objective 1371.594637
+  iteration 15
+  cutting plane objective: 8.389121, primal objective 11445.863732
+  iteration 16
+  cutting plane objective: 11.399950, primal objective 4959.415830
+  iteration 17
+  cutting plane objective: 12.117509, primal objective 6497.731000
+  iteration 18
+  cutting plane objective: 14.142917, primal objective 3096.968058
+  iteration 19
+  cutting plane objective: 18.849584, primal objective 4711.547575
+  iteration 20
+  current loss: 0.075000
+  cutting plane objective: 20.062785, primal objective 1757.417380
+  iteration 21
+  cutting plane objective: 36.309341, primal objective 15085.173929
+  iteration 22
+  cutting plane objective: 158.703773, primal objective 8845.277140
+  iteration 23
+  cutting plane objective: 837.313428, primal objective 13505.403556
+  iteration 24
+  cutting plane objective: 4212.433054, primal objective 20642.277959
+  iteration 25
+  cutting plane objective: 4590.186593, primal objective 10090.983308
+  iteration 26
+  cutting plane objective: 4595.320305, primal objective 5537.045026
+  iteration 27
+  cutting plane objective: 4702.843491, primal objective 6220.418845
+  iteration 28
+  cutting plane objective: 4732.814995, primal objective 5617.776491
+  iteration 29
+  cutting plane objective: 4897.009865, primal objective 5956.523335
+  iteration 30
+  current loss: 0.050000
+  cutting plane objective: 4981.175014, primal objective 5473.651131
+  iteration 31
+  cutting plane objective: 4997.582593, primal objective 6005.235894
+  iteration 32
+  cutting plane objective: 4999.839374, primal objective 5356.548611
+  iteration 33
+  cutting plane objective: 5006.818725, primal objective 5197.999286
+  iteration 34
+  new constraint too weak.
+  new constraint too weak.
+  no additional constraints
+  final primal objective: 5006.809082 gap: -0.009642
+  LATENT SVM ITERATION 1
+  changes in H: 20
+  Training 1-slack dual structural SVM
+  iteration 0
+  current loss: 0.387500
+  cutting plane objective: 0.174249, primal objective 31999.999587
+  iteration 1
+  cutting plane objective: 0.635804, primal objective 13903.542881
+  iteration 2
+  cutting plane objective: 1.302293, primal objective 10809.424105
+  iteration 3
+  cutting plane objective: 1.418005, primal objective 5141.588431
+  iteration 4
+  cutting plane objective: 1.544679, primal objective 8972.479735
+  iteration 5
+  cutting plane objective: 1.666524, primal objective 3105.390415
+  iteration 6
+  cutting plane objective: 2.069366, primal objective 1505.551382
+  iteration 7
+  cutting plane objective: 2.259318, primal objective 3430.526649
+  iteration 8
+  cutting plane objective: 2.559043, primal objective 1577.352634
+  iteration 9
+  cutting plane objective: 2.930885, primal objective 1817.805824
+  iteration 10
+  current loss: 0.040625
+  cutting plane objective: 2.948435, primal objective 783.128851
+  iteration 11
+  cutting plane objective: 4.020105, primal objective 2711.634084
+  iteration 12
+  cutting plane objective: 4.215666, primal objective 1724.689929
+  iteration 13
+  cutting plane objective: 4.444337, primal objective 859.715866
+  iteration 14
+  cutting plane objective: 5.196626, primal objective 714.025581
+  iteration 15
+  cutting plane objective: 5.281047, primal objective 352.197569
+  iteration 16
+  cutting plane objective: 5.296169, primal objective 3563.156608
+  iteration 17
+  cutting plane objective: 5.309421, primal objective 462.766382
+  iteration 18
+  cutting plane objective: 10.371944, primal objective 1869.552373
+  iteration 19
+  cutting plane objective: 10.842989, primal objective 1871.646502
+  iteration 20
+  current loss: 0.062500
+  cutting plane objective: 12.252868, primal objective 1385.729446
+  iteration 21
+  cutting plane objective: 12.408375, primal objective 506.467241
+  iteration 22
+  cutting plane objective: 12.697516, primal objective 654.460208
+  iteration 23
+  cutting plane objective: 14.122397, primal objective 740.191753
+  iteration 24
+  cutting plane objective: 14.220458, primal objective 74.707772
+  iteration 25
+  cutting plane objective: 15.443527, primal objective 1036.692205
+  iteration 26
+  cutting plane objective: 16.416074, primal objective 903.556349
+  iteration 27
+  cutting plane objective: 16.610598, primal objective 264.682725
+  iteration 28
+  cutting plane objective: 16.697408, primal objective 816.121142
+  iteration 29
+  cutting plane objective: 16.785751, primal objective 194.250291
+  iteration 30
+  current loss: 0.000000
+  cutting plane objective: 16.999287, primal objective 254.593089
+  iteration 31
+  new constraint too weak.
+  new constraint too weak.
+  no additional constraints
+  final primal objective: 17.053067 gap: 0.053780
+  LATENT SVM ITERATION 2
+  no changes in latent variables of ground truth. stopping.
+  Training score with latent nodes: 1.000000
+
+
+
 **Python source code:** :download:`plot_latent_node.py <plot_latent_node.py>`
 
 .. literalinclude:: plot_latent_node.py
     :lines: 8-
+
+**Total running time of the example:**  76.84 seconds
     

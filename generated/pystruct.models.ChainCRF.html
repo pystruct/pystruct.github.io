@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pystruct.models.GraphCRF &mdash; pystruct 0.1 documentation</title>
+    <title>pystruct.models.ChainCRF &mdash; pystruct 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -34,8 +34,8 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
-    <link rel="next" title="pystruct.models.ChainCRF" href="pystruct.models.ChainCRF.html" />
-    <link rel="prev" title="pystruct.models.MultiLabelClf" href="pystruct.models.MultiLabelClf.html" />
+    <link rel="next" title="pystruct.models.EdgeFeatureGraphCRF" href="pystruct.models.EdgeFeatureGraphCRF.html" />
+    <link rel="prev" title="pystruct.models.GraphCRF" href="pystruct.models.GraphCRF.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -87,46 +87,20 @@
 
 <div class="container content-container">
   
-  <div class="section" id="pystruct-models-graphcrf">
-<h1>pystruct.models.GraphCRF<a class="headerlink" href="#pystruct-models-graphcrf" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pystruct-models-chaincrf">
+<h1>pystruct.models.ChainCRF<a class="headerlink" href="#pystruct-models-chaincrf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="pystruct.models.GraphCRF">
-<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GraphCRF</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=False</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pairwise CRF on a general graph.</p>
+<dt id="pystruct.models.ChainCRF">
+<em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">ChainCRF</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=True</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear-chain CRF.</p>
 <p>Pairwise potentials are symmetric and the same for all edges.
-This leads to n_classes parameters for unary potentials.</p>
-<p>If <tt class="docutils literal"><span class="pre">directed=True</span></tt>, there are <tt class="docutils literal"><span class="pre">n_classes</span> <span class="pre">*</span> <span class="pre">n_classes</span></tt> parameters
+This leads to <tt class="docutils literal"><span class="pre">n_classes</span></tt> parameters for unary potentials.
+If <tt class="docutils literal"><span class="pre">directed=True</span></tt>, there are <tt class="docutils literal"><span class="pre">n_classes</span> <span class="pre">*</span> <span class="pre">n_classes</span></tt> parameters
 for pairwise potentials, if <tt class="docutils literal"><span class="pre">directed=False</span></tt>, there are only
 <tt class="docutils literal"><span class="pre">n_classes</span> <span class="pre">*</span> <span class="pre">(n_classes</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">2</span></tt> (for a symmetric matrix).</p>
-<p>Examples, i.e. X, are given as an iterable of n_examples.
-An example, x, is represented as a tuple (features, edges) where
-features is a numpy array of shape (n_nodes, n_attributes), and
-edges is is an array of shape (n_edges, 2), representing the graph.</p>
-<p>Labels, Y, are given as an iterable of n_examples. Each label, y, in Y
-is given by a numpy array of shape (n_nodes,).</p>
-<p>There are n_states * n_features parameters for unary
-potentials. For edge potential parameters, there are n_state *
-n_states permutations, i.e.</p>
-<blockquote>
-<div>state_1 state_2 state 3</div></blockquote>
-<p>state_1       1       2       3
-state_2       4       5       6
-state_3       7       8       9</p>
-<p>The fitted parameters of this model will be returned as an array
-with the first n_states * n_features elements representing the
-unary potentials parameters, followed by the edge potential
-parameters.</p>
-<p>Say we have two state, A and B, and two features 1 and 2. The unary
-potential parameters will be returned as [A1, A2, B1, B2].</p>
-<p>If <tt class="docutils literal"><span class="pre">directed=True</span></tt> the edge potential parameters will return 
-n_states * n_states parameters. The rows are senders and the
-columns are recievers, i.e. the edge potential state_2 -&gt; state_1
-is [2,1]; 4 in the above matrix.</p>
-<p>The above edge potential parameters example would be returned as 
-[1, 2, 3, 4, 5, 6, 7, 8, 9] (see numpy.ravel).</p>
-<p>If edges are undirected, the edge potential parameter matrix is 
-assumed to be symmetric and only the lower triangle is returned, i.e.
-[1, 4, 5, 7, 8, 9].</p>
+<p>Unary evidence <tt class="docutils literal"><span class="pre">x</span></tt> is given as array of shape (n_nodes, n_features), and
+labels <tt class="docutils literal"><span class="pre">y</span></tt> are given as array of shape (n_nodes,). Chain lengths do not
+need to be constant over the dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -134,10 +108,6 @@ assumed to be symmetric and only the lower triangle is returned, i.e.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=2</p>
 <blockquote>
 <div><p>Number of states for all variables.</p>
-</div></blockquote>
-<p><strong>n_features</strong> : int, default=None</p>
-<blockquote>
-<div><p>Number of features per node. None means n_states.</p>
 </div></blockquote>
 <p><strong>inference_method</strong> : string or None, default=None</p>
 <blockquote>
@@ -190,19 +160,19 @@ so an edge <tt class="docutils literal"><span class="pre">a</span> <span class="
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">continuous_loss</span></tt>(y,&nbsp;y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.GraphCRF.inference" title="pystruct.models.GraphCRF.inference"><tt class="xref py py-obj docutils literal"><span class="pre">inference</span></tt></a>(x,&nbsp;w[,&nbsp;relaxed,&nbsp;return_energy])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.ChainCRF.inference" title="pystruct.models.ChainCRF.inference"><tt class="xref py py-obj docutils literal"><span class="pre">inference</span></tt></a>(x,&nbsp;w[,&nbsp;relaxed,&nbsp;return_energy])</td>
 <td>Inference for x using parameters w.</td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">initialize</span></tt>(X,&nbsp;Y)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.GraphCRF.joint_feature" title="pystruct.models.GraphCRF.joint_feature"><tt class="xref py py-obj docutils literal"><span class="pre">joint_feature</span></tt></a>(x,&nbsp;y)</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.ChainCRF.joint_feature" title="pystruct.models.ChainCRF.joint_feature"><tt class="xref py py-obj docutils literal"><span class="pre">joint_feature</span></tt></a>(x,&nbsp;y)</td>
 <td>Feature vector associated with instance (x, y).</td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">loss</span></tt>(y,&nbsp;y_hat)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.GraphCRF.loss_augmented_inference" title="pystruct.models.GraphCRF.loss_augmented_inference"><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt></a>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.models.ChainCRF.loss_augmented_inference" title="pystruct.models.ChainCRF.loss_augmented_inference"><tt class="xref py py-obj docutils literal"><span class="pre">loss_augmented_inference</span></tt></a>(x,&nbsp;y,&nbsp;w[,&nbsp;relaxed,&nbsp;...])</td>
 <td>Loss-augmented Inference for x relative to y using parameters w.</td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">max_loss</span></tt>(y)</td>
@@ -211,13 +181,13 @@ so an edge <tt class="docutils literal"><span class="pre">a</span> <span class="
 </tbody>
 </table>
 <dl class="method">
-<dt id="pystruct.models.GraphCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=False</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="pystruct.models.ChainCRF.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=True</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pystruct.models.GraphCRF.inference">
-<tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF.inference" title="Permalink to this definition">¶</a></dt>
+<dt id="pystruct.models.ChainCRF.inference">
+<tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF.inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference for x using parameters w.</p>
 <p>Finds (approximately)
 armin_y np.dot(w, joint_feature(x, y))
@@ -268,8 +238,8 @@ shape (n_states, n_states) of accumulated pairwise marginals.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pystruct.models.GraphCRF.joint_feature">
-<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
+<dt id="pystruct.models.ChainCRF.joint_feature">
+<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Feature vector associated with instance (x, y).</p>
 <p>Feature representation joint_feature, such that the energy of the configuration
 (x, y) and a weight vector w is given by np.dot(w, joint_feature(x, y)).</p>
@@ -301,8 +271,8 @@ case, <tt class="docutils literal"><span class="pre">y=(unary_marginals,</span> 
 </dd></dl>
 
 <dl class="method">
-<dt id="pystruct.models.GraphCRF.loss_augmented_inference">
-<tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
+<dt id="pystruct.models.ChainCRF.loss_augmented_inference">
+<tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=False</em>, <em>return_energy=False</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loss-augmented Inference for x relative to y using parameters w.</p>
 <p>Finds (approximately)
 armin_y_hat np.dot(w, joint_feature(x, y_hat)) + loss(y, y_hat)

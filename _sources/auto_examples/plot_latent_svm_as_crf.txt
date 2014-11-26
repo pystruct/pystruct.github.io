@@ -17,21 +17,12 @@ the problem as a binary one, discriminating between even and odd digits.
 
 
 
-.. image:: images/plot_latent_svm_as_crf_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Script output**::
 
-  Training n-slack dual structural SVM
-  no additional constraints
-  LATENT SVM ITERATION 0
-  Training n-slack dual structural SVM
-  objective converged.
-  LATENT SVM ITERATION 1
-  changes in H: 69
-  Training n-slack dual structural SVM
-  no additional constraints
   Score with binary SVM:
   Train: 0.93
   Test: 0.92
@@ -47,5 +38,6 @@ the problem as a binary one, discriminating between even and odd digits.
 .. literalinclude:: plot_latent_svm_as_crf.py
     :lines: 14-
 
-**Total running time of the example:**  25.23 seconds
+**Total running time of the example:**  11.69 seconds
+
     

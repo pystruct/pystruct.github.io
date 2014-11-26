@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Comparing inference times on a simple Potts model &mdash; pystruct 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="Semantic Image Segmentation on Pascal VOC" href="image_segmentation.html" />
+    <link rel="prev" title="SVM as CRF" href="svm_as_crf.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="../installation.html">Installation</a></li>
+                <li><a href="../intro.html">Introduction</a></li>
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../references.html">References</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
+  <div class="section" id="comparing-inference-times-on-a-simple-potts-model">
+<span id="plot-potts-model-py"></span><h1>Comparing inference times on a simple Potts model<a class="headerlink" href="#comparing-inference-times-on-a-simple-potts-model" title="Permalink to this headline">¶</a></h1>
+<p>Simple exmaple comparing inference times on a Potts model.</p>
+<p class="horizontal"><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_potts_model.py"><tt class="xref download docutils literal"><span class="pre">plot_potts_model.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="kn">from</span> <span class="nn">pystruct.inference</span> <span class="kn">import</span> <a href="../generated/pystruct.inference.inference_dispatch.html#pystruct.inference.inference_dispatch"><span class="n">inference_dispatch</span></a><span class="p">,</span> <span class="n">compute_energy</span>
+<span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">make_grid_edges</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">n_states</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">rnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_states</span><span class="p">))</span>
+<span class="n">pairwise</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.eye.html#numpy.eye"><span class="n">np</span><span class="o">.</span><span class="n">eye</span></a><span class="p">(</span><span class="n">n_states</span><span class="p">)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">make_grid_edges</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">unaries</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_states</span><span class="p">)</span>
+
+<a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">inference_method</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;ad3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;ad3&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;branch_and_bound&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}),</span>
+                                    <span class="s">&#39;qpbo&#39;</span><span class="p">,</span> <span class="s">&#39;max-product&#39;</span><span class="p">,</span> <span class="s">&#39;lp&#39;</span><span class="p">]):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <a href="../generated/pystruct.inference.inference_dispatch.html#pystruct.inference.inference_dispatch"><span class="n">inference_dispatch</span></a><span class="p">(</span><span class="n">unaries</span><span class="p">,</span> <span class="n">pairwise</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span>
+                           <span class="n">inference_method</span><span class="o">=</span><span class="n">inference_method</span><span class="p">)</span>
+    <span class="n">took</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">compute_energy</span><span class="p">(</span><span class="n">unaries</span><span class="p">,</span> <span class="n">pairwise</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;time: </span><span class="si">%.2f</span><span class="s"> energy </span><span class="si">%.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">took</span><span class="p">,</span> <span class="n">energy</span><span class="p">))</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
+<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the example:</strong>  35.22 seconds</p>
+</div>
+
+
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43292385-1', 'pystruct.github.io');
+  ga('send', 'pageview');
+
+</script>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

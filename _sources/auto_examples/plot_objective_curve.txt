@@ -35,15 +35,16 @@ See plot_exact_learning.py for a way to deal with this.
 
 
 
-.. image:: images/plot_objective_curve_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Script output**::
 
-  OneSlackSSVM(C=1, break_on_bad=False, cache_tol=auto, check_constraints=False,
-         inactive_threshold=1e-05, inactive_window=50, inference_cache=100,
-         logger=None, max_iter=10000,
+  OneSlackSSVM(C=1, break_on_bad=False, cache_tol='auto',
+         check_constraints=False, inactive_threshold=1e-05,
+         inactive_window=50, inference_cache=100, logger=None,
+         max_iter=10000,
          model=DirectionalGridCRF(n_states: 3, inference_method: qpbo, n_features: 3, n_edge_features: 2),
          n_jobs=-1, negativity_constraint=None, show_loss_every=10,
          switch_to=None, tol=0.1, verbose=0)
@@ -58,5 +59,6 @@ See plot_exact_learning.py for a way to deal with this.
 .. literalinclude:: plot_objective_curve.py
     :lines: 32-
 
-**Total running time of the example:**  7.73 seconds
+**Total running time of the example:**  5.72 seconds
+
     

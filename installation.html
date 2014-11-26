@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; pystruct 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="pystruct 0.1 documentation" href="index.html" />
+    <link rel="prev" title="What is structured learning?" href="intro.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="index.html">Start</a></li>
+                <li><a href="#">Installation</a></li>
+                <li><a href="intro.html">Introduction</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="references.html">References</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
+  <div class="section" id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>To install pystruct, you need cvxopt, cython and scikit-learn (which requires numpy and scipy).</p>
+<p>The easiest way to install pystruct is using pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install pystruct
+</pre></div>
+</div>
+<p>This will also install the additional inference package ad3.</p>
+<p>Installation instructions for the requirements are below.</p>
+<div class="section" id="linux-ubuntu">
+<h2>Linux (Ubuntu)<a class="headerlink" href="#linux-ubuntu" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to get all requirements is via the package manager, that is apt on Ubuntu and Debian:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install build-essential python-dev python-setuptools python-numpy \\
+    python-scipy libatlas-dev libatlas3gf-base python-cvxopt
+</pre></div>
+</div>
+<p>To install the current versions of scikit-learn and pystruct, you can use pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user --upgrade scikit-learn pystruct
+</pre></div>
+</div>
+</div>
+<div class="section" id="os-x-windows">
+<h2>OS X &amp; Windows<a class="headerlink" href="#os-x-windows" title="Permalink to this headline">¶</a></h2>
+<p>Follow instructions on the <a class="reference external" href="http://scikit-learn.org/dev/install.html">scikit-learn website</a> and
+then <a class="reference external" href="http://cvxopt.org/install/">install CVXOPT</a>.
+Finally, you can install pystruct simply using:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user --upgrade pystruct
+</pre></div>
+</div>
+</div>
+<div class="section" id="alternative-anaconda">
+<h2>Alternative: Anaconda<a class="headerlink" href="#alternative-anaconda" title="Permalink to this headline">¶</a></h2>
+<p>In particular for OS X and Windows, an alternative is to use the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">Anaconda Python</a> distribution.
+The anaconda environment comes with its own Python and a package manager named conda.
+You can install cvxopt using the conda package manager:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install cvxopt
+</pre></div>
+</div>
+<p>And then install pystruct:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user --upgrade pystruct
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="additional-inference-packages">
+<h1>Additional inference packages<a class="headerlink" href="#additional-inference-packages" title="Permalink to this headline">¶</a></h1>
+<p>While PyStruct implements some simple inference algorithms, these are not as optimized as other available code.
+Therefore it is recommended to install additional inference packages.
+By default PyStruct will also install the AD3 package, which contains a high-quality solver
+that can be chosen via <tt class="docutils literal"><span class="pre">inference_method='ad3'</span></tt>.
+Another solver that is helpful for highly connected graphs like grid-graphs is QPBO, which
+can be installed via the pyqpbo package:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user pyqpbo
+</pre></div>
+</div>
+<p>Unfortunately QPBO might not compile with newer C compilers, so we decided to not make it a dependency.</p>
+<p>There is a very high quality collection of inference algorithms in
+the <a class="reference external" href="http://ipa.iwr.uni-heidelberg.de/jkappes/opengm2/">OpenGM</a> library, which
+is highly recommended. The algorithms in OpenGM can be chosen by specifying
+<tt class="docutils literal"><span class="pre">inference_algorithm=('ogm',</span> <span class="pre">{'alg':</span> <span class="pre">ALGORITHM})</span></tt> where ALGORITHM can be a
+wide variety of algorithms, including dynamic programming, TRWS, graph cuts and
+many more, see <a class="reference internal" href="generated/pystruct.inference.inference_ogm.html#pystruct.inference.inference_ogm" title="pystruct.inference.inference_ogm"><tt class="xref py py-func docutils literal"><span class="pre">inference_ogm()</span></tt></a>.</p>
+<p>In particular for tree-structured (not chain) models, the implementation of dynamic
+programming max-product belief propagation in OpenGM is much faster than the
+one in PyStruct.</p>
+</div>
+
+
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43292385-1', 'pystruct.github.io');
+  ga('send', 'pageview');
+
+</script>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

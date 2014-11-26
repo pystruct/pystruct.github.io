@@ -36,13 +36,13 @@ But it does work as well as Decision Tree Fields ;)
 
 
 
-.. image:: images/plot_snakes_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Script output**::
 
-  Please be patient. Will take 5-20 minutes.
+  Please be patient. Learning will take 5-20 minutes.
   Results using only directional features for edges
   Test accuracy: 0.829
   [[2750    0    0    0    0    0    0    0    0    0    0]
@@ -57,14 +57,14 @@ But it does work as well as Decision Tree Fields ;)
    [   0    9    3    2   10    8    0   15    4   46    3]
    [   0    2    7    3    9    1    1    3    7    3   64]]
   Results using also input features for edges
-  Test accuracy: 0.997
+  Test accuracy: 0.998
   [[2749    0    0    0    0    0    0    0    1    0    0]
    [   0  100    0    0    0    0    0    0    0    0    0]
    [   0    0  100    0    0    0    0    0    0    0    0]
-   [   0    0    0   99    0    1    0    0    0    0    0]
-   [   0    0    0    0   97    0    3    0    0    0    0]
-   [   0    0    0    1    0   97    0    2    0    0    0]
-   [   0    0    0    0    1    0   98    0    1    0    0]
+   [   0    0    0  100    0    0    0    0    0    0    0]
+   [   0    0    0    0   98    0    2    0    0    0    0]
+   [   0    0    0    0    0   99    0    1    0    0    0]
+   [   0    0    0    0    0    0  100    0    0    0    0]
    [   0    0    0    0    0    1    0   99    0    0    0]
    [   0    0    0    0    0    0    0    0  100    0    0]
    [   0    0    0    0    0    0    0    1    0   99    0]
@@ -77,5 +77,6 @@ But it does work as well as Decision Tree Fields ;)
 .. literalinclude:: plot_snakes.py
     :lines: 33-
 
-**Total running time of the example:**  1150.59 seconds
+**Total running time of the example:**  770.02 seconds
+
     

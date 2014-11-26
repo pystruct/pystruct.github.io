@@ -10,11 +10,10 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -28,9 +27,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="index.html" />
     <link rel="next" title="pystruct.learners.OneSlackSSVM" href="generated/pystruct.learners.OneSlackSSVM.html" />
@@ -43,44 +42,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="index.html">Start</a></li>
+                <li><a href="installation.html">Installation</a></li>
                 <li><a href="intro.html">Introduction</a></li>
                 <li><a href="auto_examples/index.html">Examples</a></li>
                 <li><a href="#">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -177,17 +191,17 @@ assymmetric and arbitrary potentials.</p>
 <tr class="row-odd"><td><a class="reference internal" href="generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF" title="pystruct.models.GraphCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.GraphCRF</span></tt></a>([n_states,&nbsp;n_features,&nbsp;...])</td>
 <td>Pairwise CRF on a general graph.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF" title="pystruct.models.ChainCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.ChainCRF</span></tt></a>([n_states,&nbsp;n_features,&nbsp;...])</td>
-<td>Linear-chain CRF.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF" title="pystruct.models.EdgeFeatureGraphCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.EdgeFeatureGraphCRF</span></tt></a>([n_states,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF" title="pystruct.models.EdgeFeatureGraphCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.EdgeFeatureGraphCRF</span></tt></a>([n_states,&nbsp;...])</td>
 <td>Pairwise CRF with features/strength associated to each edge.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF" title="pystruct.models.LatentGraphCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.LatentGraphCRF</span></tt></a>([n_labels,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF" title="pystruct.models.LatentGraphCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.LatentGraphCRF</span></tt></a>([n_labels,&nbsp;...])</td>
 <td>CRF with latent states for variables.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/pystruct.models.LatentNodeCRF.html#pystruct.models.LatentNodeCRF" title="pystruct.models.LatentNodeCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.LatentNodeCRF</span></tt></a>([n_labels,&nbsp;n_features,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/pystruct.models.LatentNodeCRF.html#pystruct.models.LatentNodeCRF" title="pystruct.models.LatentNodeCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.LatentNodeCRF</span></tt></a>([n_labels,&nbsp;n_features,&nbsp;...])</td>
 <td>CRF with latent variables.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF" title="pystruct.models.ChainCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.ChainCRF</span></tt></a>([n_states,&nbsp;n_features,&nbsp;...])</td>
+<td>Linear-chain CRF.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/pystruct.models.GridCRF.html#pystruct.models.GridCRF" title="pystruct.models.GridCRF"><tt class="xref py py-obj docutils literal"><span class="pre">models.GridCRF</span></tt></a>([n_states,&nbsp;n_features,&nbsp;...])</td>
 <td>Pairwise CRF on a 2d grid.</td>
@@ -217,7 +231,7 @@ assymmetric and arbitrary potentials.</p>
 <td>Inference with LibDAI backend.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/pystruct.inference.inference_lp.html#pystruct.inference.inference_lp" title="pystruct.inference.inference_lp"><tt class="xref py py-obj docutils literal"><span class="pre">inference.inference_lp</span></tt></a>(unary_potentials,&nbsp;...)</td>
-<td>Inference with build-in LP solver using GLPK backend.</td>
+<td>Inference with build-in LP solver using cvxopt backend.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/pystruct.inference.inference_ad3.html#pystruct.inference.inference_ad3" title="pystruct.inference.inference_ad3"><tt class="xref py py-obj docutils literal"><span class="pre">inference.inference_ad3</span></tt></a>(unary_potentials,&nbsp;...)</td>
 <td>Inference with AD3 dual decomposition subgradient solver.</td>
@@ -278,7 +292,7 @@ assymmetric and arbitrary potentials.</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

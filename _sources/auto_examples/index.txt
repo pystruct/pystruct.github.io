@@ -123,6 +123,29 @@ Examples
     <div class="thumbnailContainer">
 
 
+.. figure:: ./images/thumb/plot_potts_model.png
+   :target: ./plot_potts_model.html
+
+   :ref:`plot_potts_model.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_potts_model
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
 .. figure:: ./images/thumb/image_segmentation.png
    :target: ./image_segmentation.html
 
@@ -284,29 +307,6 @@ Examples
     <div class="thumbnailContainer">
 
 
-.. figure:: ./images/thumb/multi_class_svm.png
-   :target: ./multi_class_svm.html
-
-   :ref:`multi_class_svm.py`
-
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./multi_class_svm
-
-
-
-.. raw:: html
-
-    <div class="thumbnailContainer">
-
-
 .. figure:: ./images/thumb/multi_label.png
    :target: ./multi_label.html
 
@@ -322,6 +322,29 @@ Examples
    :hidden:
 
    ./multi_label
+
+
+
+.. raw:: html
+
+    <div class="thumbnailContainer">
+
+
+.. figure:: ./images/thumb/multi_class_svm.png
+   :target: ./multi_class_svm.html
+
+   :ref:`multi_class_svm.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./multi_class_svm
 
 
 

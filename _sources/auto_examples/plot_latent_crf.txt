@@ -18,17 +18,14 @@ state (the cross) in the ground truth.
 
 
 
-.. image:: images/plot_latent_crf_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Script output**::
 
-  LATENT SVM ITERATION 0
-  LATENT SVM ITERATION 1
-  no changes in latent variables of ground truth. stopping.
-  loss training set: 1.000000
-  loss test set: 0.995313
+  Score training set: 1.000000
+  Score test set: 0.995313
 
 
 
@@ -37,5 +34,6 @@ state (the cross) in the ground truth.
 .. literalinclude:: plot_latent_crf.py
     :lines: 15-
 
-**Total running time of the example:**  4.04 seconds
+**Total running time of the example:**  3.17 seconds
+
     

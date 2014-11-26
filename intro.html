@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -11,15 +10,14 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -29,11 +27,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="index.html" />
+    <link rel="next" title="Installation" href="installation.html" />
     <link rel="prev" title="pystruct.plot_learning.plot_learning" href="generated/pystruct.plot_learning.plot_learning.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -43,44 +42,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="index.html">Start</a></li>
+                <li><a href="installation.html">Installation</a></li>
                 <li><a href="#">Introduction</a></li>
                 <li><a href="auto_examples/index.html">Examples</a></li>
                 <li><a href="references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -133,7 +147,7 @@ how are we going to formalize this? Having functions that produce arbitrary
 objects seem a bit hard to handle. There is one very basic formula at the heart
 of structured prediction:</p>
 <div class="math">
-<p><img src="_images/math/f3e7a9e86532481fa1308c35f0c0633f5c105530.png" alt="y^* = \arg \max_{y \in Y} f(x, y)"/></p>
+<p><img src="_images/math/f7235989bf1dfa9e7727b21a7e467cdb2dd47c79.png" alt="y^* = \arg \max_{y \in Y} f(x, y)"/></p>
 </div><p>Here x is the input, Y is the set of all possible outputs and f is a
 compatibility function that says how well y fits the input x. The prediction
 for x is y*, the element of Y that maximizes the compatibility.</p>
@@ -151,10 +165,10 @@ building such f is using energy functions or conditional random fields (CRFs)
 <p>There are basically three challenges in doing structured learning and prediction:</p>
 <ul class="simple">
 <li>Choosing a parametric form of f</li>
-<li>solving <img class="math" src="_images/math/306725f99352abed8e80839b423bd4e5657370a1.png" alt="\arg\max_y f(x, y)"/></li>
+<li>solving <img class="math" src="_images/math/e0d7d9cd8e2168df793d78d09c74eeed72127abb.png" alt="\arg\max_y f(x, y)"/></li>
 <li>learning parameters for f to minimize a loss.</li>
 </ul>
-<p>PyStruct takes <img class="math" src="_images/math/bb2c93730dbb48558bb3c4738c956c4e8f816437.png" alt="f"/> to be a linear function of some parameters and a feature function <img class="math" src="_images/math/bc1da45a0f6a8ae8c1483978b48fafad65c58568.png" alt="Psi"/>.
+<p>PyStruct takes <img class="math" src="_images/math/0001d02b63ede2fe3219e05a7cd09c82ae6298b6.png" alt="f"/> to be a linear function of some parameters and a feature function <img class="math" src="_images/math/baa77ef7cab9f490c54f0b6bb60b4e2677ae9454.png" alt="Psi"/>.
 Then the parametric form is given by the <a class="reference internal" href="references.html#models"><em>Models</em></a>.
 The second problem, computation of the argmax, is done via third party inference solvers.
 The interfaces to these are explained at <a class="reference internal" href="references.html#inference"><em>Inference</em></a>.
@@ -191,7 +205,7 @@ Sebastian Nowozin, Christoph H. Lampert:</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

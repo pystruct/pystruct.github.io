@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -7,15 +6,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mult-label classification &mdash; pystruct 0.1 documentation</title>
+    <title>Multi-label classification &mdash; pystruct 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -29,14 +27,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
-    <link rel="next" title="Latent Variable Hierarchical CRF" href="plot_latent_node.html" />
-    <link rel="prev" title="Crammer-Singer Multi-Class SVM" href="multi_class_svm.html" />
+    <link rel="next" title="Crammer-Singer Multi-Class SVM" href="multi_class_svm.html" />
+    <link rel="prev" title="Latent SVM for odd vs. even digit classification" href="plot_latent_svm_as_crf.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -45,51 +43,66 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="../index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="../index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
                 <li><a href="index.html">Examples</a></li>
                 <li><a href="../references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="../search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
 <div class="container content-container">
   
-  <div class="section" id="mult-label-classification">
-<span id="multi-label-py"></span><h1>Mult-label classification<a class="headerlink" href="#mult-label-classification" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="multi-label-classification">
+<span id="multi-label-py"></span><h1>Multi-label classification<a class="headerlink" href="#multi-label-classification" title="Permalink to this headline">¶</a></h1>
 <p>This example shows how to use structured support vector machines
 (or structured prediction in general) to do multi-label classification.</p>
 <p>This method hab been investigated in
@@ -108,41 +121,37 @@ to install either a recent scipy or scikit-learn version.</p>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">hamming_loss</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_mldata</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mutual_info_score</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">minimum_spanning_tree</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s">&quot;Please install a recent version of scikit-learn or&quot;</span>
-                      <span class="s">&quot;scipy to build minimum spanning trees.&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_mldata.html#sklearn.datasets.fetch_mldata"><span class="n">fetch_mldata</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.mutual_info_score.html#sklearn.metrics.mutual_info_score"><span class="n">mutual_info_score</span></a>
+<span class="kn">from</span> <span class="nn">scipy.sparse.csgraph</span> <span class="kn">import</span> <a href="http://docs.scipy.org/doc/scipy-0.11.0/reference/generated/scipy.sparse.csgraph.minimum_spanning_tree.html#scipy.sparse.csgraph.minimum_spanning_tree"><span class="n">minimum_spanning_tree</span></a>
 
-<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">OneSlackSSVM</span>
-<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">MultiLabelClf</span>
+<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a>
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf"><span class="n">MultiLabelClf</span></a>
 <span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">load_scene</span>
 
 
 <span class="k">def</span> <span class="nf">chow_liu_tree</span><span class="p">(</span><span class="n">y_</span><span class="p">):</span>
     <span class="c"># compute mutual information using sklearn</span>
     <span class="n">n_labels</span> <span class="o">=</span> <span class="n">y_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">mi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_labels</span><span class="p">,</span> <span class="n">n_labels</span><span class="p">))</span>
+    <span class="n">mi</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.zeros.html#numpy.zeros"><span class="n">np</span><span class="o">.</span><span class="n">zeros</span></a><span class="p">((</span><span class="n">n_labels</span><span class="p">,</span> <span class="n">n_labels</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n_labels</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n_labels</span><span class="p">):</span>
-            <span class="n">mi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutual_info_score</span><span class="p">(</span><span class="n">y_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">y_</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
-    <span class="n">mst</span> <span class="o">=</span> <span class="n">minimum_spanning_tree</span><span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="o">-</span><span class="n">mi</span><span class="p">))</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">mst</span><span class="o">.</span><span class="n">nonzero</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">mi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.mutual_info_score.html#sklearn.metrics.mutual_info_score"><span class="n">mutual_info_score</span></a><span class="p">(</span><span class="n">y_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">y_</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+    <span class="n">mst</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/scipy-0.11.0/reference/generated/scipy.sparse.csgraph.minimum_spanning_tree.html#scipy.sparse.csgraph.minimum_spanning_tree"><span class="n">minimum_spanning_tree</span></a><span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="o">-</span><span class="n">mi</span><span class="p">))</span>
+    <span class="n">edges</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">mst</span><span class="o">.</span><span class="n">nonzero</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>
     <span class="n">edges</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">edges</span>
 
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="s">&quot;scene&quot;</span>
-<span class="c">#dataset = &quot;yeast&quot;</span>
+<span class="c"># dataset = &quot;yeast&quot;</span>
 
 <span class="k">if</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s">&quot;yeast&quot;</span><span class="p">:</span>
-    <span class="n">yeast</span> <span class="o">=</span> <span class="n">fetch_mldata</span><span class="p">(</span><span class="s">&quot;yeast&quot;</span><span class="p">)</span>
+    <span class="n">yeast</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_mldata.html#sklearn.datasets.fetch_mldata"><span class="n">fetch_mldata</span></a><span class="p">(</span><span class="s">&quot;yeast&quot;</span><span class="p">)</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">yeast</span><span class="o">.</span><span class="n">data</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
+    <span class="n">X</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">([</span><span class="n">X</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.ones.html#numpy.ones"><span class="n">np</span><span class="o">.</span><span class="n">ones</span></a><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">yeast</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">1500</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">1500</span><span class="p">:]</span>
@@ -154,18 +163,18 @@ to install either a recent scipy or scikit-learn version.</p>
     <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s">&#39;y_train&#39;</span><span class="p">],</span> <span class="n">scene</span><span class="p">[</span><span class="s">&#39;y_test&#39;</span><span class="p">]</span>
 
 <span class="n">n_labels</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_labels</span><span class="p">),</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="n">full</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_labels</span><span class="p">),</span> <span class="mi">2</span><span class="p">)])</span>
 <span class="n">tree</span> <span class="o">=</span> <span class="n">chow_liu_tree</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
 
-<span class="n">full_model</span> <span class="o">=</span> <span class="n">MultiLabelClf</span><span class="p">(</span><span class="n">edges</span><span class="o">=</span><span class="n">full</span><span class="p">,</span> <span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;qpbo&#39;</span><span class="p">)</span>
-<span class="n">independent_model</span> <span class="o">=</span> <span class="n">MultiLabelClf</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
-<span class="n">tree_model</span> <span class="o">=</span> <span class="n">MultiLabelClf</span><span class="p">(</span><span class="n">edges</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+<span class="n">full_model</span> <span class="o">=</span> <a href="../generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf"><span class="n">MultiLabelClf</span></a><span class="p">(</span><span class="n">edges</span><span class="o">=</span><span class="n">full</span><span class="p">,</span> <span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;qpbo&#39;</span><span class="p">)</span>
+<span class="n">independent_model</span> <span class="o">=</span> <a href="../generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf"><span class="n">MultiLabelClf</span></a><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;unary&#39;</span><span class="p">)</span>
+<span class="n">tree_model</span> <span class="o">=</span> <a href="../generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf"><span class="n">MultiLabelClf</span></a><span class="p">(</span><span class="n">edges</span><span class="o">=</span><span class="n">tree</span><span class="p">,</span> <span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;max-product&quot;</span><span class="p">)</span>
 
-<span class="n">full_ssvm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">full_model</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">full_ssvm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><span class="n">full_model</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
-<span class="n">tree_ssvm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">tree_model</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">tree_ssvm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><span class="n">tree_model</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
-<span class="n">independent_ssvm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">independent_model</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">independent_ssvm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><span class="n">independent_model</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;fitting independent model...&quot;</span><span class="p">)</span>
 <span class="n">independent_ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -175,19 +184,19 @@ to install either a recent scipy or scikit-learn version.</p>
 <span class="n">tree_ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Training loss independent model: </span><span class="si">%f</span><span class="s">&quot;</span>
-      <span class="o">%</span> <span class="n">hamming_loss</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">independent_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))))</span>
+      <span class="o">%</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">independent_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Test loss independent model: </span><span class="si">%f</span><span class="s">&quot;</span>
-      <span class="o">%</span> <span class="n">hamming_loss</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">independent_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))))</span>
+      <span class="o">%</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">independent_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Training loss tree model: </span><span class="si">%f</span><span class="s">&quot;</span>
-      <span class="o">%</span> <span class="n">hamming_loss</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">tree_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))))</span>
+      <span class="o">%</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">tree_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Test loss tree model: </span><span class="si">%f</span><span class="s">&quot;</span>
-      <span class="o">%</span> <span class="n">hamming_loss</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">tree_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))))</span>
+      <span class="o">%</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">tree_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Training loss full model: </span><span class="si">%f</span><span class="s">&quot;</span>
-      <span class="o">%</span> <span class="n">hamming_loss</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">full_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))))</span>
+      <span class="o">%</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">full_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Test loss full model: </span><span class="si">%f</span><span class="s">&quot;</span>
-      <span class="o">%</span> <span class="n">hamming_loss</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">full_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))))</span>
+      <span class="o">%</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss"><span class="n">hamming_loss</span></a><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">(</span><span class="n">full_ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
@@ -212,7 +221,7 @@ to install either a recent scipy or scikit-learn version.</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

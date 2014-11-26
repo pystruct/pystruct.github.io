@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -11,11 +10,10 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -29,9 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
@@ -45,44 +43,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="../index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="../index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="../search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -101,7 +114,7 @@ can encode additional states and interactions.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>n_labels</strong> : int</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_labels</strong> : int</p>
 <blockquote>
 <div><p>Number of states of output variables.</p>
 </div></blockquote>
@@ -122,11 +135,21 @@ of integers of length <tt class="docutils literal"><span class="pre">n_labels</s
 <div><p>Function to call to do inference and loss-augmented inference.
 Possible values are:</p>
 <blockquote>
-<div><ul class="simple">
-<li>&#8216;qpbo&#8217; for QPBO + alpha expansion.</li>
-<li>&#8216;dai&#8217; for LibDAI bindings (which has another parameter).</li>
-<li>&#8216;lp&#8217; for Linear Programming relaxation using GLPK.</li>
-<li>&#8216;ad3&#8217; for AD3 dual decomposition.</li>
+<div><ul>
+<li><dl class="first docutils">
+<dt>&#8216;max-product&#8217; for max-product belief propagation.</dt>
+<dd><p class="first last">Recommended for chains an trees. Loopy belief propagatin in case of a general graph.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;lp&#8217; for Linear Programming relaxation using cvxopt.</p>
+</li>
+<li><p class="first">&#8216;ad3&#8217; for AD3 dual decomposition.</p>
+</li>
+<li><p class="first">&#8216;qpbo&#8217; for QPBO + alpha expansion.</p>
+</li>
+<li><p class="first">&#8216;ogm&#8217; for OpenGM inference algorithms.</p>
+</li>
 </ul>
 </div></blockquote>
 </div></blockquote>
@@ -204,7 +227,7 @@ using self.inference_method.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : tuple</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : tuple</p>
 <blockquote>
 <div><p>Instance of a graph with unary evidence.
 x=(unaries, edges)
@@ -228,7 +251,7 @@ fractional solutions are returned directly.</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>y_pred</strong> : ndarray or tuple</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>y_pred</strong> : ndarray or tuple</p>
 <blockquote class="last">
 <div><p>By default an inter ndarray of shape=(width, height)
 of variable assignments for x is returned.
@@ -255,7 +278,7 @@ shape (n_states, n_states) of accumulated pairwise marginals.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : tuple</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : tuple</p>
 <blockquote>
 <div><p>Unary evidence.</p>
 </div></blockquote>
@@ -268,7 +291,7 @@ case, <tt class="docutils literal"><span class="pre">y=(unary_marginals,</span> 
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>p</strong> : ndarray, shape (size_joint_feature,)</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>p</strong> : ndarray, shape (size_joint_feature,)</p>
 <blockquote class="last">
 <div><p>Feature vector associated with state (x, y).</p>
 </div></blockquote>
@@ -302,7 +325,7 @@ case, <tt class="docutils literal"><span class="pre">y=(unary_marginals,</span> 
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

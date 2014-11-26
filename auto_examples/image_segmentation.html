@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -11,11 +10,10 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -29,14 +27,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
     <link rel="next" title="Latent Dynamics CRF" href="plot_latent_crf.html" />
-    <link rel="prev" title="SVM as CRF" href="svm_as_crf.html" />
+    <link rel="prev" title="Comparing inference times on a simple Potts model" href="plot_potts_model.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -45,44 +43,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="../index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="../index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
                 <li><a href="index.html">Examples</a></li>
                 <li><a href="../references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="../search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -109,7 +122,7 @@ would need the Pascal VOC 2010 dataset.</p>
 
 <span class="kn">from</span> <span class="nn">pystruct</span> <span class="kn">import</span> <span class="n">learners</span>
 <span class="kn">import</span> <span class="nn">pystruct.models</span> <span class="kn">as</span> <span class="nn">crfs</span>
-<span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">SaveLogger</span>
+<span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <a href="../generated/pystruct.utils.SaveLogger.html#pystruct.utils.SaveLogger"><span class="n">SaveLogger</span></a>
 
 
 <span class="n">data_train</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_train_dict.pickle&quot;</span><span class="p">))</span>
@@ -117,8 +130,8 @@ would need the Pascal VOC 2010 dataset.</p>
 
 <span class="n">n_states</span> <span class="o">=</span> <span class="mi">21</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;number of samples: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">]))</span>
-<span class="n">class_weights</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">]))</span>
-<span class="n">class_weights</span> <span class="o">*=</span> <span class="mf">21.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
+<span class="n">class_weights</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.bincount.html#numpy.bincount"><span class="n">np</span><span class="o">.</span><span class="n">bincount</span></a><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">]))</span>
+<span class="n">class_weights</span> <span class="o">*=</span> <span class="mf">21.</span> <span class="o">/</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.sum.html#numpy.sum"><span class="n">np</span><span class="o">.</span><span class="n">sum</span></a><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">class_weights</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">crfs</span><span class="o">.</span><span class="n">EdgeFeatureGraphCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;qpbo&#39;</span><span class="p">,</span>
@@ -128,10 +141,10 @@ would need the Pascal VOC 2010 dataset.</p>
 
 <span class="n">experiment_name</span> <span class="o">=</span> <span class="s">&quot;edge_features_one_slack_trainval_</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">C</span>
 
-<span class="n">ssvm</span> <span class="o">=</span> <span class="n">learners</span><span class="o">.</span><span class="n">NSlackSSVM</span><span class="p">(</span>
+<span class="n">ssvm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">learners</span><span class="o">.</span><span class="n">NSlackSSVM</span></a><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">tol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">logger</span><span class="o">=</span><span class="n">SaveLogger</span><span class="p">(</span><span class="n">experiment_name</span> <span class="o">+</span> <span class="s">&quot;.pickle&quot;</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">logger</span><span class="o">=</span><a href="../generated/pystruct.utils.SaveLogger.html#pystruct.utils.SaveLogger"><span class="n">SaveLogger</span></a><span class="p">(</span><span class="n">experiment_name</span> <span class="o">+</span> <span class="s">&quot;.pickle&quot;</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
     <span class="n">inactive_threshold</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">inactive_window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">])</span>
 
@@ -139,11 +152,11 @@ would need the Pascal VOC 2010 dataset.</p>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_val</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">])</span>
 
 <span class="c"># we throw away void superpixels and flatten everything</span>
-<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">data_val</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">data_val</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">])</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">y_true</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">]</span>
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">y_true</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Score on validation set: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Score on validation set: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -168,7 +181,7 @@ would need the Pascal VOC 2010 dataset.</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

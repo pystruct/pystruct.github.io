@@ -1,7 +1,5 @@
 
 
-
-
 <!DOCTYPE html>
 
 
@@ -13,15 +11,14 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -31,9 +28,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="index.html" />
 <meta charset='utf-8'>
@@ -44,47 +41,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="index.html">Start</a></li>
+                <li><a href="installation.html">Installation</a></li>
                 <li><a href="intro.html">Introduction</a></li>
                 <li><a href="auto_examples/index.html">Examples</a></li>
                 <li><a href="references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
-   
-
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -96,6 +105,7 @@
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
@@ -157,6 +167,10 @@
   </dt>
 
         
+  <dt><a href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF.__init__">(pystruct.models.ChainCRF method)</a>
+  </dt>
+
+        
   <dt><a href="generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF.__init__">(pystruct.models.DirectionalGridCRF method)</a>
   </dt>
 
@@ -201,6 +215,16 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="generated/pystruct.models.BinaryClf.html#pystruct.models.BinaryClf">BinaryClf (class in pystruct.models)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF">ChainCRF (class in pystruct.models)</a>
   </dt>
 
   </dl></td>
@@ -327,6 +351,10 @@
 
       <dd><dl>
         
+  <dt><a href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF.inference">(pystruct.models.ChainCRF method)</a>
+  </dt>
+
+        
   <dt><a href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF.inference">(pystruct.models.EdgeFeatureGraphCRF method)</a>
   </dt>
 
@@ -389,6 +417,10 @@
 
       <dd><dl>
         
+  <dt><a href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF.joint_feature">(pystruct.models.ChainCRF method)</a>
+  </dt>
+
+        
   <dt><a href="generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF.joint_feature">(pystruct.models.DirectionalGridCRF method)</a>
   </dt>
 
@@ -446,6 +478,10 @@
   </dt>
 
       <dd><dl>
+        
+  <dt><a href="generated/pystruct.models.ChainCRF.html#pystruct.models.ChainCRF.loss_augmented_inference">(pystruct.models.ChainCRF method)</a>
+  </dt>
+
         
   <dt><a href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF.loss_augmented_inference">(pystruct.models.EdgeFeatureGraphCRF method)</a>
   </dt>
@@ -677,7 +713,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

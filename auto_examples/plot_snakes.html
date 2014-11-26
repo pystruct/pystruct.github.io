@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -11,11 +10,10 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -29,9 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
@@ -45,44 +43,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="../index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="../index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
                 <li><a href="index.html">Examples</a></li>
                 <li><a href="../references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="../search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -111,9 +124,8 @@ connected by the edge, the CRF can solve the task.</p>
 not able to solve it alone, so we use the relaxed AD3 inference for learning.</p>
 <p>PS: This example runs a bit (5 minutes on 12 cores, 20 minutes on one core for me).
 But it does work as well as Decision Tree Fields ;)</p>
-<img alt="../_images/plot_snakes_1.png" class="align-center" src="../_images/plot_snakes_1.png" />
-<p><strong>Script output</strong>:</p>
-<div class="highlight-python"><pre>Please be patient. Will take 5-20 minutes.
+<p class="horizontal"><strong>Script output</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>Please be patient. Learning will take 5-20 minutes.
 Results using only directional features for edges
 Test accuracy: 0.829
 [[2750    0    0    0    0    0    0    0    0    0    0]
@@ -128,18 +140,19 @@ Test accuracy: 0.829
  [   0    9    3    2   10    8    0   15    4   46    3]
  [   0    2    7    3    9    1    1    3    7    3   64]]
 Results using also input features for edges
-Test accuracy: 0.997
+Test accuracy: 0.998
 [[2749    0    0    0    0    0    0    0    1    0    0]
  [   0  100    0    0    0    0    0    0    0    0    0]
  [   0    0  100    0    0    0    0    0    0    0    0]
- [   0    0    0   99    0    1    0    0    0    0    0]
- [   0    0    0    0   97    0    3    0    0    0    0]
- [   0    0    0    1    0   97    0    2    0    0    0]
- [   0    0    0    0    1    0   98    0    1    0    0]
+ [   0    0    0  100    0    0    0    0    0    0    0]
+ [   0    0    0    0   98    0    2    0    0    0    0]
+ [   0    0    0    0    0   99    0    1    0    0    0]
+ [   0    0    0    0    0    0  100    0    0    0    0]
  [   0    0    0    0    0    1    0   99    0    0    0]
  [   0    0    0    0    0    0    0    0  100    0    0]
  [   0    0    0    0    0    0    0    1    0   99    0]
- [   0    0    0    0    0    0    0    0    0    0  100]]</pre>
+ [   0    0    0    0    0    0    0    0    0    0  100]]
+</pre></div>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_snakes.py"><tt class="xref download docutils literal"><span class="pre">plot_snakes.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -152,12 +165,11 @@ Test accuracy: 0.997
 <span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">load_snakes</span>
 <span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">make_grid_edges</span><span class="p">,</span> <span class="n">edge_list_to_features</span>
 <span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF"><span class="n">EdgeFeatureGraphCRF</span></a>
-<span class="kn">from</span> <span class="nn">pystruct.inference</span> <span class="kn">import</span> <span class="n">get_installed</span>
 
 
 <span class="k">def</span> <span class="nf">one_hot_colors</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">255</span>
-    <span class="n">flat</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.dot.html#numpy.dot"><span class="n">np</span><span class="o">.</span><span class="n">dot</span></a><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="mi">2</span> <span class="o">**</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.arange.html#numpy.arange"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">flat</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.dot.html#numpy.dot"><span class="n">np</span><span class="o">.</span><span class="n">dot</span></a><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">2</span> <span class="o">**</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.arange.html#numpy.arange"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
     <span class="n">one_hot</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.label_binarize.html#sklearn.preprocessing.label_binarize"><span class="n">label_binarize</span></a><span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">one_hot</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
 
@@ -205,7 +217,7 @@ Test accuracy: 0.997
     <span class="k">return</span> <span class="n">X_directions</span><span class="p">,</span> <span class="n">X_edge_features</span>
 
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Please be patient. Will take 5-20 minutes.&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Please be patient. Learning will take 5-20 minutes.&quot;</span><span class="p">)</span>
 <span class="n">snakes</span> <span class="o">=</span> <span class="n">load_snakes</span><span class="p">()</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span> <span class="o">=</span> <span class="n">snakes</span><span class="p">[</span><span class="s">&#39;X_train&#39;</span><span class="p">],</span> <span class="n">snakes</span><span class="p">[</span><span class="s">&#39;Y_train&#39;</span><span class="p">]</span>
 
@@ -214,10 +226,7 @@ Test accuracy: 0.997
 
 <span class="n">X_train_directions</span><span class="p">,</span> <span class="n">X_train_edge_features</span> <span class="o">=</span> <span class="n">prepare_data</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="s">&#39;ogm&#39;</span> <span class="ow">in</span> <span class="n">get_installed</span><span class="p">():</span>
-    <span class="n">inference</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;ogm&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;alg&#39;</span><span class="p">:</span> <span class="s">&#39;fm&#39;</span><span class="p">})</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">inference</span> <span class="o">=</span> <span class="s">&#39;qpbo&#39;</span>
+<span class="n">inference</span> <span class="o">=</span> <span class="s">&#39;qpbo&#39;</span>
 <span class="c"># first, train on X with directions only:</span>
 <a href="../generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF"><span class="n">crf</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF"><span class="n">EdgeFeatureGraphCRF</span></a><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="n">inference</span><span class="p">)</span>
 <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">ssvm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF"><span class="n">crf</span></a><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
@@ -248,7 +257,7 @@ Test accuracy: 0.997
 <span class="k">print</span><span class="p">(</span><a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html#sklearn.metrics.confusion_matrix"><span class="n">confusion_matrix</span></a><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">Y_test_flat</span><span class="p">),</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">(</span><span class="n">Y_pred2</span><span class="p">)))</span>
 
 <span class="c"># plot stuff</span>
-<a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplots"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">snakes</span><span class="p">[</span><span class="s">&#39;X_test&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Input&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Y_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
@@ -265,7 +274,7 @@ Test accuracy: 0.997
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  1150.59 seconds</p>
+<p><strong>Total running time of the example:</strong>  770.02 seconds</p>
 </div>
 
 
@@ -288,7 +297,7 @@ Test accuracy: 0.997
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

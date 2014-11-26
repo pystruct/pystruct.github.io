@@ -10,11 +10,10 @@
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -28,9 +27,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="#" />
     <link rel="next" title="Examples" href="auto_examples/index.html" />
@@ -42,44 +41,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="#">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="#">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="#">Start</a></li>
+                <li><a href="installation.html">Installation</a></li>
                 <li><a href="intro.html">Introduction</a></li>
                 <li><a href="auto_examples/index.html">Examples</a></li>
                 <li><a href="references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -99,9 +113,10 @@ have a look at <a class="reference internal" href="intro.html#intro"><em>What is
 to make use of structured prediction algorithms.
 The design tries to stay as close as possible to the interface and conventions
 of <a class="reference external" href="http://scikit-learn.org/dev">scikit-learn</a>.</p>
-<p>The current version is PyStruct 0.2 which you can install via pip:</p>
+<p>The current version is PyStruct 0.2.2 which you can install via pip:</p>
 <blockquote>
 <div>pip install pystruct</div></blockquote>
+<p>Detailed installation instructions can be found under <a class="reference internal" href="installation.html#installation"><em>Installation</em></a>.</p>
 <p>Starting with this first stable release, PyStruct will remain
 stable with respect to API and will provide backward compatibility.</p>
 <p>You can contact the authors either via the <a class="reference external" href="https://groups.google.com/forum/#!forum/pystruct">mailing list</a>
@@ -118,17 +133,6 @@ or on <a class="reference external" href="https://github.com/pystruct/pystruct">
 <div class="line"><a class="reference external" href="http://jmlr.org/papers/v15/mueller14a.bib">bibtex here</a></div>
 </div>
 </div></blockquote>
-</div>
-<div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>To install pystruct, you need cvxopt, cython and scikit-learn.</p>
-<p>The easiest way to install pystruct is using pip:</p>
-<blockquote>
-<div>pip install pystruct</div></blockquote>
-<p>This will also install the additional inference packages ad3 and pyqpbo.</p>
-<p>You might also want to check out <a class="reference external" href="http://ipa.iwr.uni-heidelberg.de/jkappes/opengm2/">OpenGM</a>,
-a library containing many many inference algorithms that can be used with
-PyStruct.</p>
 </div>
 <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
@@ -159,7 +163,7 @@ a perceptron. See the <a class="reference internal" href="references.html#learni
 <p>These perform inference: they run your model on data
 in order to make predictions.</p>
 <p>There are some options to use different solvers for inference. A linear
-programming solver using GLPK is included. I have Python interfaces for several
+programming solver using cvxopt is included. I have Python interfaces for several
 other methods on github, including LibDAI, QPBO, AD3.</p>
 <p>This is where the heavy lifting is done and in some sense these backends are
 interchangeable.</p>
@@ -192,7 +196,7 @@ solver (which should be a faster undergenerating solver, such as QPBO).</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

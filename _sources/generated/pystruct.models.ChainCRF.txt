@@ -1,0 +1,11 @@
+pystruct.models.ChainCRF
+========================
+
+.. currentmodule:: pystruct.models
+
+.. autoclass:: ChainCRF
+
+   
+   .. automethod:: __init__
+   
+

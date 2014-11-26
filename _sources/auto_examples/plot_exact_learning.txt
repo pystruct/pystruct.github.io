@@ -24,13 +24,13 @@ primal objective.
 
 
 
-.. image:: images/plot_exact_learning_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Script output**::
 
-  OneSlackSSVM(C=1.0, break_on_bad=False, cache_tol=auto,
+  OneSlackSSVM(C=1.0, break_on_bad=False, cache_tol='auto',
          check_constraints=False, inactive_threshold=1e-05,
          inactive_window=50, inference_cache=100, logger=None,
          max_iter=10000,
@@ -48,5 +48,6 @@ primal objective.
 .. literalinclude:: plot_exact_learning.py
     :lines: 21-
 
-**Total running time of the example:**  28.86 seconds
+**Total running time of the example:**  22.16 seconds
+
     

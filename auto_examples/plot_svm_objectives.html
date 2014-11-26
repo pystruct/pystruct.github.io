@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -11,11 +10,10 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -29,9 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Examples" href="index.html" />
@@ -45,44 +43,59 @@
   </head>
   <body>
 
-  <div id="navbar" class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="../index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-        <a class="brand" href="../index.html">PyStruct</a>
-        <span class="navbar-text pull-left"><b>0.1</b></span>
-
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="divider-vertical"></li>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
                 <li><a href="index.html">Examples</a></li>
                 <li><a href="../references.html">References</a></li>
             
             
-
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
             
-
+            
+            
+            
             
           </ul>
 
           
             
-<form class="navbar-search pull-right" action="../search.html" method="get">
-  <input type="text" name="q" class="search-query" placeholder="Search" />
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
           
         </div>
-      </div>
     </div>
   </div>
 
@@ -95,77 +108,7 @@ as well as the different algorithms.
 We use exact inference here, so the plots are easier to interpret.</p>
 <p>As this is a small toy example, it is hard to generalize
 the results indicated in the plot to more realistic settigs.</p>
-<img alt="../_images/plot_svm_objectives_1.png" class="align-center" src="../_images/plot_svm_objectives_1.png" />
-<p><strong>Script output</strong>:</p>
-<div class="highlight-python"><pre>Training n-slack dual structural SVM
-objective converged.
-Training primal subgradient structural SVM
-Iteration 0
-dual: 12.905323, dual_gap: 353.099200, primal: 366.004523
-Iteration 1
-Iteration 2
-Iteration 3
-Iteration 4
-dual: 65.729780, dual_gap: 274.263256, primal: 339.993036
-Iteration 5
-Iteration 6
-Iteration 7
-Iteration 8
-dual: 99.470838, dual_gap: 253.062016, primal: 352.532854
-Iteration 9
-Iteration 10
-Iteration 11
-Iteration 12
-dual: 127.472797, dual_gap: 207.960428, primal: 335.433225
-Iteration 13
-Iteration 14
-Iteration 15
-Iteration 16
-dual: 146.194352, dual_gap: 176.730367, primal: 322.924719
-Iteration 17
-Iteration 18
-Iteration 19
-Iteration 20
-dual: 161.152032, dual_gap: 158.446539, primal: 319.598571
-Iteration 21
-Iteration 22
-Iteration 23
-Iteration 24
-dual: 174.092302, dual_gap: 147.058808, primal: 321.151111
-Iteration 25
-Iteration 26
-Iteration 27
-Iteration 28
-dual: 185.293137, dual_gap: 133.735826, primal: 319.028964
-Iteration 29
-Iteration 30
-Iteration 31
-Iteration 32
-dual: 195.477888, dual_gap: 122.434803, primal: 317.912692
-Iteration 33
-Iteration 34
-Iteration 35
-Iteration 36
-dual: 204.154733, dual_gap: 113.132092, primal: 317.286825
-Iteration 37
-Iteration 38
-Iteration 39
-Iteration 40
-dual: 211.713687, dual_gap: 104.896549, primal: 316.610236
-Iteration 41
-Iteration 42
-Iteration 43
-Iteration 44
-dual: 218.434135, dual_gap: 97.955905, primal: 316.390040
-Iteration 45
-Iteration 46
-Iteration 47
-Iteration 48
-dual: 224.472323, dual_gap: 91.766779, primal: 316.239103
-Iteration 49
-Calculating final objective.</pre>
-</div>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_svm_objectives.py"><tt class="xref download docutils literal"><span class="pre">plot_svm_objectives.py</span></tt></a></p>
+<p class="horizontal"><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_svm_objectives.py"><tt class="xref download docutils literal"><span class="pre">plot_svm_objectives.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -184,7 +127,7 @@ Calculating final objective.</pre>
                              <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">subgradient_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">SubgradientSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.GridCRF.html#pystruct.models.GridCRF"><span class="n">crf</span></a><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
                                   <span class="n">decay_exponent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">bcfw_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">FrankWolfeSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.GridCRF.html#pystruct.models.GridCRF"><span class="n">crf</span></a><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">check_dual_every</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">bcfw_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">FrankWolfeSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.models.GridCRF.html#pystruct.models.GridCRF"><span class="n">crf</span></a><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">check_dual_every</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="c">#n-slack cutting plane ssvm</span>
 <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">n_slack_svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
@@ -221,11 +164,11 @@ Calculating final objective.</pre>
          <span class="n">label</span><span class="o">=</span><span class="s">&quot;Block-Coordinate Frank-Wolfe Primal&quot;</span><span class="p">)</span>
 <a href="http://matplotlib.org/api/legend_api.html#matplotlib.legend"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span></a><span class="p">()</span>
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yscale"><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span></a><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>
-<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xlabel"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span></a><span class="p">(</span><span class="s">&quot;training time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;training time&quot;</span><span class="p">)</span>
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  849.37 seconds</p>
+<p><strong>Total running time of the example:</strong>  285.90 seconds</p>
 </div>
 
 
@@ -248,7 +191,7 @@ Calculating final objective.</pre>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

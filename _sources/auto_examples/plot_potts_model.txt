@@ -7,12 +7,22 @@
 Comparing inference times on a simple Potts model
 =================================================
 
-Simple exmaple comparing inference times on a Potts model.
+Simple comparison of inference times on a Potts model (smoothing)
+on a 2d grid of random noise of 5 classes.
+
+The plots show the label results together with energies (lower is better)
+and inference time.
+The results are quite representative of the algorithms in general.
+AD3 is quite fast and gives good results (identical to lp), while
+the general purpose lp solver is too slow for practical purposes.
+QPBO is somewhat worse than the other methods, but significantly faster.
+Our implementation of max-product message passing is not competative with
+the high quality solutions found by AD3.
 
 
 
-.. rst-class:: horizontal
-
+.. image:: images/plot_potts_model_1.png
+    :align: center
 
 
 
@@ -20,8 +30,8 @@ Simple exmaple comparing inference times on a Potts model.
 **Python source code:** :download:`plot_potts_model.py <plot_potts_model.py>`
 
 .. literalinclude:: plot_potts_model.py
-    :lines: 8-
+    :lines: 18-
 
-**Total running time of the example:**  35.22 seconds
+**Total running time of the example:**  34.56 seconds
 
     

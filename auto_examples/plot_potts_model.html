@@ -103,8 +103,18 @@
   
   <div class="section" id="comparing-inference-times-on-a-simple-potts-model">
 <span id="plot-potts-model-py"></span><h1>Comparing inference times on a simple Potts model<a class="headerlink" href="#comparing-inference-times-on-a-simple-potts-model" title="Permalink to this headline">¶</a></h1>
-<p>Simple exmaple comparing inference times on a Potts model.</p>
-<p class="horizontal"><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_potts_model.py"><tt class="xref download docutils literal"><span class="pre">plot_potts_model.py</span></tt></a></p>
+<p>Simple comparison of inference times on a Potts model (smoothing)
+on a 2d grid of random noise of 5 classes.</p>
+<p>The plots show the label results together with energies (lower is better)
+and inference time.
+The results are quite representative of the algorithms in general.
+AD3 is quite fast and gives good results (identical to lp), while
+the general purpose lp solver is too slow for practical purposes.
+QPBO is somewhat worse than the other methods, but significantly faster.
+Our implementation of max-product message passing is not competative with
+the high quality solutions found by AD3.</p>
+<img alt="../_images/plot_potts_model_1.png" class="align-center" src="../_images/plot_potts_model_1.png" />
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_potts_model.py"><tt class="xref download docutils literal"><span class="pre">plot_potts_model.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -122,22 +132,22 @@
 <span class="n">edges</span> <span class="o">=</span> <span class="n">make_grid_edges</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">unaries</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_states</span><span class="p">)</span>
 
-<a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">inference_method</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;ad3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;ad3&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;branch_and_bound&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}),</span>
-                                    <span class="s">&#39;qpbo&#39;</span><span class="p">,</span> <span class="s">&#39;max-product&#39;</span><span class="p">,</span> <span class="s">&#39;lp&#39;</span><span class="p">]):</span>
+<a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">inference_method</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;ad3&#39;</span><span class="p">,</span> <span class="s">&#39;qpbo&#39;</span><span class="p">,</span> <span class="s">&#39;max-product&#39;</span><span class="p">,</span>
+                                    <span class="p">(</span><span class="s">&#39;max-product&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;max_iter&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}),</span> <span class="s">&#39;lp&#39;</span><span class="p">]):</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
     <span class="n">y</span> <span class="o">=</span> <a href="../generated/pystruct.inference.inference_dispatch.html#pystruct.inference.inference_dispatch"><span class="n">inference_dispatch</span></a><span class="p">(</span><span class="n">unaries</span><span class="p">,</span> <span class="n">pairwise</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span>
                            <span class="n">inference_method</span><span class="o">=</span><span class="n">inference_method</span><span class="p">)</span>
     <span class="n">took</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
     <span class="n">a</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
     <span class="n">energy</span> <span class="o">=</span> <span class="n">compute_energy</span><span class="p">(</span><span class="n">unaries</span><span class="p">,</span> <span class="n">pairwise</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;time: </span><span class="si">%.2f</span><span class="s"> energy </span><span class="si">%.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">took</span><span class="p">,</span> <span class="n">energy</span><span class="p">))</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">inference_method</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s"> time: </span><span class="si">%.2f</span><span class="s"> energy </span><span class="si">%.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">took</span><span class="p">,</span> <span class="n">energy</span><span class="p">))</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  35.22 seconds</p>
+<p><strong>Total running time of the example:</strong>  34.56 seconds</p>
 </div>
 
 

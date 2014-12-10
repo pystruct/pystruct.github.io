@@ -34,7 +34,7 @@
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.inference.inference_ad3" href="pystruct.inference.inference_ad3.html" />
-    <link rel="prev" title="pystruct.inference.inference_dai" href="pystruct.inference.inference_dai.html" />
+    <link rel="prev" title="pystruct.inference.inference_qpbo" href="pystruct.inference.inference_qpbo.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -107,21 +107,30 @@
 <dt id="pystruct.inference.inference_lp">
 <tt class="descclassname">pystruct.inference.</tt><tt class="descname">inference_lp</tt><big>(</big><em>unary_potentials</em>, <em>pairwise_potentials</em>, <em>edges</em>, <em>relaxed=False</em>, <em>return_energy=False</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pystruct.inference.inference_lp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference with build-in LP solver using cvxopt backend.</p>
+<p>This solver is very slow and only meant as a fallback or very small models.
+The main advantage is that it will always give the exact result to the linear
+programming relaxation, and it will return pairwise marginals if no integral
+solution is found.
+In most cases, the AD3 solver is preferrable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array, shape (n_nodes, n_nodes)</p>
 <blockquote>
 <div><p>Unary potentials of energy function.</p>
 </div></blockquote>
-<p><strong>pairwise_potentials</strong> : nd-array</p>
+<p><strong>pairwise_potentials</strong> : nd-array, shape (n_states, n_states) or (n_states, n_states, n_edges).</p>
 <blockquote>
-<div><p>Pairwise potentials of energy function.</p>
+<div><p>Pairwise potentials of energy function.
+If the first case, edge potentials are assumed to be the same for all edges.
+In the second case, the sequence needs to correspond to the edges.</p>
 </div></blockquote>
-<p><strong>edges</strong> : nd-array</p>
+<p><strong>edges</strong> : nd-array, shape (n_edges, 2)</p>
 <blockquote>
-<div><p>Edges of energy function.</p>
+<div><p>Graph edges for pairwise potentials, given as pair of node indices. As
+pairwise potentials are not assumed to be symmetric, the direction of
+the edge matters.</p>
 </div></blockquote>
 <p><strong>relaxed</strong> : bool (default=False)</p>
 <blockquote>

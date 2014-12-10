@@ -106,22 +106,27 @@
 <dl class="function">
 <dt id="pystruct.inference.inference_dispatch">
 <tt class="descclassname">pystruct.inference.</tt><tt class="descname">inference_dispatch</tt><big>(</big><em>unary_potentials</em>, <em>pairwise_potentials</em>, <em>edges</em>, <em>inference_method</em>, <em>return_energy=False</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pystruct.inference.inference_dispatch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper function to dispatch between inference method by string.</p>
+<dd><p>Computes the maximizing assignment of a pairwise discrete energy function.</p>
+<p>Wrapper function to dispatch between inference method by string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array, shape (n_nodes, n_nodes)</p>
 <blockquote>
 <div><p>Unary potentials of energy function.</p>
 </div></blockquote>
-<p><strong>pairwise_potentials</strong> : nd-array</p>
+<p><strong>pairwise_potentials</strong> : nd-array, shape (n_states, n_states) or (n_states, n_states, n_edges).</p>
 <blockquote>
-<div><p>Pairwise potentials of energy function.</p>
+<div><p>Pairwise potentials of energy function.
+If the first case, edge potentials are assumed to be the same for all edges.
+In the second case, the sequence needs to correspond to the edges.</p>
 </div></blockquote>
-<p><strong>edges</strong> : nd-array</p>
+<p><strong>edges</strong> : nd-array, shape (n_edges, 2)</p>
 <blockquote>
-<div><p>Edges of energy function.</p>
+<div><p>Graph edges for pairwise potentials, given as pair of node indices. As
+pairwise potentials are not assumed to be symmetric, the direction of
+the edge matters.</p>
 </div></blockquote>
 <p><strong>inference_method</strong> : string</p>
 <blockquote>
@@ -129,7 +134,6 @@
 <dt>Possible choices currently are:</dt>
 <dd><ul class="first last simple">
 <li>&#8216;qpbo&#8217; for QPBO alpha-expansion (fast but approximate).</li>
-<li>&#8216;dai&#8217; for libDAI wrappers (default to junction tree).</li>
 <li>&#8216;lp&#8217; for build-in lp relaxation via cvxopt (slow).</li>
 <li>&#8216;ad3&#8217; for AD^3 subgradient based dual solution of LP.</li>
 <li>&#8216;ogm&#8217; for OpenGM wrappers.</li>
@@ -139,7 +143,8 @@
 </dd>
 </dl>
 <p>It is also possible to pass a tuple (string, dict) where the dict
-contains additional keyword arguments.</p>
+contains additional keyword arguments, like
+<tt class="docutils literal"><span class="pre">('ad3',</span> <span class="pre">{'branch_and_bound':</span> <span class="pre">True})</span></tt>.</p>
 </div></blockquote>
 <p><strong>relaxed</strong> : bool (default=False)</p>
 <blockquote>

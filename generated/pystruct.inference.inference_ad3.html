@@ -111,17 +111,21 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array, shape (n_nodes, n_nodes)</p>
 <blockquote>
 <div><p>Unary potentials of energy function.</p>
 </div></blockquote>
-<p><strong>pairwise_potentials</strong> : nd-array</p>
+<p><strong>pairwise_potentials</strong> : nd-array, shape (n_states, n_states) or (n_states, n_states, n_edges).</p>
 <blockquote>
-<div><p>Pairwise potentials of energy function.</p>
+<div><p>Pairwise potentials of energy function.
+If the first case, edge potentials are assumed to be the same for all edges.
+In the second case, the sequence needs to correspond to the edges.</p>
 </div></blockquote>
-<p><strong>edges</strong> : nd-array</p>
+<p><strong>edges</strong> : nd-array, shape (n_edges, 2)</p>
 <blockquote>
-<div><p>Edges of energy function.</p>
+<div><p>Graph edges for pairwise potentials, given as pair of node indices. As
+pairwise potentials are not assumed to be symmetric, the direction of
+the edge matters.</p>
 </div></blockquote>
 <p><strong>relaxed</strong> : bool (default=False)</p>
 <blockquote>

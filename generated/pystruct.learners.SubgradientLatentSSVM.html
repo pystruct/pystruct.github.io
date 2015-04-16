@@ -63,8 +63,9 @@
                 <li><a href="../index.html">Start</a></li>
                 <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
+                <li><a href="../user_guide.html">User Guide</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
-                <li><a href="../references.html">References</a></li>
+                <li><a href="../references.html">API</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -238,14 +239,14 @@ weighted averaging or no averaging.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.learners.SubgradientLatentSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>momentum=0.0</em>, <em>learning_rate='auto'</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>decay_exponent=1</em>, <em>decay_t0=10</em>, <em>break_on_no_constraints=True</em>, <em>logger=None</em>, <em>averaging=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>momentum=0.0</em>, <em>learning_rate='auto'</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>decay_exponent=1</em>, <em>decay_t0=10</em>, <em>break_on_no_constraints=True</em>, <em>logger=None</em>, <em>averaging=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.learners.SubgradientLatentSSVM.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>H_init=None</em>, <em>warm_start=False</em>, <em>initialize=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.fit" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>H_init=None</em>, <em>warm_start=False</em>, <em>initialize=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn parameters using subgradient descent.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -305,9 +306,9 @@ contained subobjects that are estimators.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.learners.SubgradientLatentSSVM.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>Y</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.score" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">score</tt><big>(</big><em>X</em>, <em>Y</em><big>)</big><a class="headerlink" href="#pystruct.learners.SubgradientLatentSSVM.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute score as 1 - loss over whole data set.</p>
 <p>Returns the average accuracy (in terms of model.loss)
 over X and Y.</p>

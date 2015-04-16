@@ -63,8 +63,9 @@
                 <li><a href="../index.html">Start</a></li>
                 <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
+                <li><a href="../user_guide.html">User Guide</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
-                <li><a href="../references.html">References</a></li>
+                <li><a href="../references.html">API</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -107,11 +108,6 @@
 <dt id="pystruct.inference.inference_lp">
 <tt class="descclassname">pystruct.inference.</tt><tt class="descname">inference_lp</tt><big>(</big><em>unary_potentials</em>, <em>pairwise_potentials</em>, <em>edges</em>, <em>relaxed=False</em>, <em>return_energy=False</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pystruct.inference.inference_lp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference with build-in LP solver using cvxopt backend.</p>
-<p>This solver is very slow and only meant as a fallback or very small models.
-The main advantage is that it will always give the exact result to the linear
-programming relaxation, and it will return pairwise marginals if no integral
-solution is found.
-In most cases, the AD3 solver is preferrable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

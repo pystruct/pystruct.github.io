@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Preliminaries &mdash; pystruct 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="pystruct 0.1 documentation" href="index.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          PyStruct</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="index.html">Start</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="intro.html">Introduction</a></li>
+                <li><a href="#">User Guide</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="references.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container content-container">
+  
+  <p id="user-guide">#FIXME make clear what is learned!!</p>
+<div class="section" id="preliminaries">
+<h1>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h1>
+<p>This page explains how to use the most common of the implemented models.
+Each model corresponds to a differents structured prediction task, or possibly
+a different parametrization of the model. As such, the training data <tt class="docutils literal"><span class="pre">X</span></tt> and
+training labels <tt class="docutils literal"><span class="pre">Y</span></tt> has slightly different forms for each model.</p>
+<p>A model is given by four functions, <tt class="docutils literal"><span class="pre">joint_feature</span></tt>, <tt class="docutils literal"><span class="pre">inference</span></tt>, <tt class="docutils literal"><span class="pre">loss</span></tt>
+and <tt class="docutils literal"><span class="pre">loss_augmented_inference</span></tt>. If you just want to use the included models,
+you don&#8217;t need to worry about these, and can just use the <tt class="docutils literal"><span class="pre">fit</span></tt>, <tt class="docutils literal"><span class="pre">predict</span></tt> interface
+of the learner.</p>
+<div class="section" id="details-on-model-specification">
+<h2>Details on model specification<a class="headerlink" href="#details-on-model-specification" title="Permalink to this headline">¶</a></h2>
+<p>For those interested in what happens behind the scenes, or those who might want to
+adjust a model, there is a short explanation of these functions for each model below.
+For all models, the <tt class="docutils literal"><span class="pre">joint_feature(x,</span> <span class="pre">y)</span></tt> function takes a data point and a
+tentative prediction, and computes a continuous vector of a fixed length that
+captures the relation between features and label.  Learning (that is
+<tt class="docutils literal"><span class="pre">learner.fit(X,</span> <span class="pre">y)</span></tt>) will learn a parameter vector <tt class="docutils literal"><span class="pre">w</span></tt>, and predictions
+will be made using</p>
+<div class="math">
+<p><img src="_images/math/1ea234cbf7dcf6a24a90a797371943168ccceace.png" alt="y^* = \arg \max_{y} w^T \text{joint\_feature}(x, y)"/></p>
+</div><p>That means the number of parameters in the model is the same as the
+dimensionality of <tt class="docutils literal"><span class="pre">joint_feature</span></tt>.</p>
+<p>The actual maximization is performed in the <tt class="docutils literal"><span class="pre">inference(x,</span> <span class="pre">w)</span></tt> function, which
+takes a sample <tt class="docutils literal"><span class="pre">x</span></tt> and a parameter vector <tt class="docutils literal"><span class="pre">w</span></tt> and outputs a <tt class="docutils literal"><span class="pre">y^*</span></tt>,
+which (at least approximately) maximizes the above equation.</p>
+<p>The <tt class="docutils literal"><span class="pre">loss(y_true,</span> <span class="pre">y_pred)</span></tt> function gives a numeric loss for a ground truth
+labeling <tt class="docutils literal"><span class="pre">y_true</span></tt> and a prediction <tt class="docutils literal"><span class="pre">y_pred</span></tt>, and finally
+<tt class="docutils literal"><span class="pre">loss_augmented_inference(x,</span> <span class="pre">y,</span> <span class="pre">w)</span></tt> gives an (approximate) maximizer for</p>
+<div class="math">
+<p><img src="_images/math/31513181c4a4ade1ff6aaa7d877bcfdffc6e8c4e.png" alt="y^* = \arg \max_{y} w^T \text{joint\_feature}(x, y) + \text{loss}(y_\text{true}, y)"/></p>
+</div><p>A good place to understand these definitions is <a class="reference internal" href="#multi-class-svm"><em>Multi-class SVM</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently all models expect labels to be integers from 0 to n_states (or
+n_classes).  Starting labels at 1 or using other labels might lead to
+errors and / or incorrect results.</p>
+</div>
+</div>
+</div>
+<div class="section" id="multi-class-svm">
+<span id="id1"></span><h1>Multi-class SVM<a class="headerlink" href="#multi-class-svm" title="Permalink to this headline">¶</a></h1>
+<p>A precursor for structured SVMs was the multi-class SVM by <a class="reference external" href="http://jmlr.csail.mit.edu/papers/volume2/crammer01a/crammer01a.pdf">Crammer and Singer</a>.
+While in practice it is often faster to use an One-vs-Rest approach and an
+optimize binary SVM, this is a good hello-world example for structured
+predicition and using pystruct.  In the case of multi-class SVMs, in contrast
+to more structured models, the labels set Y is just the number of classes, so
+inference can be performed by just enumerating Y.</p>
+<p>Lets say we want to classify the classical iris dataset. There are three classes and four features:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">((150, 4), (150,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<span class="go">[0, 1, 2]</span>
+</pre></div>
+</div>
+<p>We split the data into training and test set:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Crammer-Singer model implemented in <a class="reference internal" href="generated/pystruct.models.MultiClassClf.html#pystruct.models.MultiClassClf" title="pystruct.models.MultiClassClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiClassClf</span></tt></a>.
+As this is a simple multi-class classification task, we can pass in training data
+as numpy arrays of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></tt> and training labels as
+numpy array of shape (n_samples,) with classes from 0 to 2.</p>
+<p>For training, we pick the learner <tt class="xref py py-class docutils literal"><span class="pre">learners.NSlackSSVM</span></tt>, which works
+well with few samples and requires little tuning:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">NSlackSSVM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">MultiClassClf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">MultiClassClf</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The final model the same interface as a scikit-learn estimator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="details-on-the-implementation">
+<h2>Details on the implementation<a class="headerlink" href="#details-on-the-implementation" title="Permalink to this headline">¶</a></h2>
+<p>For this simple model, the <tt class="docutils literal"><span class="pre">joint_feature(x,</span> <span class="pre">y)</span></tt> is a vector of size <tt class="docutils literal"><span class="pre">n_features</span> <span class="pre">*</span> <span class="pre">n_classes</span></tt>,
+which corresponds to one copy of the input features for each possibly class.
+For any given pair <tt class="docutils literal"><span class="pre">(x,</span> <span class="pre">y)</span></tt> the features in <tt class="docutils literal"><span class="pre">x</span></tt> will be put at the position corresponding
+to the class in <tt class="docutils literal"><span class="pre">y</span></tt>.
+Correspondingly, the weights that are learned are one vector of length <tt class="docutils literal"><span class="pre">n_features</span></tt> for each class:
+<tt class="docutils literal"><span class="pre">w</span> <span class="pre">=</span> <span class="pre">np.hstack([w_class_0,</span> <span class="pre">...,</span> <span class="pre">w_class_1])</span></tt>.</p>
+<p>For this simple model, and inference is just the argmax over the inner product with each of these <tt class="docutils literal"><span class="pre">w_class_i</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span> 
+</pre></div>
+</div>
+<p>To perform max-margin learning, we also need the loss-augmented inference. PyStruct has an optimized version,
+but a pure python version would look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span> <span class="o">!=</span> <span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>               
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>                           
+</pre></div>
+</div>
+<p>Essentialy the response (score / energy) of wrong label is down weighted by 1, the loss of doing an incorrect prediction.</p>
+</div>
+</div>
+<div class="section" id="multi-label-svm">
+<span id="id2"></span><h1>Multi-label SVM<a class="headerlink" href="#multi-label-svm" title="Permalink to this headline">¶</a></h1>
+<p>A multi-label classification task is one where each sample can be labeled with any number of classes.
+In other words, there are n_classes many binary labels, each indicating whether a sample belongs
+to a given class or not. This could be treated as n_classes many independed binary classification
+problems, as the scikit-learn OneVsRest classifier does.
+However, it might be beneficial to exploit correlations between labels to achieve better generalization.</p>
+<p>In the scene classification dataset, each sample is a picture of an outdoor scene,
+representated using simple color aggregation. The labels characterize the kind of scene, which can be
+&#8220;beach&#8221;, &#8220;sunset&#8221;, &#8220;fall foilage&#8221;, &#8220;field&#8221;, &#8220;mountain&#8221; or &#8220;urban&#8221;. Each image can belong to multiple classes,
+such as &#8220;fall foilage&#8221; and &#8220;field&#8221;. Clearly some combinations are more likely than others.</p>
+<p>We could try to model all possible combinations, which would result in a 2 ** 6
+= 64 class multi-class classification problem. This would allow us explicitly model all correlations between labels,
+but it would prevent us from predicting combinations that don&#8217;t appear in the training set.
+Even if a combination did appear in the training set, the numer of samples in each class would be very small.
+A compromise between modeling all correlations and modelling no correlations is modeling only pairwise correlations,
+which is the approach implemented in <a class="reference internal" href="generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf" title="pystruct.models.MultiLabelClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt></a>.
+It creates a graph over <tt class="docutils literal"><span class="pre">n_classes</span></tt> binary nodes, together with edges between each pair of classes.
+Each binary node has represents one class, and therefor will get its own column
+in the weight-vector, similar to the crammer-singer multi-class classification.</p>
+<p>In addition, there is a pairwise weight betweent each pair of labels.
+This leads to a feature function of this form:</p>
+<p>If our graph has only 6 nodes, we can actually enumerate all states.
+Unfortunately, in general, inference in a fully connected binary graph is in
+gerneral NP-hard, so we might need to rely on approximate inference, like loopy believe propagation or AD3.
+#FIXME do enumeration! benchmark!!</p>
+<p>The input to this model is similar to the <a class="reference internal" href="#multi-class-svm"><em>Multi-class SVM</em></a>, with the training data <tt class="docutils literal"><span class="pre">X_train</span></tt> simple
+a numpy array of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></tt> and the training labels a binary indicator matrix
+of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></tt>.</p>
+<p>An alternative to using approximate inference for larger numbers of labels is to not create a fully connected graph,
+but restrict ourself to pairwise interactions on a tree over the labels. In the above example of outdoor scenes,
+some labels might be informative about others, maybe a beach picture is likely to be of a sunset, while
+an urban scene might have as many sunset as non-sunset samples. The optimum tree-structure for such a problem
+can easily be found using the Chow-Liu tree, which is simply the maximum weight spanning tree over the graph, where
+edge-weights are given by the mutual information between labels on the training set.
+You can use the Chow-Liu tree method simply by specifying <tt class="docutils literal"><span class="pre">edges=&quot;chow_liu&quot;</span></tt>.
+This allows us to use efficient and exact max-product message passing for
+inference.</p>
+<p>#FIXME sample</p>
+<p>#FIXME reference joachims</p>
+<div class="section" id="id3">
+<h2>Details on the implementation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>The implementation of the inference for this model creates a graph with unary
+potentials (given by the inner product of features and weights), and pairwise
+potentials given by the pairwise weight. This graph is then passed to the
+general graph-inference, which runs the selected algorithm.</p>
+</div>
+</div>
+<div class="section" id="conditional-random-field-like-graph-models">
+<h1>Conditional-Random-Field-like graph models<a class="headerlink" href="#conditional-random-field-like-graph-models" title="Permalink to this headline">¶</a></h1>
+<p>The following models are all pairwise models over nodes, that is they model a labeling of a graph,
+using features at the nodes, and relation between neighboring nodes.
+The main assumption in these models in PyStruct is that nodes are homogeneous, that is they all
+have the same meaning. That means that each node has the same number of classes, and these classes
+mean the same thing. In practice that means that weights are shared across all nodes and edges,
+and the model adapts via features.
+This is in contrast to the <a class="reference internal" href="generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf" title="pystruct.models.MultiLabelClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt></a>, which builds a binary graph
+were nodes mean different things (each node represents a different class), so they do not share weights.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I call these models Conditional Random Fields (CRFs), but this a slight abuse of notation,
+as PyStruct actually implements perceptron and max-margin learning, not maximum likelihood learning.
+So these models might better be called Maximum Margin Random Fields. However, in the computer vision
+community, it seems most pairwise models are called CRFs, independent of the method of training.</p>
+</div>
+<div class="section" id="chaincrf">
+<h2>ChainCRF<a class="headerlink" href="#chaincrf" title="Permalink to this headline">¶</a></h2>
+<p>One of the most common use-cases for structured prediction is chain-structured
+outputs. These occur naturaly in sequence labeling tasks, such as
+Part-of-Speech tagging or named entity recognition in natural language
+processing, or segmentation and phoneme recognition in speech processing.</p>
+<p>As an example dataset, we will use the toy OCR dataset letters.
+In this dataset, each sample is a handwritten word, segmented into letters.
+This dataset has a slight oddity, in that the first letter of every word was removed, as it
+was capitalized, and therefore different from all the other letters.</p>
+<p>Each letter is a node in our chain, and neighboring letters are connected with
+an edge. The length of the chain varies with the number of letters in the
+word. As in all CRF-like models, the nodes all have the same meaning and share
+parameters.</p>
+<p>The training data is a list of samples, where each sample is a numpy array of
+shape <tt class="docutils literal"><span class="pre">(n_nodes,</span> <span class="pre">n_features)</span></tt>, where n_nodes is the length of the input sequence,
+that is the length of the word in our case.
+Edges don&#8217;t need to be specified, as the input features are assumed to be in
+the order of the nodes in the chain. The default inference method is
+max-product message passing on the chain (aka viterbi), which is always exact
+and efficient.</p>
+<p># FIXME code</p>
+</div>
+<div class="section" id="id4">
+<h2>Details on the implementation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>The unary potentials in each node are given as the inner product of the features
+at this node (the input image) with the weights (which are shared over all nodes):</p>
+<p>The pairwise potentials are identical over the whole chain and given simply by the weights:</p>
+<p>In principle it is possible to also use feature in the pairwise potentials.
+This is not implemented in the ChainCRF, but can be done using
+<a class="reference internal" href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF" title="pystruct.models.EdgeFeatureGraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">EdgeFeatureGraphCRF</span></tt></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">While pystruct is able to work with chain CRFs, it is not explicitly built with these in mind,
+and there are libraries that optimize much more for this special case, such as seqlearn and CRF++.</p>
+</div>
+</div>
+<div class="section" id="graphcrf">
+<h2>GraphCRF<a class="headerlink" href="#graphcrf" title="Permalink to this headline">¶</a></h2>
+<p>This model is a generalization of the ChainCRF to arbitray graphs.</p>
+<p>To the basic model is the same as the ChainCRF model, with unary potentials given
+as a shared linear function of the features, and pairwise potentials the same
+for all nodes.</p>
+</div>
+<div class="section" id="edgefeaturegraphcrf">
+<h2>EdgeFeatureGraphCRF<a class="headerlink" href="#edgefeaturegraphcrf" title="Permalink to this headline">¶</a></h2>
+<p>This model is the most general of the CRF models, and contains all others as a special case.
+This model assumes again that the parameters of the potentials are shared over all nodes
+and over all edges, but the pairwise potentials are now also computed as a linear function of the features.</p>
+</div>
+</div>
+<div class="section" id="latent-variable-models">
+<h1>Latent Variable Models<a class="headerlink" href="#latent-variable-models" title="Permalink to this headline">¶</a></h1>
+<p>TODO</p>
+</div>
+<div class="section" id="how-to-write-your-own-model">
+<h1>How to Write Your Own Model<a class="headerlink" href="#how-to-write-your-own-model" title="Permalink to this headline">¶</a></h1>
+<p>TODO</p>
+</div>
+<div class="section" id="tips-on-choosing-a-learner">
+<h1>Tips on Choosing a Learner<a class="headerlink" href="#tips-on-choosing-a-learner" title="Permalink to this headline">¶</a></h1>
+<p>TODO</p>
+</div>
+<div class="section" id="tips-on-choosing-an-inference-algorithm">
+<h1>Tips on Choosing an Inference Algorithm<a class="headerlink" href="#tips-on-choosing-an-inference-algorithm" title="Permalink to this headline">¶</a></h1>
+<p>TODO</p>
+</div>
+
+
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43292385-1', 'pystruct.github.io');
+  ga('send', 'pageview');
+
+</script>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Andreas Mueller.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

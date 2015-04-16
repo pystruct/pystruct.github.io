@@ -63,8 +63,9 @@
                 <li><a href="../index.html">Start</a></li>
                 <li><a href="../installation.html">Installation</a></li>
                 <li><a href="../intro.html">Introduction</a></li>
+                <li><a href="../user_guide.html">User Guide</a></li>
                 <li><a href="../auto_examples/index.html">Examples</a></li>
-                <li><a href="../references.html">References</a></li>
+                <li><a href="../references.html">API</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -217,9 +218,9 @@ the number of features is the same as for visible nodes.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.LatentNodeCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_labels=None</em>, <em>n_features=None</em>, <em>n_hidden_states=2</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>latent_node_features=False</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>n_labels=None</em>, <em>n_features=None</em>, <em>n_hidden_states=2</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>latent_node_features=False</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -274,9 +275,9 @@ shape (n_states, n_states) of accumulated pairwise marginals.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.LatentNodeCRF.joint_feature">
-<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.LatentNodeCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Feature vector associated with instance (x, y).</p>
 <p>Feature representation joint_feature, such that the energy of the
 configuration (x, y) and a weight vector w is given by

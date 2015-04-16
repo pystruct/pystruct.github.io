@@ -21,8 +21,8 @@ the high quality solutions found by AD3.
 
 
 
-.. image:: images/plot_potts_model_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 

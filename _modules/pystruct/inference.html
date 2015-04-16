@@ -61,8 +61,9 @@
                 <li><a href="../../index.html">Start</a></li>
                 <li><a href="../../installation.html">Installation</a></li>
                 <li><a href="../../intro.html">Introduction</a></li>
+                <li><a href="../../user_guide.html">User Guide</a></li>
                 <li><a href="../../auto_examples/index.html">Examples</a></li>
-                <li><a href="../../references.html">References</a></li>
+                <li><a href="../../references.html">API</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -100,9 +101,9 @@
 <div class="container content-container">
   
   <h1>Source code for pystruct.inference</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">.inference_methods</span> <span class="kn">import</span> <span class="p">(</span><span class="n">inference_qpbo</span><span class="p">,</span> <span class="n">inference_lp</span><span class="p">,</span> <span class="n">inference_ad3</span><span class="p">,</span>
-                                <span class="n">inference_ogm</span><span class="p">,</span> <span class="n">inference_dispatch</span><span class="p">,</span>
-                                <span class="n">get_installed</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.inference_methods</span> <span class="kn">import</span> <span class="p">(</span><span class="n">inference_qpbo</span><span class="p">,</span> <span class="n">inference_lp</span><span class="p">,</span>
+                                <span class="n">inference_ad3</span><span class="p">,</span> <span class="n">inference_ogm</span><span class="p">,</span>
+                                <span class="n">inference_dispatch</span><span class="p">,</span> <span class="n">get_installed</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">.common</span> <span class="kn">import</span> <span class="n">compute_energy</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;inference_qpbo&quot;</span><span class="p">,</span> <span class="s">&quot;inference_lp&quot;</span><span class="p">,</span> <span class="s">&quot;inference_ad3&quot;</span><span class="p">,</span>

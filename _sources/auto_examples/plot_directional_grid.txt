@@ -1,6 +1,6 @@
 
 
-.. _plot_directional_grid.py:
+.. _example_plot_directional_grid.py:
 
 
 ===========================================
@@ -16,14 +16,27 @@ there is a specific order in the horizontal direction (see off-diagonal).
 
 
 
-.. rst-class:: horizontal
+.. rst-class:: sphx-glr-horizontal
 
 
+    *
 
-**Script output**::
+      .. image:: images/plot_directional_grid_001.png
+            :scale: 47
 
-  overall accuracy (training set): 0.945417
+    *
 
+      .. image:: images/plot_directional_grid_002.png
+            :scale: 47
+
+
+**Script output**:
+
+.. rst-class:: sphx-glr-script-out
+
+  ::
+
+    overall accuracy (training set): 0.945417
 
 
 **Python source code:** :download:`plot_directional_grid.py <plot_directional_grid.py>`
@@ -31,6 +44,6 @@ there is a specific order in the horizontal direction (see off-diagonal).
 .. literalinclude:: plot_directional_grid.py
     :lines: 13-
 
-**Total running time of the example:**  4.05 seconds
-
+**Total running time of the example:**  3.96 seconds
+( 0 minutes  3.96 seconds)
     

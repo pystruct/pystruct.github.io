@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -143,14 +144,14 @@ Also a prototype to demonstrate the logging interface.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.utils.SaveLogger.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>file_name</em>, <em>save_every=10</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#pystruct.utils.SaveLogger.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>file_name</em>, <em>save_every=10</em>, <em>verbose=0</em><big>)</big><a class="headerlink" href="#pystruct.utils.SaveLogger.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.utils.SaveLogger.__call__">
-<tt class="descname">__call__</tt><big>(</big><em>learner</em>, <em>iteration=0</em><big>)</big><a class="headerlink" href="#pystruct.utils.SaveLogger.__call__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__call__</tt><big>(</big><em>learner</em>, <em>iteration=0</em><big>)</big><a class="headerlink" href="#pystruct.utils.SaveLogger.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save learner if iterations is a multiple of save_every or &#8220;final&#8221;.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -171,9 +172,9 @@ the model will be saved.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.utils.SaveLogger.load">
-<tt class="descname">load</tt><big>(</big><big>)</big><a class="headerlink" href="#pystruct.utils.SaveLogger.load" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">load</tt><big>(</big><big>)</big><a class="headerlink" href="#pystruct.utils.SaveLogger.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load the model stoed in file_name and return it.</p>
 </dd></dl>
 

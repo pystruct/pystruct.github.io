@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -123,17 +124,17 @@ representing the graph.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=2</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=None</p>
 <blockquote>
-<div><p>Number of states for all variables.</p>
+<div><p>Number of states for all variables. Inferred from data if not provided.</p>
 </div></blockquote>
 <p><strong>n_features</strong> : int, default=None</p>
 <blockquote>
-<div><p>Number of features per node. None means n_states.</p>
+<div><p>Number of features per node. Inferred from data if not provided.</p>
 </div></blockquote>
-<p><strong>n_edge_features</strong> : int, default=1</p>
+<p><strong>n_edge_features</strong> : int, default=None</p>
 <blockquote>
-<div><p>Number of features per edge.</p>
+<div><p>Number of features per edge. Inferred from data if not provided.</p>
 </div></blockquote>
 <p><strong>inference_method</strong> : string, default=&#8221;ad3&#8221;</p>
 <blockquote>
@@ -208,9 +209,9 @@ Often the direction of the edge has no immediate meaning.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.EdgeFeatureGraphCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>n_edge_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>symmetric_edge_features=None</em>, <em>antisymmetric_edge_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>n_edge_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>symmetric_edge_features=None</em>, <em>antisymmetric_edge_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -265,9 +266,9 @@ shape (n_states, n_states) of accumulated pairwise marginals.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.EdgeFeatureGraphCRF.joint_feature">
-<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.EdgeFeatureGraphCRF.joint_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Feature vector associated with instance (x, y).</p>
 <p>Feature representation joint_feature, such that the energy of the configuration
 (x, y) and a weight vector w is given by np.dot(w, joint_feature(x, y)).</p>

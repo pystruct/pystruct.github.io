@@ -1,6 +1,6 @@
 
 
-.. _plot_latent_node.py:
+.. _example_plot_latent_node.py:
 
 
 =================================
@@ -12,15 +12,33 @@ variables.
 
 
 
-.. rst-class:: horizontal
+.. rst-class:: sphx-glr-horizontal
 
 
+    *
 
-**Script output**::
+      .. image:: images/plot_latent_node_001.png
+            :scale: 47
 
-  Training score binary grid CRF: 0.903125
-  Training score with latent nodes: 1.000000
+    *
 
+      .. image:: images/plot_latent_node_002.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_latent_node_003.png
+            :scale: 47
+
+
+**Script output**:
+
+.. rst-class:: sphx-glr-script-out
+
+  ::
+
+    Training score binary grid CRF: 0.903125
+    Training score with latent nodes: 1.000000
 
 
 **Python source code:** :download:`plot_latent_node.py <plot_latent_node.py>`
@@ -28,6 +46,6 @@ variables.
 .. literalinclude:: plot_latent_node.py
     :lines: 9-
 
-**Total running time of the example:**  35.16 seconds
-
+**Total running time of the example:**  37.20 seconds
+( 0 minutes  37.20 seconds)
     

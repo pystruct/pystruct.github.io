@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -120,9 +121,10 @@ need to be constant over the dataset.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=2</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=None</p>
 <blockquote>
-<div><p>Number of states for all variables.</p>
+<div><p>Number of states for all variables.
+Inferred from data if not provided.</p>
 </div></blockquote>
 <p><strong>inference_method</strong> : string or None, default=None</p>
 <blockquote>
@@ -188,9 +190,9 @@ so an edge <tt class="docutils literal"><span class="pre">a</span> <span class="
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.ChainCRF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=True</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=True</em><big>)</big><a class="headerlink" href="#pystruct.models.ChainCRF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

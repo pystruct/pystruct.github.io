@@ -1,6 +1,6 @@
 
 
-.. _plot_potts_model.py:
+.. _example_plot_potts_model.py:
 
 
 =================================================
@@ -21,8 +21,8 @@ the high quality solutions found by AD3.
 
 
 
-.. rst-class:: horizontal
-
+.. image:: images/plot_potts_model_001.png
+    :align: center
 
 
 
@@ -32,6 +32,6 @@ the high quality solutions found by AD3.
 .. literalinclude:: plot_potts_model.py
     :lines: 18-
 
-**Total running time of the example:**  34.56 seconds
-
+**Total running time of the example:**  36.49 seconds
+( 0 minutes  36.49 seconds)
     

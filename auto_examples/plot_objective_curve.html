@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -32,9 +33,9 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
-    <link rel="up" title="Examples" href="index.html" />
+    <link rel="up" title="Gallery of Examples" href="index.html" />
     <link rel="next" title="Efficient exact learning of 1-slack SSVMs" href="plot_exact_learning.html" />
-    <link rel="prev" title="Examples" href="index.html" />
+    <link rel="prev" title="Gallery of Examples" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -103,7 +104,7 @@
 <div class="container content-container">
   
   <div class="section" id="plotting-the-objective-and-constraint-caching-in-1-slack-ssvm">
-<span id="plot-objective-curve-py"></span><h1>Plotting the objective and constraint caching in 1-slack SSVM<a class="headerlink" href="#plotting-the-objective-and-constraint-caching-in-1-slack-ssvm" title="Permalink to this headline">¶</a></h1>
+<span id="example-plot-objective-curve-py"></span><h1>Plotting the objective and constraint caching in 1-slack SSVM<a class="headerlink" href="#plotting-the-objective-and-constraint-caching-in-1-slack-ssvm" title="Permalink to this headline">¶</a></h1>
 <p>This example illustrates the use of <tt class="docutils literal"><span class="pre">plot_learning.py</span></tt>, which can be used to
 analyze the learning of models.
 The file can be call directly as executable or imported as done here.</p>
@@ -123,8 +124,9 @@ primal objective can go below the cutting plane objective is a result of
 approximate inference. The real most violating constraint could not be found,
 leading to underestimating the primal objective.</p>
 <p>See plot_exact_learning.py for a way to deal with this.</p>
-<p class="horizontal"><strong>Script output</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre>OneSlackSSVM(C=1, break_on_bad=False, cache_tol=&#39;auto&#39;,
+<img alt="../_images/plot_objective_curve_001.png" class="align-center" src="../_images/plot_objective_curve_001.png" />
+<p><strong>Script output</strong>:</p>
+<div class="sphx-glr-script-out highlight-python"><div class="highlight"><pre>OneSlackSSVM(C=1, break_on_bad=False, cache_tol=&#39;auto&#39;,
        check_constraints=False, inactive_threshold=1e-05,
        inactive_window=50, inference_cache=100, logger=None,
        max_iter=10000,
@@ -137,22 +139,23 @@ Gap: -23.425085
 </pre></div>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_objective_curve.py"><tt class="xref download docutils literal"><span class="pre">plot_objective_curve.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF"><span class="n">DirectionalGridCRF</span></a>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">DirectionalGridCRF</span>
 <span class="kn">import</span> <span class="nn">pystruct.learners</span> <span class="kn">as</span> <span class="nn">ssvm</span>
 <span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">generate_blocks_multinomial</span>
-<span class="kn">from</span> <span class="nn">pystruct.plot_learning</span> <span class="kn">import</span> <a href="../generated/pystruct.plot_learning.plot_learning.html#pystruct.plot_learning"><span class="n">plot_learning</span></a>
+<span class="kn">from</span> <span class="nn">pystruct.plot_learning</span> <span class="kn">import</span> <span class="n">plot_learning</span>
 
 
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">generate_blocks_multinomial</span><span class="p">(</span><span class="n">noise</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<a href="../generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF"><span class="n">crf</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF"><span class="n">DirectionalGridCRF</span></a><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;qpbo&quot;</span><span class="p">,</span> <span class="n">neighborhood</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">clf</span></a> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><a href="../generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF"><span class="n">crf</span></a><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span>
+<span class="n">crf</span> <span class="o">=</span> <span class="n">DirectionalGridCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;qpbo&quot;</span><span class="p">,</span> <span class="n">neighborhood</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">crf</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span>
                         <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">clf</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 
-<a href="../generated/pystruct.plot_learning.plot_learning.html#pystruct.plot_learning"><span class="n">plot_learning</span></a><span class="p">(</span><a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">clf</span></a><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plot_learning</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  5.72 seconds</p>
+<p><strong>Total running time of the example:</strong>  5.43 seconds
+( 0 minutes  5.43 seconds)</p>
 </div>
 
 

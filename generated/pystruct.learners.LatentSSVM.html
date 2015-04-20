@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -120,6 +121,8 @@ variables in the first iteration.</p>
 will be adjusted after recomputing the latent variables H.
 If the base_ssvm is a 1-slack SSVM, the inference cache will
 be reused. Both methods drastically speed up learning.</p>
+<p>If base_ssvm is an 1-slack SSVM, this corresponds to the approach of
+Yu and Joachims, Learning Structural SVMs with Latent Variables.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -179,14 +182,14 @@ be reused. Both methods drastically speed up learning.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.learners.LatentSSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>base_ssvm</em>, <em>latent_iter=5</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.LatentSSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>base_ssvm</em>, <em>latent_iter=5</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.LatentSSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.learners.LatentSSVM.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>H_init=None</em>, <em>initialize=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.LatentSSVM.fit" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>H_init=None</em>, <em>initialize=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.LatentSSVM.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn parameters using the concave-convex procedure.</p>
 <p>If no H_init is given, the latent variables are initialized
 using the <tt class="docutils literal"><span class="pre">init_latent</span></tt> method of the model.</p>
@@ -244,9 +247,9 @@ contained subobjects that are estimators.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.learners.LatentSSVM.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>Y</em><big>)</big><a class="headerlink" href="#pystruct.learners.LatentSSVM.score" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">score</tt><big>(</big><em>X</em>, <em>Y</em><big>)</big><a class="headerlink" href="#pystruct.learners.LatentSSVM.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute score as 1 - loss over whole data set.</p>
 <p>Returns the average accuracy (in terms of model.loss)
 over X and Y.</p>

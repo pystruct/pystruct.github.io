@@ -1,6 +1,6 @@
 
 
-.. _svm_as_crf.py:
+.. _example_svm_as_crf.py:
 
 
 ===========

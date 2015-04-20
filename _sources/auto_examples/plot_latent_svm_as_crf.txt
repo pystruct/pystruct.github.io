@@ -1,6 +1,6 @@
 
 
-.. _plot_latent_svm_as_crf.py:
+.. _example_plot_latent_svm_as_crf.py:
 
 
 ================================================
@@ -17,7 +17,7 @@ the problem as a binary one, discriminating between even and odd digits.
 
 
 
-.. rst-class:: horizontal
+.. rst-class:: sphx-glr-horizontal
 
 
 
@@ -39,5 +39,5 @@ the problem as a binary one, discriminating between even and odd digits.
     :lines: 14-
 
 **Total running time of the example:**  11.69 seconds
-
+( 0 minutes  11.69 seconds)
     

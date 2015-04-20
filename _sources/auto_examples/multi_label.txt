@@ -1,6 +1,6 @@
 
 
-.. _multi_label.py:
+.. _example_multi_label.py:
 
 
 ==========================

@@ -1,47 +1,10 @@
 
-.. raw:: html
-
-
-    <style type="text/css">
-
-    div#sidebarbutton {
-        display: none;
-    }
-
-    .figure {
-        float: left;
-        margin: 16px;
-        top: 0;
-        left: 0;
-        -webkit-border-radius: 10px; /* Saf3-4, iOS 1-3.2, Android <1.6 */
-        -moz-border-radius: 10px; /* FF1-3.6 */
-        border-radius: 10px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
-        border: 2px solid #fff;
-        -webkit-transition: all 0.15s ease-out;  /* Saf3.2+, Chrome */
-        -moz-transition: all 0.15s ease-out;  /* FF4+ */
-        -ms-transition: all 0.15s ease-out;  /* IE10? */
-        -o-transition: all 0.15s ease-out;  /* Opera 10.5+ */
-        transition: all 0.15s ease-out;
-        background-repeat: no-repeat;
-        /* --> Thumbnail image size */
-        width: 150px;
-        height: 130px;
-    }
-
-    .figure img {
-        display: inline;
-        }
-
-    .figure .caption {
-        text-align: center !important;
-    }
-    </style>
-
-Examples
-========
 
 .. _examples-index:
 
+Gallery of Examples
+===================
+
 
 
 
@@ -51,14 +14,12 @@ Examples
 
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="This example illustrates the use of ``plot_learning.py``, which can be used to analyze the lear...">
 
 .. figure:: ./images/thumb/plot_objective_curve.png
-   :target: ./plot_objective_curve.html
+    :target: ./plot_objective_curve.html
 
-   :ref:`plot_objective_curve.py`
-
+    :ref:`example_plot_objective_curve.py`
 
 .. raw:: html
 
@@ -71,17 +32,14 @@ Examples
    ./plot_objective_curve
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="This example illustrates the role of approximate inference and caching in exact learning of a 1...">
 
 .. figure:: ./images/thumb/plot_exact_learning.png
-   :target: ./plot_exact_learning.html
+    :target: ./plot_exact_learning.html
 
-   :ref:`plot_exact_learning.py`
-
+    :ref:`example_plot_exact_learning.py`
 
 .. raw:: html
 
@@ -94,17 +52,14 @@ Examples
    ./plot_exact_learning
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="A CRF with one node is the same as a multiclass SVM. Evaluation on iris dataset (really easy). ">
 
 .. figure:: ./images/thumb/svm_as_crf.png
-   :target: ./svm_as_crf.html
+    :target: ./svm_as_crf.html
 
-   :ref:`svm_as_crf.py`
-
+    :ref:`example_svm_as_crf.py`
 
 .. raw:: html
 
@@ -117,17 +72,14 @@ Examples
    ./svm_as_crf
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="Simple comparison of inference times on a Potts model (smoothing) on a 2d grid of random noise ...">
 
 .. figure:: ./images/thumb/plot_potts_model.png
-   :target: ./plot_potts_model.html
+    :target: ./plot_potts_model.html
 
-   :ref:`plot_potts_model.py`
-
+    :ref:`example_plot_potts_model.py`
 
 .. raw:: html
 
@@ -140,17 +92,14 @@ Examples
    ./plot_potts_model
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="The data consists of superpixels, unary potentials, and the connectivity structure of the super...">
 
 .. figure:: ./images/thumb/image_segmentation.png
-   :target: ./image_segmentation.html
+    :target: ./image_segmentation.html
 
-   :ref:`image_segmentation.py`
-
+    :ref:`example_image_segmentation.py`
 
 .. raw:: html
 
@@ -163,17 +112,14 @@ Examples
    ./image_segmentation
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid problem by introducing latent variable interactions. The input data is the sa...">
 
 .. figure:: ./images/thumb/plot_latent_crf.png
-   :target: ./plot_latent_crf.html
+    :target: ./plot_latent_crf.html
 
-   :ref:`plot_latent_crf.py`
-
+    :ref:`example_plot_latent_crf.py`
 
 .. raw:: html
 
@@ -186,17 +132,14 @@ Examples
    ./plot_latent_crf
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="Simple pairwise model with arbitrary interactions on a 4-connected grid. There are different pa...">
 
 .. figure:: ./images/thumb/plot_directional_grid.png
-   :target: ./plot_directional_grid.html
+    :target: ./plot_directional_grid.html
 
-   :ref:`plot_directional_grid.py`
-
+    :ref:`example_plot_directional_grid.py`
 
 .. raw:: html
 
@@ -209,17 +152,14 @@ Examples
    ./plot_directional_grid
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="The center state is not encoded in the input, so that the task can not be solved without pairwi...">
 
 .. figure:: ./images/thumb/plot_grid_crf.png
-   :target: ./plot_grid_crf.html
+    :target: ./plot_grid_crf.html
 
-   :ref:`plot_grid_crf.py`
-
+    :ref:`example_plot_grid_crf.py`
 
 .. raw:: html
 
@@ -232,17 +172,14 @@ Examples
    ./plot_grid_crf
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="As this is a small toy example, it is hard to generalize the results indicated in the plot to m...">
 
 .. figure:: ./images/thumb/plot_svm_objectives.png
-   :target: ./plot_svm_objectives.html
+    :target: ./plot_svm_objectives.html
 
-   :ref:`plot_svm_objectives.py`
-
+    :ref:`example_plot_svm_objectives.py`
 
 .. raw:: html
 
@@ -255,17 +192,14 @@ Examples
    ./plot_svm_objectives
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="Each example consists of a handwritten word, that was presegmented into characters.  Each chara...">
 
 .. figure:: ./images/thumb/plot_letters.png
-   :target: ./plot_letters.html
+    :target: ./plot_letters.html
 
-   :ref:`plot_letters.py`
-
+    :ref:`example_plot_letters.py`
 
 .. raw:: html
 
@@ -278,17 +212,14 @@ Examples
    ./plot_letters
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="This example uses the scikit-learn digit classification dataset, but poses the problem as a bin...">
 
 .. figure:: ./images/thumb/plot_latent_svm_as_crf.png
-   :target: ./plot_latent_svm_as_crf.html
+    :target: ./plot_latent_svm_as_crf.html
 
-   :ref:`plot_latent_svm_as_crf.py`
-
+    :ref:`example_plot_latent_svm_as_crf.py`
 
 .. raw:: html
 
@@ -301,17 +232,14 @@ Examples
    ./plot_latent_svm_as_crf
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="This method hab been investigated in Finley, Joachims 2008 "Training Structural SVMs when Exact...">
 
 .. figure:: ./images/thumb/multi_label.png
-   :target: ./multi_label.html
+    :target: ./multi_label.html
 
-   :ref:`multi_label.py`
-
+    :ref:`example_multi_label.py`
 
 .. raw:: html
 
@@ -324,17 +252,14 @@ Examples
    ./multi_label
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="Comparing different solvers on a standard multi-class SVM problem. ">
 
 .. figure:: ./images/thumb/multi_class_svm.png
-   :target: ./multi_class_svm.html
+    :target: ./multi_class_svm.html
 
-   :ref:`multi_class_svm.py`
-
+    :ref:`example_multi_class_svm.py`
 
 .. raw:: html
 
@@ -347,17 +272,14 @@ Examples
    ./multi_class_svm
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid toy problem by introducing an additional layer of latent variables. ">
 
 .. figure:: ./images/thumb/plot_latent_node.png
-   :target: ./plot_latent_node.html
+    :target: ./plot_latent_node.html
 
-   :ref:`plot_latent_node.py`
-
+    :ref:`example_plot_latent_node.py`
 
 .. raw:: html
 
@@ -370,17 +292,14 @@ Examples
    ./plot_latent_node
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="There are many parameters to tune and we can make 1-slack as good as the rest for the price of ...">
 
 .. figure:: ./images/thumb/plot_binary_svm.png
-   :target: ./plot_binary_svm.html
+    :target: ./plot_binary_svm.html
 
-   :ref:`plot_binary_svm.py`
-
+    :ref:`example_plot_binary_svm.py`
 
 .. raw:: html
 
@@ -393,17 +312,14 @@ Examples
    ./plot_binary_svm
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="This dataset is specifically designed to require the pairwise interaction terms to be condition...">
 
 .. figure:: ./images/thumb/plot_snakes.png
-   :target: ./plot_snakes.html
+    :target: ./plot_snakes.html
 
-   :ref:`plot_snakes.py`
-
+    :ref:`example_plot_snakes.py`
 
 .. raw:: html
 
@@ -416,17 +332,14 @@ Examples
    ./plot_snakes
 
 
-
 .. raw:: html
 
-    <div class="thumbnailContainer">
-
+    <div class="sphx-glr-thumbContainer" tooltip="This comparison is only meaningful in the sense that both libraries use general structured pred...">
 
 .. figure:: ./images/thumb/multiclass_comparision_svm_struct.png
-   :target: ./multiclass_comparision_svm_struct.html
+    :target: ./multiclass_comparision_svm_struct.html
 
-   :ref:`multiclass_comparision_svm_struct.py`
-
+    :ref:`example_multiclass_comparision_svm_struct.py`
 
 .. raw:: html
 
@@ -441,5 +354,5 @@ Examples
 
 .. raw:: html
 
-    <div style="clear: both"></div>
+    <div style='clear:both'></div>
     

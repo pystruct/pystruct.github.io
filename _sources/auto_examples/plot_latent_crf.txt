@@ -1,6 +1,6 @@
 
 
-.. _plot_latent_crf.py:
+.. _example_plot_latent_crf.py:
 
 
 ===================
@@ -18,15 +18,18 @@ state (the cross) in the ground truth.
 
 
 
-.. rst-class:: horizontal
+.. image:: images/plot_latent_crf_001.png
+    :align: center
 
 
+**Script output**:
 
-**Script output**::
+.. rst-class:: sphx-glr-script-out
 
-  Score training set: 1.000000
-  Score test set: 0.995313
+  ::
 
+    Score training set: 1.000000
+    Score test set: 0.995313
 
 
 **Python source code:** :download:`plot_latent_crf.py <plot_latent_crf.py>`
@@ -34,6 +37,6 @@ state (the cross) in the ground truth.
 .. literalinclude:: plot_latent_crf.py
     :lines: 15-
 
-**Total running time of the example:**  3.17 seconds
-
+**Total running time of the example:**  3.13 seconds
+( 0 minutes  3.13 seconds)
     

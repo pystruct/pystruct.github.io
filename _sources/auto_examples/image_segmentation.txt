@@ -1,6 +1,6 @@
 
 
-.. _image_segmentation.py:
+.. _example_image_segmentation.py:
 
 
 ===========================================

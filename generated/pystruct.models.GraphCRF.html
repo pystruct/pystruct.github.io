@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -108,8 +109,9 @@
 <dt id="pystruct.models.GraphCRF">
 <em class="property">class </em><tt class="descclassname">pystruct.models.</tt><tt class="descname">GraphCRF</tt><big>(</big><em>n_states=None</em>, <em>n_features=None</em>, <em>inference_method=None</em>, <em>class_weight=None</em>, <em>directed=False</em><big>)</big><a class="headerlink" href="#pystruct.models.GraphCRF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pairwise CRF on a general graph.</p>
-<p>Pairwise potentials are symmetric and the same for all edges.
-This leads to n_classes parameters for unary potentials.</p>
+<p>Pairwise potentials the same for all edges, are symmetric by default
+(<tt class="docutils literal"><span class="pre">directed=False</span></tt>).  This leads to n_classes parameters for unary
+potentials.</p>
 <p>If <tt class="docutils literal"><span class="pre">directed=True</span></tt>, there are <tt class="docutils literal"><span class="pre">n_classes</span> <span class="pre">*</span> <span class="pre">n_classes</span></tt> parameters
 for pairwise potentials, if <tt class="docutils literal"><span class="pre">directed=False</span></tt>, there are only
 <tt class="docutils literal"><span class="pre">n_classes</span> <span class="pre">*</span> <span class="pre">(n_classes</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">2</span></tt> (for a symmetric matrix).</p>
@@ -147,13 +149,13 @@ assumed to be symmetric and only the lower triangle is returned, i.e.
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=2</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_states</strong> : int, default=None</p>
 <blockquote>
-<div><p>Number of states for all variables.</p>
+<div><p>Number of states for all variables. Inferred from data if not provided.</p>
 </div></blockquote>
 <p><strong>n_features</strong> : int, default=None</p>
 <blockquote>
-<div><p>Number of features per node. None means n_states.</p>
+<div><p>Number of features per node. Inferred from data if not provided.</p>
 </div></blockquote>
 <p><strong>inference_method</strong> : string or None, default=None</p>
 <blockquote>

@@ -1,6 +1,6 @@
 
 
-.. _plot_letters.py:
+.. _example_plot_letters.py:
 
 
 ===============================
@@ -34,15 +34,28 @@ demonstration of the CRF than to show its superiority.
 
 
 
-.. rst-class:: horizontal
+.. rst-class:: sphx-glr-horizontal
 
 
+    *
 
-**Script output**::
+      .. image:: images/plot_letters_001.png
+            :scale: 47
 
-  Test score with chain CRF: 0.785856
-  Test score with linear SVM: 0.713791
+    *
 
+      .. image:: images/plot_letters_002.png
+            :scale: 47
+
+
+**Script output**:
+
+.. rst-class:: sphx-glr-script-out
+
+  ::
+
+    Test score with chain CRF: 0.785728
+    Test score with linear SVM: 0.713791
 
 
 **Python source code:** :download:`plot_letters.py <plot_letters.py>`
@@ -50,6 +63,6 @@ demonstration of the CRF than to show its superiority.
 .. literalinclude:: plot_letters.py
     :lines: 31-
 
-**Total running time of the example:**  75.48 seconds
-
+**Total running time of the example:**  89.42 seconds
+( 1 minutes  29.42 seconds)
     

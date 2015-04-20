@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -32,7 +33,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
-    <link rel="up" title="Examples" href="index.html" />
+    <link rel="up" title="Gallery of Examples" href="index.html" />
     <link rel="next" title="Binary SVM as SSVM" href="plot_binary_svm.html" />
     <link rel="prev" title="Crammer-Singer Multi-Class SVM" href="multi_class_svm.html" />
 <meta charset='utf-8'>
@@ -103,11 +104,19 @@
 <div class="container content-container">
   
   <div class="section" id="latent-variable-hierarchical-crf">
-<span id="plot-latent-node-py"></span><h1>Latent Variable Hierarchical CRF<a class="headerlink" href="#latent-variable-hierarchical-crf" title="Permalink to this headline">¶</a></h1>
+<span id="example-plot-latent-node-py"></span><h1>Latent Variable Hierarchical CRF<a class="headerlink" href="#latent-variable-hierarchical-crf" title="Permalink to this headline">¶</a></h1>
 <p>Solving a 2d grid toy problem by introducing an additional layer of latent
 variables.</p>
-<p class="horizontal"><strong>Script output</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre>Training score binary grid CRF: 0.903125
+<ul class="sphx-glr-horizontal">
+<li><a class="first reference internal image-reference" href="../_images/plot_latent_node_001.png"><img alt="../_images/plot_latent_node_001.png" src="../_images/plot_latent_node_001.png" style="width: 376.0px; height: 32.9px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../_images/plot_latent_node_002.png"><img alt="../_images/plot_latent_node_002.png" src="../_images/plot_latent_node_002.png" style="width: 376.0px; height: 47.0px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../_images/plot_latent_node_003.png"><img alt="../_images/plot_latent_node_003.png" src="../_images/plot_latent_node_003.png" style="width: 376.0px; height: 47.0px;" /></a>
+</li>
+</ul>
+<p><strong>Script output</strong>:</p>
+<div class="sphx-glr-script-out highlight-python"><div class="highlight"><pre>Training score binary grid CRF: 0.903125
 Training score with latent nodes: 1.000000
 </pre></div>
 </div>
@@ -115,8 +124,8 @@ Training score with latent nodes: 1.000000
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 
-<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">GraphCRF</span></a><span class="p">,</span> <a href="../generated/pystruct.models.LatentNodeCRF.html#pystruct.models.LatentNodeCRF"><span class="n">LatentNodeCRF</span></a>
-<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">,</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">,</span> <a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">LatentSSVM</span></a>
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">GraphCRF</span><span class="p">,</span> <span class="n">LatentNodeCRF</span>
+<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">NSlackSSVM</span><span class="p">,</span> <span class="n">OneSlackSSVM</span><span class="p">,</span> <span class="n">LatentSSVM</span>
 <span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">make_simple_2x2</span>
 <span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">make_grid_edges</span><span class="p">,</span> <span class="n">plot_grid</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -155,51 +164,52 @@ Training score with latent nodes: 1.000000
 
 
 <span class="c"># first, use standard graph CRF. Can&#39;t do much, high loss.</span>
-<a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">crf</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">GraphCRF</span></a><span class="p">()</span>
-<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="o">=</span><a href="../generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF"><span class="n">crf</span></a><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">crf</span> <span class="o">=</span> <span class="n">GraphCRF</span><span class="p">()</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">crf</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">G</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_grid_edges</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
 
 <span class="n">asdf</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_flat</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
-<a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">asdf</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">)</span>
-<span class="n">plot_boxes</span><span class="p">(</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">asdf</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Non-latent SSVM predictions&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Training score binary grid CRF: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">asdf</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">))</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">asdf</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">)</span>
+<span class="n">plot_boxes</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">asdf</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Non-latent SSVM predictions&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Training score binary grid CRF: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">asdf</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">))</span>
 
 <span class="c"># using one latent variable for each 2x2 rectangle</span>
-<a href="../generated/pystruct.models.LatentNodeCRF.html#pystruct.models.LatentNodeCRF"><span class="n">latent_crf</span></a> <span class="o">=</span> <a href="../generated/pystruct.models.LatentNodeCRF.html#pystruct.models.LatentNodeCRF"><span class="n">LatentNodeCRF</span></a><span class="p">(</span><span class="n">n_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_hidden_states</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="n">latent_crf</span> <span class="o">=</span> <span class="n">LatentNodeCRF</span><span class="p">(</span><span class="n">n_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_hidden_states</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                            <span class="n">inference_method</span><span class="o">=</span><span class="s">&#39;lp&#39;</span><span class="p">)</span>
 
-<a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">ssvm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="o">=</span><a href="../generated/pystruct.models.LatentNodeCRF.html#pystruct.models.LatentNodeCRF"><span class="n">latent_crf</span></a><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="n">ssvm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">latent_crf</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                     <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a> <span class="o">=</span> <a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">LatentSSVM</span></a><span class="p">(</span><a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">ssvm</span></a><span class="p">)</span>
+<span class="n">latent_svm</span> <span class="o">=</span> <span class="n">LatentSSVM</span><span class="p">(</span><span class="n">ssvm</span><span class="p">)</span>
 
 <span class="c"># make edges for hidden states:</span>
 <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">node_indices</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.arange.html#numpy.arange"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">node_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
             <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]])</span>
 
-<span class="n">G</span> <span class="o">=</span> <span class="p">[</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.vstack.html#numpy.vstack"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">([</span><span class="n">make_grid_edges</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">edges</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+<span class="n">G</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">make_grid_edges</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">edges</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
 
 <span class="c"># Random initialization</span>
-<span class="n">H_init</span> <span class="o">=</span> <span class="p">[</span><a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.hstack.html#numpy.hstack"><span class="n">np</span><span class="o">.</span><span class="n">hstack</span></a><span class="p">([</span><span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="n">H_init</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)])</span>
           <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">]</span>
 <span class="n">plot_boxes</span><span class="p">(</span><span class="n">H_init</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Top: Random initial hidden states. Bottom: Ground&quot;</span>
            <span class="s">&quot;truth labeling.&quot;</span><span class="p">)</span>
 
 <span class="n">X_</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_flat</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X_flat</span><span class="p">])</span>
 
-<a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">,</span> <span class="n">H_init</span><span class="p">)</span>
+<span class="n">latent_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">,</span> <span class="n">H_init</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Training score with latent nodes: </span><span class="si">%f</span><span class="s"> &quot;</span> <span class="o">%</span> <a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">))</span>
-<span class="n">H</span> <span class="o">=</span> <a href="../generated/pystruct.learners.LatentSSVM.html#pystruct.learners.LatentSSVM"><span class="n">latent_svm</span></a><span class="o">.</span><span class="n">predict_latent</span><span class="p">(</span><span class="n">X_</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Training score with latent nodes: </span><span class="si">%f</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="n">latent_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">Y_flat</span><span class="p">))</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">latent_svm</span><span class="o">.</span><span class="n">predict_latent</span><span class="p">(</span><span class="n">X_</span><span class="p">)</span>
 <span class="n">plot_boxes</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Top: Hidden states after training. Bottom: Prediction.&quot;</span><span class="p">)</span>
-<a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  35.16 seconds</p>
+<p><strong>Total running time of the example:</strong>  37.20 seconds
+( 0 minutes  37.20 seconds)</p>
 </div>
 
 

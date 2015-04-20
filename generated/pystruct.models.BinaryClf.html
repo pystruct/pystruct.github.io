@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
@@ -115,7 +116,8 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_features</strong> : int or None, default=None</p>
 <blockquote class="last">
-<div><p>Number of features of inputs x.</p>
+<div><p>Number of features of inputs x.
+If None, it is inferred from data.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -169,14 +171,14 @@ the infernce down a lot!</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.BinaryClf.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.__init__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>n_features=None</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.BinaryClf.inference">
-<tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=None</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.inference" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">inference</tt><big>(</big><em>x</em>, <em>w</em>, <em>relaxed=None</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference for x using parameters w.</p>
 <p>Finds armin_y np.dot(w, joint_feature(x, y)), i.e. best possible prediction.</p>
 <p>For a binary SVM, this is just sign(np.dot(w, x) + b))</p>
@@ -205,9 +207,9 @@ the infernce down a lot!</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.BinaryClf.joint_feature">
-<tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.joint_feature" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">joint_feature</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.joint_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute joint feature vector of x and y.</p>
 <p>Feature representation joint_feature, such that the energy of the configuration
 (x, y) and a weight vector w is given by np.dot(w, joint_feature(x, y)).</p>
@@ -235,9 +237,9 @@ the infernce down a lot!</p>
 </table>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="pystruct.models.BinaryClf.loss_augmented_inference">
-<tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=None</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">loss_augmented_inference</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em>, <em>relaxed=None</em><big>)</big><a class="headerlink" href="#pystruct.models.BinaryClf.loss_augmented_inference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loss-augmented inference for x and y using parameters w.</p>
 <p>Minimizes over y_hat:
 np.dot(joint_feature(x, y_hat), w) + loss(y, y_hat)

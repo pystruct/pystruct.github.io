@@ -1,6 +1,6 @@
 
 
-.. _multi_class_svm.py:
+.. _example_multi_class_svm.py:
 
 
 ==============================

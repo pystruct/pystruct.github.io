@@ -1,6 +1,6 @@
 
 
-.. _multiclass_comparision_svm_struct.py:
+.. _example_multiclass_comparision_svm_struct.py:
 
 
 =================================

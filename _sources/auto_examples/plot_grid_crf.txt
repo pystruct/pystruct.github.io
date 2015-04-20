@@ -1,6 +1,6 @@
 
 
-.. _plot_grid_crf.py:
+.. _example_plot_grid_crf.py:
 
 
 ==================================
@@ -15,14 +15,27 @@ solved without pairwise interactions.
 
 
 
-.. rst-class:: horizontal
+.. rst-class:: sphx-glr-horizontal
 
 
+    *
 
-**Script output**::
+      .. image:: images/plot_grid_crf_001.png
+            :scale: 47
 
-  overall accuracy (training set): 0.985926
+    *
 
+      .. image:: images/plot_grid_crf_002.png
+            :scale: 47
+
+
+**Script output**:
+
+.. rst-class:: sphx-glr-script-out
+
+  ::
+
+    overall accuracy (training set): 0.985926
 
 
 **Python source code:** :download:`plot_grid_crf.py <plot_grid_crf.py>`
@@ -30,6 +43,6 @@ solved without pairwise interactions.
 .. literalinclude:: plot_grid_crf.py
     :lines: 12-
 
-**Total running time of the example:**  10.54 seconds
-
+**Total running time of the example:**  10.84 seconds
+( 0 minutes  10.84 seconds)
     

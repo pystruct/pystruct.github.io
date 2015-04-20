@@ -1,6 +1,6 @@
 
 
-.. _plot_svm_objectives.py:
+.. _example_plot_svm_objectives.py:
 
 
 ====================
@@ -15,8 +15,8 @@ the results indicated in the plot to more realistic settigs.
 
 
 
-.. rst-class:: horizontal
-
+.. image:: images/plot_svm_objectives_001.png
+    :align: center
 
 
 
@@ -26,6 +26,6 @@ the results indicated in the plot to more realistic settigs.
 .. literalinclude:: plot_svm_objectives.py
     :lines: 12-
 
-**Total running time of the example:**  285.90 seconds
-
+**Total running time of the example:**  293.59 seconds
+( 4 minutes  53.59 seconds)
     

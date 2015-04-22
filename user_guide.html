@@ -101,7 +101,7 @@
 
 <div class="container content-container">
   
-<div class="section" id="user-guide">
+  <div class="section" id="user-guide">
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <p>This page explains how to use the most common of the implemented models.
 Each model corresponds to a differents structured prediction task, or possibly
@@ -171,7 +171,7 @@ inference can be performed by just enumerating Y.</p>
 <span class="gp">... </span>    <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The Crammer-Singer model implemented in <a class="reference internal" href="generated/pystruct.models.MultiClassClf.html#pystruct.models.MultiClassClf" title="pystruct.models.MultiClassClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiClassClf</span></tt></a>.
+<p>The Crammer-Singer model implemented in <tt class="xref py py-class docutils literal"><span class="pre">MultiClassClf</span></tt>.
 As this is a simple multi-class classification task, we can pass in training data
 as numpy arrays of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></tt> and training labels as
 numpy array of shape (n_samples,) with classes from 0 to 2.</p>
@@ -237,7 +237,7 @@ such as &#8220;fall foilage&#8221; and &#8220;field&#8221;. Clearly some combina
 but it would prevent us from predicting combinations that don&#8217;t appear in the training set.
 Even if a combination did appear in the training set, the numer of samples in each class would be very small.
 A compromise between modeling all correlations and modelling no correlations is modeling only pairwise correlations,
-which is the approach implemented in <a class="reference internal" href="generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf" title="pystruct.models.MultiLabelClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt></a>.</p>
+which is the approach implemented in <tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt>.</p>
 <p>The input to this model is similar to the <a class="reference internal" href="#multi-class-svm"><em>Multi-class SVM</em></a>, with the training data <tt class="docutils literal"><span class="pre">X_train</span></tt> simple
 a numpy array of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></tt> and the training labels a binary indicator matrix
 of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></tt>:</p>
@@ -251,7 +251,7 @@ of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span
 <span class="go">(1211, 6)</span>
 </pre></div>
 </div>
-<p>We use the <tt class="xref py py-class docutils literal"><span class="pre">learners.NSlackSSVM</span></tt> learner, passing it the <a class="reference internal" href="generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf" title="pystruct.models.MultiLabelClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt></a> model:</p>
+<p>We use the <tt class="xref py py-class docutils literal"><span class="pre">learners.NSlackSSVM</span></tt> learner, passing it the <tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt> model:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">NSlackSSVM</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">MultiLabelClf</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">MultiLabelClf</span><span class="p">())</span>
@@ -267,7 +267,6 @@ of shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span
 Unfortunately, in general, inference in a fully connected binary graph is in
 gerneral NP-hard, so we might need to rely on approximate inference, like loopy
 believe propagation or AD3.</p>
-<p>..#FIXME do enumeration! benchmark!!</p>
 <p>An alternative to using approximate inference for larger numbers of labels is to not create a fully connected graph,
 but restrict ourself to pairwise interactions on a tree over the labels. In the above example of outdoor scenes,
 some labels might be informative about others, maybe a beach picture is likely to be of a sunset, while
@@ -311,7 +310,7 @@ nodes are homogeneous, that is they all have the same meaning. That means that
 each node has the same number of classes, and these classes mean the same
 thing. In practice that means that weights are shared across all nodes and
 edges, and the model adapts via features.
-This is in contrast to the <a class="reference internal" href="generated/pystruct.models.MultiLabelClf.html#pystruct.models.MultiLabelClf" title="pystruct.models.MultiLabelClf"><tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt></a>, which builds a binary graph
+This is in contrast to the <tt class="xref py py-class docutils literal"><span class="pre">MultiLabelClf</span></tt>, which builds a binary graph
 were nodes mean different things (each node represents a different class), so
 they do not share weights.</p>
 <div class="admonition note">
@@ -395,7 +394,7 @@ at this node (the input image) with the weights (which are shared over all nodes
 the weights:</p>
 <p>In principle it is possible to also use feature in the pairwise potentials.
 This is not implemented in the ChainCRF, but can be done using
-<a class="reference internal" href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF" title="pystruct.models.EdgeFeatureGraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">EdgeFeatureGraphCRF</span></tt></a>.</p>
+<tt class="xref py py-class docutils literal"><span class="pre">EdgeFeatureGraphCRF</span></tt>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">While pystruct is able to work with chain CRFs, it is not explicitly built
@@ -405,12 +404,12 @@ this special case, such as <a class="reference external" href="https://github.co
 </div>
 <div class="section" id="graphcrf">
 <span id="graph-crf"></span><h2>GraphCRF<a class="headerlink" href="#graphcrf" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF" title="pystruct.models.GraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt></a> model is a generalization of the <a class="reference internal" href="#chain-crf"><em>ChainCRF</em></a> to
+<p>The <tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt> model is a generalization of the <a class="reference internal" href="#chain-crf"><em>ChainCRF</em></a> to
 arbitray graphs.  While in the chain model, the direction of the edge is
 usually important, for many graphs, the direction of the edge has no semantic
 meaning. Therefore, by default, the pairwise interaction matrix of the
-<a class="reference internal" href="generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF" title="pystruct.models.GraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt></a> is forced to be symmetric.</p>
-<p>Each training sample for the <a class="reference internal" href="generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF" title="pystruct.models.GraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt></a> is a tuple <tt class="docutils literal"><span class="pre">(features,</span>
+<tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt> is forced to be symmetric.</p>
+<p>Each training sample for the <tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt> is a tuple <tt class="docutils literal"><span class="pre">(features,</span>
 <span class="pre">edges)</span></tt>, where <tt class="docutils literal"><span class="pre">features</span></tt> is a numpy array of node-features (of shape
 <tt class="docutils literal"><span class="pre">(n_nodes,</span> <span class="pre">n_features)</span></tt>), and <tt class="docutils literal"><span class="pre">edges</span></tt> is a array of edges between nodes, of
 shape <tt class="docutils literal"><span class="pre">(n_edges,</span> <span class="pre">2)</span></tt>.  Each row of the edge array are the indices of the two
@@ -423,7 +422,7 @@ generate the indices of a chain:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">folds</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">folds</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>For a single word made out of FIXME characters:</p>
+<p>For a single word made out of 9 characters:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">features_0</span> <span class="o">=</span> <span class="n">features_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features_0</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(9, 128)</span>
@@ -450,7 +449,7 @@ generate the indices of a chain:</p>
 <span class="go">   [  1,   2,   3, ..., 701, 702, 703]]))</span>
 </pre></div>
 </div>
-<p>Now we can fit a (directed) <a class="reference internal" href="generated/pystruct.models.GraphCRF.html#pystruct.models.GraphCRF" title="pystruct.models.GraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt></a> on this data:</p>
+<p>Now we can fit a (directed) <tt class="xref py py-class docutils literal"><span class="pre">GraphCRF</span></tt> on this data:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">GraphCRF</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="n">FrankWolfeSSVM</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">GraphCRF</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;max-product&quot;</span><span class="p">)</span>
@@ -476,7 +475,7 @@ for all nodes.</p>
 models as a special case.  This model assumes again that the parameters of the
 potentials are shared over all nodes and over all edges, but the pairwise
 potentials are now also computed as a linear function of the features.</p>
-<p>Each training sample for <a class="reference internal" href="generated/pystruct.models.EdgeFeatureGraphCRF.html#pystruct.models.EdgeFeatureGraphCRF" title="pystruct.models.EdgeFeatureGraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">EdgeFeatureGraphCRF</span></tt></a> is a tuple
+<p>Each training sample for <tt class="xref py py-class docutils literal"><span class="pre">EdgeFeatureGraphCRF</span></tt> is a tuple
 <tt class="docutils literal"><span class="pre">(node_features,</span> <span class="pre">edges,</span> <span class="pre">edge_features)</span></tt>, where <tt class="docutils literal"><span class="pre">node_features</span></tt> is a numpy
 array of node-features (of shape <tt class="docutils literal"><span class="pre">(n_nodes,</span> <span class="pre">n_node_features)</span></tt>), <tt class="docutils literal"><span class="pre">edges</span></tt> is
 a array of edges between nodes, of shape <tt class="docutils literal"><span class="pre">(n_edges,</span> <span class="pre">2)</span></tt> as in
@@ -512,7 +511,7 @@ non-convex objective involving the maximization over hidden variables.  I am
 unaware of any literature on this approach.</p>
 <div class="section" id="latentgraphcrf-aka-hidden-dynamics-crf">
 <h2>LatentGraphCRF aka Hidden Dynamics CRF<a class="headerlink" href="#latentgraphcrf-aka-hidden-dynamics-crf" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="generated/pystruct.models.LatentGraphCRF.html#pystruct.models.LatentGraphCRF" title="pystruct.models.LatentGraphCRF"><tt class="xref py py-class docutils literal"><span class="pre">LatentGraphCRF</span></tt></a> implements the &#8220;Hidden Dynamics CRF&#8221; approach.
+<p><tt class="xref py py-class docutils literal"><span class="pre">LatentGraphCRF</span></tt> implements the &#8220;Hidden Dynamics CRF&#8221; approach.
 Here, each output state is split into several hidden sub-states, which allows for
 more complex interactions.</p>
 <p>This can be seen as a structured variant of the latent SVM approach as follows:
@@ -530,7 +529,6 @@ The original paper motivates this extension by action recognition.
 A complex action like a juming jack is made up of several distinct sub-actions,
 and there is a distinct order in which the sub-actions are performed.
 The latent dynamic CRF can learn this order.</p>
-<p>..EXAMPLE</p>
 <p>See <em class="xref std std-ref">example_plot_latent_crf</em> for an example on a 2d grid.</p>
 </div>
 </div>
@@ -540,7 +538,7 @@ The latent dynamic CRF can learn this order.</p>
 </div>
 <div class="section" id="tips-on-choosing-a-learner">
 <h1>Tips on Choosing a Learner<a class="headerlink" href="#tips-on-choosing-a-learner" title="Permalink to this headline">¶</a></h1>
-<p>There is an extensive benchmarking in my thesis, chapter XXX.</p>
+<p>There is an extensive benchmarking in my thesis, TODO.</p>
 <p>SubgradientSSVM : Good for many datapoints, fast inference. Usually worse than FrankWolfeSSVM, but takes less memory. Good for obtaining reasonable solutions fast.
 NSlackSSVM : Good for very few datapoints (hundreds), slow inferece. Good for obtaining high precision solutions.
 OneSlackSSVM : Good for mid-size data sets (thousands), slow inference. Good for obtaining high precision solutions.

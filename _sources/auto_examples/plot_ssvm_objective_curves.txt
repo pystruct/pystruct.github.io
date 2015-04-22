@@ -26,6 +26,6 @@ the results indicated in the plot to more realistic settigs.
 .. literalinclude:: plot_ssvm_objective_curves.py
     :lines: 12-
 
-**Total running time of the example:**  29.70 seconds
-( 0 minutes  29.70 seconds)
+**Total running time of the example:**  27.77 seconds
+( 0 minutes  27.77 seconds)
     

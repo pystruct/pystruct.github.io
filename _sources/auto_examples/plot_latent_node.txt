@@ -46,6 +46,6 @@ variables.
 .. literalinclude:: plot_latent_node.py
     :lines: 9-
 
-**Total running time of the example:**  33.11 seconds
-( 0 minutes  33.11 seconds)
+**Total running time of the example:**  41.85 seconds
+( 0 minutes  41.85 seconds)
     

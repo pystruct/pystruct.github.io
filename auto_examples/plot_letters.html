@@ -189,7 +189,7 @@ Test score with linear SVM: 0.713791
         <span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="n">abc</span><span class="p">[</span><span class="n">y_chain</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;#FF5555&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
         <span class="n">a</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
         <span class="n">a</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
-    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_word_len</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_word_len</span><span class="p">):</span>
         <span class="n">axes_row</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">ssvm</span><span class="o">.</span><span class="n">w</span><span class="p">[</span><span class="mi">26</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">16</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">26</span><span class="p">))</span>
@@ -199,8 +199,8 @@ Test score with linear SVM: 0.713791
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  5.55 seconds
-( 0 minutes  5.55 seconds)</p>
+<p><strong>Total running time of the example:</strong>  5.50 seconds
+( 0 minutes  5.50 seconds)</p>
 </div>
 
 

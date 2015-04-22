@@ -184,7 +184,7 @@ Latent class counts: array([ 86, 107,  90,  73,  82,  70, 193,  86,  85,  27])
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&quot;Example digits from each of</span><span class="se">\n</span><span class="s">the ten latent classes.&quot;</span><span class="p">)</span>
 <span class="n">n_latent_classes</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">n_examples</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="k">for</span> <span class="n">latent_class</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n_latent_classes</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">latent_class</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_latent_classes</span><span class="p">):</span>
     <span class="n">examples</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">h_pred</span> <span class="o">==</span> <span class="n">latent_class</span><span class="p">][:</span><span class="n">n_examples</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n_latent_classes</span><span class="p">,</span> <span class="n">n_examples</span><span class="p">,</span>

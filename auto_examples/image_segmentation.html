@@ -120,14 +120,17 @@ available soon.</p>
 would need the Pascal VOC 2010 dataset.</p>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/image_segmentation.py"><tt class="xref download docutils literal"><span class="pre">image_segmentation.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">cPickle</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cPickle</span> <span class="kn">as</span> <span class="nn">pickle</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pickle</span>
 
 <span class="kn">from</span> <span class="nn">pystruct</span> <span class="kn">import</span> <span class="n">learners</span>
 <span class="kn">import</span> <span class="nn">pystruct.models</span> <span class="kn">as</span> <span class="nn">crfs</span>
 <span class="kn">from</span> <span class="nn">pystruct.utils</span> <span class="kn">import</span> <span class="n">SaveLogger</span>
 
 
-<span class="n">data_train</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_train_dict.pickle&quot;</span><span class="p">))</span>
+<span class="n">data_train</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_train_dict.pickle&quot;</span><span class="p">))</span>
 <span class="n">C</span> <span class="o">=</span> <span class="mf">0.01</span>
 
 <span class="n">n_states</span> <span class="o">=</span> <span class="mi">21</span>
@@ -150,7 +153,7 @@ would need the Pascal VOC 2010 dataset.</p>
     <span class="n">inactive_threshold</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">inactive_window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">ssvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[</span><span class="s">&#39;Y&#39;</span><span class="p">])</span>
 
-<span class="n">data_val</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_val_dict.pickle&quot;</span><span class="p">))</span>
+<span class="n">data_val</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;data_val_dict.pickle&quot;</span><span class="p">))</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_val</span><span class="p">[</span><span class="s">&#39;X&#39;</span><span class="p">])</span>
 
 <span class="c"># we throw away void superpixels and flatten everything</span>

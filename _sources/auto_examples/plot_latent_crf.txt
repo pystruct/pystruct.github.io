@@ -37,6 +37,6 @@ cross) in the ground truth.
 .. literalinclude:: plot_latent_crf.py
     :lines: 15-
 
-**Total running time of the example:**  3.23 seconds
-( 0 minutes  3.23 seconds)
+**Total running time of the example:**  3.07 seconds
+( 0 minutes  3.07 seconds)
     

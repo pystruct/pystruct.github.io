@@ -26,10 +26,10 @@ We don't really have a chance to beat LibSVM but that's ok ;)
 
   ::
 
-    Score with pystruct n-slack ssvm: 0.922222 (took 2.354858 seconds)
-    Score with pystruct 1-slack ssvm: 0.908889 (took 0.166883 seconds)
-    Score with pystruct subgradient ssvm: 0.857778 (took 5.799801 seconds)
-    Score with sklearn and libsvm: 0.920000 (took 0.105392 seconds)
+    Score with pystruct n-slack ssvm: 0.922222 (took 2.149278 seconds)
+    Score with pystruct 1-slack ssvm: 0.908889 (took 0.148789 seconds)
+    Score with pystruct subgradient ssvm: 0.857778 (took 5.394872 seconds)
+    Score with sklearn and libsvm: 0.920000 (took 0.088903 seconds)
 
 
 **Python source code:** :download:`plot_binary_svm.py <plot_binary_svm.py>`
@@ -37,6 +37,6 @@ We don't really have a chance to beat LibSVM but that's ok ;)
 .. literalinclude:: plot_binary_svm.py
     :lines: 13-
 
-**Total running time of the example:**  8.78 seconds
-( 0 minutes  8.78 seconds)
+**Total running time of the example:**  8.10 seconds
+( 0 minutes  8.10 seconds)
     

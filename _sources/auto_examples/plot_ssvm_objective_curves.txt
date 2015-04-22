@@ -1,0 +1,31 @@
+
+
+.. _example_plot_ssvm_objective_curves.py:
+
+
+==================================
+SSVM Convergence Curves
+==================================
+Showing the relation between cutting plane and primal objectives,
+as well as the different algorithms.
+We use exact inference here, so the plots are easier to interpret.
+
+As this is a small toy example, it is hard to generalize
+the results indicated in the plot to more realistic settigs.
+
+
+
+.. image:: images/plot_ssvm_objective_curves_001.png
+    :align: center
+
+
+
+
+**Python source code:** :download:`plot_ssvm_objective_curves.py <plot_ssvm_objective_curves.py>`
+
+.. literalinclude:: plot_ssvm_objective_curves.py
+    :lines: 12-
+
+**Total running time of the example:**  29.70 seconds
+( 0 minutes  29.70 seconds)
+    

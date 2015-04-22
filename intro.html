@@ -116,13 +116,10 @@ In structured prediction, both the target domain and the loss are
 more or less arbitrary. This means the goal is not to predict a label or a
 number, but a possibly much more complicated object like a sequence or a
 graph.</p>
-<div class="section" id="what-does-that-mean">
-<h2>What does that mean?<a class="headerlink" href="#what-does-that-mean" title="Permalink to this headline">¶</a></h2>
 <p>In structured prediction, we often deal with finite, but large output spaces Y.
 This situation could be dealt with using classification with a very large
 number of classes. The idea behind structured prediction is that we can do
 better than this, by making use of the structure of the output space.</p>
-</div>
 <div class="section" id="a-very-simplified-example">
 <h2>A (very simplified) example<a class="headerlink" href="#a-very-simplified-example" title="Permalink to this headline">¶</a></h2>
 <p>Let&#8217;s say we want to generate text from spoken sentences. Viewed as a pure
@@ -137,7 +134,7 @@ each word individually. This seems somehow better, since we could learn to get
 most of the word in a sentence right. On the other hand, we lose all context.
 So for example the expression &#8220;car door&#8221; is way more likely than &#8220;car boar&#8221;,
 while predicted individually these could be easily confused.
-For a similar example, see <em class="xref std std-ref">plot_letters.py</em>.</p>
+For a similar example, see <a class="reference internal" href="auto_examples/plot_letters.html#example-plot-letters-py"><em>OCR Letter sequence recognition</em></a>.</p>
 <p>Structured prediction tries to overcome these problems by considering the
 output (here the sentence) as a whole and using a loss function that is
 appropriate for this domain.</p>
@@ -160,21 +157,33 @@ long as we can say how compatible a given output is with the input.</p>
 <p>As I said above, the output set Y is usually a finite but very large set (all
 graphs, all sentences in the English language, all images of a given
 resolution). Finding the argmax in the above equation by exhaustive search is
-therefore out of the question. So we need to restrict ourselves to f such that
+therefore out of the question. We need to restrict ourselves to f such that
 we can do the maximization over y efficiently. The most popular tool for
-building such f is using energy functions or conditional random fields (CRFs)
-[which are basically the same for finding y*].</p>
+building such f is using energy functions or conditional random fields (CRFs).</p>
 <p>There are basically three challenges in doing structured learning and prediction:</p>
 <ul class="simple">
-<li>Choosing a parametric form of f</li>
-<li>solving <img class="math" src="_images/math/e0d7d9cd8e2168df793d78d09c74eeed72127abb.png" alt="\arg\max_y f(x, y)"/></li>
-<li>learning parameters for f to minimize a loss.</li>
+<li>Choosing a parametric form of f.</li>
+<li>Solving <img class="math" src="_images/math/e0d7d9cd8e2168df793d78d09c74eeed72127abb.png" alt="\arg\max_y f(x, y)"/>.</li>
+<li>Learning parameters for f to minimize a loss.</li>
 </ul>
-<p>PyStruct takes <img class="math" src="_images/math/0001d02b63ede2fe3219e05a7cd09c82ae6298b6.png" alt="f"/> to be a linear function of some parameters and a feature function <img class="math" src="_images/math/baa77ef7cab9f490c54f0b6bb60b4e2677ae9454.png" alt="Psi"/>.
-Then the parametric form is given by the <a class="reference internal" href="references.html#models"><em>Models</em></a>.
-The second problem, computation of the argmax, is done via third party inference solvers.
+<p>PyStruct takes <img class="math" src="_images/math/0001d02b63ede2fe3219e05a7cd09c82ae6298b6.png" alt="f"/> to be a linear function of some parameters <tt class="docutils literal"><span class="pre">w</span></tt> and a joint feature function of <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt>:</p>
+<div class="math">
+<p><img src="_images/math/7b079201bf95e8d4675a0a9c95dce44853d60b63.png" alt="f(x, y) = w^T \text{joint\_feature}(x, y)"/></p>
+</div><p>So that the prediction is given by</p>
+<div class="math">
+<p><img src="_images/math/b1e5c1cf6b4f9480fe317d65e83b2a9207859e25.png" alt="y^* = \arg \max_{y \in Y} w^T \text{joint\_feature}(x, y)"/></p>
+</div><p>Here <img class="math" src="_images/math/8659700e6646cd91bc02c32affaa5ec046ee9935.png" alt="w"/> are parameters that are learned from data, and <tt class="docutils literal"><span class="pre">joint_feature</span></tt> is
+defined by the user-specified structure of the model.
+The definition of <tt class="docutils literal"><span class="pre">joint_feature</span></tt> is given by the <a class="reference internal" href="references.html#models"><em>Models</em></a>.
+PyStruct assumes that <tt class="docutils literal"><span class="pre">y</span></tt> is a discrete vector, and most models in PyStruct
+assume a pairwise decomposition of the energy f over entries of <tt class="docutils literal"><span class="pre">y</span></tt>, that is</p>
+<div class="math">
+<p><img src="_images/math/bc87b4911f306f548498800b60e79e793afd9e97.png" alt="f(x, y) = w^T\ \text{joint\_feature}(x, y) = \sum_{i \in V} w_i^T\ \text{joint\_feature}_i(x, y_i) + \sum_{(i, j) \in E} w_{i, j}^T\ \text{joint\_feature}_{i, j}(x, y_i, y_j)"/></p>
+</div><p>Here V are a set of nodes corresponding to the entries of <tt class="docutils literal"><span class="pre">y</span></tt>, and E are a set of edges between the nodes.
+The particular form of <img class="math" src="_images/math/182c2a332b2e6cb9a1abbce1c5916ac2c3515748.png" alt="\text{joint\_feature}_i"/> and <img class="math" src="_images/math/8afd74b8878391de16a0babf27ae89f940fe1b74.png" alt="\text{joint\_feature}_{i, j}"/> depends on the model used. See the <a class="reference internal" href="user_guide.html#user-guide"><em>User Guide</em></a> for details on the models.</p>
+<p>The second problem, computation of the argmax, is done via third party inference solvers.
 The interfaces to these are explained at <a class="reference internal" href="references.html#inference"><em>Inference</em></a>.
-The last part, the learning is actually the core part of PyStruct.
+The last part, the learning of <img class="math" src="_images/math/8659700e6646cd91bc02c32affaa5ec046ee9935.png" alt="w"/> is actually the core part of PyStruct.
 There are several different algorithms implemented, which you can find under <a class="reference internal" href="references.html#learning"><em>Learning</em></a>.</p>
 <p>There have been many publications and book on this topics. For a nice introduction (in the context of computer vision), I recommend
 Sebastian Nowozin, Christoph H. Lampert:</p>

@@ -32,6 +32,6 @@ the high quality solutions found by AD3.
 .. literalinclude:: plot_potts_model.py
     :lines: 18-
 
-**Total running time of the example:**  36.49 seconds
-( 0 minutes  36.49 seconds)
+**Total running time of the example:**  44.36 seconds
+( 0 minutes  44.36 seconds)
     

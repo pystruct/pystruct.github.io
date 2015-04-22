@@ -80,6 +80,6 @@ But it does work as well as Decision Tree Fields ;)
 .. literalinclude:: plot_snakes.py
     :lines: 33-
 
-**Total running time of the example:**  1003.87 seconds
-( 16 minutes  43.87 seconds)
+**Total running time of the example:**  889.86 seconds
+( 14 minutes  49.86 seconds)
     

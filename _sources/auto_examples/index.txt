@@ -114,7 +114,7 @@ Gallery of Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid problem by introducing latent variable interactions. The input data is the sa...">
+    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid problem by introducing latent variable interactions.  The input data is the s...">
 
 .. figure:: ./images/thumb/plot_latent_crf.png
     :target: ./plot_latent_crf.html
@@ -176,10 +176,10 @@ Gallery of Examples
 
     <div class="sphx-glr-thumbContainer" tooltip="As this is a small toy example, it is hard to generalize the results indicated in the plot to m...">
 
-.. figure:: ./images/thumb/plot_svm_objectives.png
-    :target: ./plot_svm_objectives.html
+.. figure:: ./images/thumb/plot_ssvm_objective_curves.png
+    :target: ./plot_ssvm_objective_curves.html
 
-    :ref:`example_plot_svm_objectives.py`
+    :ref:`example_plot_ssvm_objective_curves.py`
 
 .. raw:: html
 
@@ -189,7 +189,7 @@ Gallery of Examples
 .. toctree::
    :hidden:
 
-   ./plot_svm_objectives
+   ./plot_ssvm_objective_curves
 
 
 .. raw:: html

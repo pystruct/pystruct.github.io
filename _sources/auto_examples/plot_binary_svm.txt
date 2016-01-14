@@ -26,10 +26,10 @@ We don't really have a chance to beat LibSVM but that's ok ;)
 
   ::
 
-    Score with pystruct n-slack ssvm: 0.922222 (took 0.820029 seconds)
-    Score with pystruct 1-slack ssvm: 0.908889 (took 0.204286 seconds)
-    Score with pystruct subgradient ssvm: 0.857778 (took 9.320211 seconds)
-    Score with sklearn and libsvm: 0.920000 (took 0.113994 seconds)
+    Score with pystruct n-slack ssvm: 0.922222 (took 1.127200 seconds)
+    Score with pystruct 1-slack ssvm: 0.908889 (took 0.294215 seconds)
+    Score with pystruct subgradient ssvm: 0.857778 (took 9.471925 seconds)
+    Score with sklearn and libsvm: 0.920000 (took 0.116014 seconds)
 
 
 
@@ -124,7 +124,7 @@ We don't really have a chance to beat LibSVM but that's ok ;)
     plt.show()
 
 **Total running time of the script:**
-(0 minutes 10.725 seconds)
+(0 minutes 11.285 seconds)
 
 
 

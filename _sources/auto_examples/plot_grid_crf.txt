@@ -94,7 +94,7 @@ solved without pairwise interactions.
     plt.show()
 
 **Total running time of the script:**
-(0 minutes 13.162 seconds)
+(0 minutes 13.651 seconds)
 
 
 

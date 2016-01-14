@@ -131,7 +131,7 @@ variables.
     plt.show()
 
 **Total running time of the script:**
-(1 minutes 55.530 seconds)
+(2 minutes 7.478 seconds)
 
 
 

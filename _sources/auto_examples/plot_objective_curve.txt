@@ -75,7 +75,7 @@ See plot_exact_learning.py for a way to deal with this.
     plot_learning(clf, time=False)
 
 **Total running time of the script:**
-(0 minutes 8.457 seconds)
+(0 minutes 8.193 seconds)
 
 
 

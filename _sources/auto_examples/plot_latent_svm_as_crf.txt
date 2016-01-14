@@ -113,7 +113,7 @@ the problem as a binary one, discriminating between even and odd digits.
     plt.show()
 
 **Total running time of the script:**
-(0 minutes 18.182 seconds)
+(0 minutes 15.597 seconds)
 
 
 

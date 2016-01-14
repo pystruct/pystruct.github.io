@@ -83,7 +83,7 @@ cross) in the ground truth.
     plt.show()
 
 **Total running time of the script:**
-(0 minutes 3.467 seconds)
+(0 minutes 4.361 seconds)
 
 
 

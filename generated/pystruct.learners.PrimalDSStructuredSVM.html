@@ -6,20 +6,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pystruct.learners.PrimalDSStructuredSVM &mdash; pystruct 0.1 documentation</title>
+    <title>pystruct.learners.PrimalDSStructuredSVM &mdash; pystruct 0.2.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1',
+        VERSION:     '0.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -30,9 +30,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
+    <link rel="top" title="pystruct 0.2.4 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.learners.FrankWolfeSSVM" href="pystruct.learners.FrankWolfeSSVM.html" />
     <link rel="prev" title="pystruct.learners.SubgradientLatentSSVM" href="pystruct.learners.SubgradientLatentSSVM.html" />
@@ -42,7 +42,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           PyStruct</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -107,7 +107,7 @@
 <h1>pystruct.learners.PrimalDSStructuredSVM<a class="headerlink" href="#pystruct-learners-primaldsstructuredsvm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.PrimalDSStructuredSVM">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">PrimalDSStructuredSVM</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pystruct.learners.</code><code class="descname">PrimalDSStructuredSVM</code><span class="sig-paren">(</span><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>logger=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pystruct/learners/downhill_simplex_ssvm.html#PrimalDSStructuredSVM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses downhill simplex for optimizing an unconstraint primal.</p>
 <p>This is basically a sanity check on all other implementations,
 as this is easier to check for correctness.</p>
@@ -118,31 +118,31 @@ as this is easier to check for correctness.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt>(X,&nbsp;Y)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code>(X,&nbsp;Y)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.get_params" title="pystruct.learners.PrimalDSStructuredSVM.get_params"><tt class="xref py py-obj docutils literal"><span class="pre">get_params</span></tt></a>([deep])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.get_params" title="pystruct.learners.PrimalDSStructuredSVM.get_params"><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code></a>([deep])</td>
 <td>Get parameters for this estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.predict" title="pystruct.learners.PrimalDSStructuredSVM.predict"><tt class="xref py py-obj docutils literal"><span class="pre">predict</span></tt></a>(X)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.predict" title="pystruct.learners.PrimalDSStructuredSVM.predict"><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></a>(X)</td>
 <td>Predict output on examples in X.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.score" title="pystruct.learners.PrimalDSStructuredSVM.score"><tt class="xref py py-obj docutils literal"><span class="pre">score</span></tt></a>(X,&nbsp;Y)</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.score" title="pystruct.learners.PrimalDSStructuredSVM.score"><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></a>(X,&nbsp;Y)</td>
 <td>Compute score as 1 - loss over whole data set.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.set_params" title="pystruct.learners.PrimalDSStructuredSVM.set_params"><tt class="xref py py-obj docutils literal"><span class="pre">set_params</span></tt></a>(**params)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.PrimalDSStructuredSVM.set_params" title="pystruct.learners.PrimalDSStructuredSVM.set_params"><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></a>(**params)</td>
 <td>Set the parameters of this estimator.</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="pystruct.learners.PrimalDSStructuredSVM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>model</em>, <em>max_iter=100</em>, <em>C=1.0</em>, <em>verbose=0</em>, <em>n_jobs=1</em>, <em>show_loss_every=0</em>, <em>logger=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="pystruct.learners.PrimalDSStructuredSVM.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.get_params" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_params</code><span class="sig-paren">(</span><em>deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -167,7 +167,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.PrimalDSStructuredSVM.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict output on examples in X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -191,7 +191,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.PrimalDSStructuredSVM.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>Y</em><big>)</big><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.score" title="Permalink to this definition">¶</a></dt>
+<code class="descname">score</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute score as 1 - loss over whole data set.</p>
 <p>Returns the average accuracy (in terms of model.loss)
 over X and Y.</p>
@@ -221,11 +221,11 @@ over X and Y.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.PrimalDSStructuredSVM.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.set_params" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_params</code><span class="sig-paren">(</span><em>**params</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.PrimalDSStructuredSVM.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
-<tt class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></tt> so that it&#8217;s possible to update each
+<code class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it&#8217;s possible to update each
 component of a nested object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -261,7 +261,7 @@ component of a nested object.</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.<br/>
     </p>
   </div>
 </footer>

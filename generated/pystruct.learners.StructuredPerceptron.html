@@ -6,20 +6,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pystruct.learners.StructuredPerceptron &mdash; pystruct 0.1 documentation</title>
+    <title>pystruct.learners.StructuredPerceptron &mdash; pystruct 0.2.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1',
+        VERSION:     '0.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -30,9 +30,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
+    <link rel="top" title="pystruct 0.2.4 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.learners.LatentSSVM" href="pystruct.learners.LatentSSVM.html" />
     <link rel="prev" title="pystruct.learners.SubgradientSSVM" href="pystruct.learners.SubgradientSSVM.html" />
@@ -42,7 +42,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           PyStruct</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -107,12 +107,12 @@
 <h1>pystruct.learners.StructuredPerceptron<a class="headerlink" href="#pystruct-learners-structuredperceptron" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pystruct.learners.StructuredPerceptron">
-<em class="property">class </em><tt class="descclassname">pystruct.learners.</tt><tt class="descname">StructuredPerceptron</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>average=False</em>, <em>n_jobs=1</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pystruct.learners.</code><code class="descname">StructuredPerceptron</code><span class="sig-paren">(</span><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>average=False</em>, <em>n_jobs=1</em>, <em>logger=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pystruct/learners/structured_perceptron.html#StructuredPerceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pystruct.learners.StructuredPerceptron" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structured Perceptron training.</p>
 <blockquote>
 <div><p>Implements a simple structured perceptron with optional averaging.
 The structured perceptron approximately minimizes the zero-one loss,
-therefore the learning does not take <tt class="docutils literal"><span class="pre">model.loss</span></tt> into account. It is
+therefore the learning does not take <code class="docutils literal"><span class="pre">model.loss</span></code> into account. It is
 just shown to illustrate the learning progress.</p>
 <p>As the perceptron learning is not margin-based, the model does not
 need to provide loss_augmented_inference.</p>
@@ -122,7 +122,7 @@ need to provide loss_augmented_inference.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>model</strong> : StructuredModel</p>
-<blockquote class="last">
+<blockquote>
 <div><blockquote>
 <div><p>Object containing model structure. Has to implement
 <cite>loss</cite>, <cite>inference</cite>.</p>
@@ -140,43 +140,35 @@ parameters.</p>
 </dd>
 <dt>decay_exponent <span class="classifier-delimiter">:</span> <span class="classifier">float, default=0</span></dt>
 <dd><p class="first last">Exponent for decaying learning rate. Effective learning rate is
-<tt class="docutils literal"><span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.</p>
+<code class="docutils literal"><span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></code>. Zero means no decay.</p>
 </dd>
 <dt>decay_t0 <span class="classifier-delimiter">:</span> <span class="classifier">float, default=10</span></dt>
 <dd><p class="first last">Offset for decaying learning rate. Effective learning rate is
-<tt class="docutils literal"><span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></tt>. Zero means no decay.</p>
+<code class="docutils literal"><span class="pre">(t0</span> <span class="pre">+</span> <span class="pre">t)**</span> <span class="pre">decay_exponent</span></code>. Zero means no decay.</p>
 </dd>
 <dt>average <span class="classifier-delimiter">:</span> <span class="classifier">bool or int, default=False</span></dt>
 <dd><p class="first last">Whether to average over all weight vectors obtained during training
 or simply keeping the last one.
-<tt class="docutils literal"><span class="pre">average=False</span></tt> does not perform any averaging.
-<tt class="docutils literal"><span class="pre">average=True</span></tt> averages over all epochs.
-<tt class="docutils literal"><span class="pre">average=k</span></tt> with <tt class="docutils literal"><span class="pre">k</span> <span class="pre">&gt;=</span> <span class="pre">0</span></tt> waits <tt class="docutils literal"><span class="pre">k</span></tt> epochs before averaging.
-<tt class="docutils literal"><span class="pre">average=k</span></tt> with <tt class="docutils literal"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">0</span></tt> averages over the last <tt class="docutils literal"><span class="pre">k</span></tt> epochs.  So
-far <tt class="docutils literal"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">-1</span></tt> is the only negative value supported.</p>
+<code class="docutils literal"><span class="pre">average=False</span></code> does not perform any averaging.
+<code class="docutils literal"><span class="pre">average=True</span></code> averages over all epochs.
+<code class="docutils literal"><span class="pre">average=k</span></code> with <code class="docutils literal"><span class="pre">k</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code> waits <code class="docutils literal"><span class="pre">k</span></code> epochs before averaging.
+<code class="docutils literal"><span class="pre">average=k</span></code> with <code class="docutils literal"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> averages over the last <code class="docutils literal"><span class="pre">k</span></code> epochs.  So
+far <code class="docutils literal"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">-1</span></code> is the only negative value supported.</p>
 </dd>
 </dl>
 <p>logger : logger object.</p>
 </div></blockquote>
 </td>
 </tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="13%" />
-<col width="38%" />
-<col width="49%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>w</td>
-<td>nd-array, shape=(model.size_joint_feature,)</td>
-<td>The learned weights of the SVM.</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">loss_curve_</span></tt></td>
-<td>list of float</td>
-<td>List of loss values after each pass thorugh the dataset.</td>
+<tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><p class="first"><strong>w</strong> : nd-array, shape=(model.size_joint_feature,)</p>
+<blockquote>
+<div><p>The learned weights of the SVM.</p>
+</div></blockquote>
+<p><strong>``loss_curve_``</strong> : list of float</p>
+<blockquote class="last">
+<div><p>List of loss values after each pass thorugh the dataset.</p>
+</div></blockquote>
+</td>
 </tr>
 </tbody>
 </table>
@@ -187,31 +179,31 @@ far <tt class="docutils literal"><span class="pre">k</span> <span class="pre">=<
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.fit" title="pystruct.learners.StructuredPerceptron.fit"><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt></a>(X,&nbsp;Y[,&nbsp;initialize])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.fit" title="pystruct.learners.StructuredPerceptron.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X,&nbsp;Y[,&nbsp;initialize])</td>
 <td>Learn parameters using structured perceptron.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.get_params" title="pystruct.learners.StructuredPerceptron.get_params"><tt class="xref py py-obj docutils literal"><span class="pre">get_params</span></tt></a>([deep])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.get_params" title="pystruct.learners.StructuredPerceptron.get_params"><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code></a>([deep])</td>
 <td>Get parameters for this estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.predict" title="pystruct.learners.StructuredPerceptron.predict"><tt class="xref py py-obj docutils literal"><span class="pre">predict</span></tt></a>(X)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.predict" title="pystruct.learners.StructuredPerceptron.predict"><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></a>(X)</td>
 <td>Predict output on examples in X.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.score" title="pystruct.learners.StructuredPerceptron.score"><tt class="xref py py-obj docutils literal"><span class="pre">score</span></tt></a>(X,&nbsp;Y)</td>
+<tr class="row-even"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.score" title="pystruct.learners.StructuredPerceptron.score"><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></a>(X,&nbsp;Y)</td>
 <td>Compute score as 1 - loss over whole data set.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.set_params" title="pystruct.learners.StructuredPerceptron.set_params"><tt class="xref py py-obj docutils literal"><span class="pre">set_params</span></tt></a>(**params)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pystruct.learners.StructuredPerceptron.set_params" title="pystruct.learners.StructuredPerceptron.set_params"><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></a>(**params)</td>
 <td>Set the parameters of this estimator.</td>
 </tr>
 </tbody>
 </table>
-<dl class="staticmethod">
+<dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.__init__">
-<em class="property">static </em><tt class="descname">__init__</tt><big>(</big><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>average=False</em>, <em>n_jobs=1</em>, <em>logger=None</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>model</em>, <em>max_iter=100</em>, <em>verbose=0</em>, <em>batch=False</em>, <em>decay_exponent=0</em>, <em>decay_t0=10</em>, <em>average=False</em>, <em>n_jobs=1</em>, <em>logger=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pystruct/learners/structured_perceptron.html#StructuredPerceptron.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.fit">
-<em class="property">static </em><tt class="descname">fit</tt><big>(</big><em>X</em>, <em>Y</em>, <em>initialize=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>initialize=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pystruct/learners/structured_perceptron.html#StructuredPerceptron.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn parameters using structured perceptron.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -240,7 +232,7 @@ Leave this true except if you really know what you are doing.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.get_params" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_params</code><span class="sig-paren">(</span><em>deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -265,7 +257,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict output on examples in X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -289,7 +281,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>Y</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.score" title="Permalink to this definition">¶</a></dt>
+<code class="descname">score</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute score as 1 - loss over whole data set.</p>
 <p>Returns the average accuracy (in terms of model.loss)
 over X and Y.</p>
@@ -319,11 +311,11 @@ over X and Y.</p>
 
 <dl class="method">
 <dt id="pystruct.learners.StructuredPerceptron.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.set_params" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_params</code><span class="sig-paren">(</span><em>**params</em><span class="sig-paren">)</span><a class="headerlink" href="#pystruct.learners.StructuredPerceptron.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
-<tt class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></tt> so that it&#8217;s possible to update each
+<code class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it&#8217;s possible to update each
 component of a nested object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -359,7 +351,7 @@ component of a nested object.</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.<br/>
     </p>
   </div>
 </footer>

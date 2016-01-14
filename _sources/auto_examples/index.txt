@@ -1,125 +1,13 @@
 
-
-.. _examples-index:
-
-Gallery of Examples
-===================
-
-
-
-
-
-
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="This example illustrates the use of ``plot_learning.py``, which can be used to analyze the lear...">
-
-.. figure:: ./images/thumb/plot_objective_curve.png
-    :target: ./plot_objective_curve.html
-
-    :ref:`example_plot_objective_curve.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_objective_curve
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="This example illustrates the role of approximate inference and caching in exact learning of a 1...">
-
-.. figure:: ./images/thumb/plot_exact_learning.png
-    :target: ./plot_exact_learning.html
-
-    :ref:`example_plot_exact_learning.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_exact_learning
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="A CRF with one node is the same as a multiclass SVM. Evaluation on iris dataset (really easy). ">
-
-.. figure:: ./images/thumb/svm_as_crf.png
-    :target: ./svm_as_crf.html
-
-    :ref:`example_svm_as_crf.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./svm_as_crf
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="Simple comparison of inference times on a Potts model (smoothing) on a 2d grid of random noise ...">
-
-.. figure:: ./images/thumb/plot_potts_model.png
-    :target: ./plot_potts_model.html
-
-    :ref:`example_plot_potts_model.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_potts_model
-
-
 .. raw:: html
 
     <div class="sphx-glr-thumbContainer" tooltip="The data consists of superpixels, unary potentials, and the connectivity structure of the super...">
 
-.. figure:: ./images/thumb/image_segmentation.png
-    :target: ./image_segmentation.html
+.. only:: html
 
-    :ref:`example_image_segmentation.py`
+    .. figure:: /auto_examples/images/thumb/sphx_glr_image_segmentation_thumb.png
 
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./image_segmentation
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid problem by introducing latent variable interactions.  The input data is the s...">
-
-.. figure:: ./images/thumb/plot_latent_crf.png
-    :target: ./plot_latent_crf.html
-
-    :ref:`example_plot_latent_crf.py`
+        :ref:`sphx_glr_auto_examples_image_segmentation.py`
 
 .. raw:: html
 
@@ -129,157 +17,17 @@ Gallery of Examples
 .. toctree::
    :hidden:
 
-   ./plot_latent_crf
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="Simple pairwise model with arbitrary interactions on a 4-connected grid. There are different pa...">
-
-.. figure:: ./images/thumb/plot_directional_grid.png
-    :target: ./plot_directional_grid.html
-
-    :ref:`example_plot_directional_grid.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_directional_grid
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="The center state is not encoded in the input, so that the task can not be solved without pairwi...">
-
-.. figure:: ./images/thumb/plot_grid_crf.png
-    :target: ./plot_grid_crf.html
-
-    :ref:`example_plot_grid_crf.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_grid_crf
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="As this is a small toy example, it is hard to generalize the results indicated in the plot to m...">
-
-.. figure:: ./images/thumb/plot_ssvm_objective_curves.png
-    :target: ./plot_ssvm_objective_curves.html
-
-    :ref:`example_plot_ssvm_objective_curves.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_ssvm_objective_curves
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="Each example consists of a handwritten word, that was presegmented into characters.  Each chara...">
-
-.. figure:: ./images/thumb/plot_letters.png
-    :target: ./plot_letters.html
-
-    :ref:`example_plot_letters.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_letters
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="This example uses the scikit-learn digit classification dataset, but poses the problem as a bin...">
-
-.. figure:: ./images/thumb/plot_latent_svm_as_crf.png
-    :target: ./plot_latent_svm_as_crf.html
-
-    :ref:`example_plot_latent_svm_as_crf.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_latent_svm_as_crf
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="This method hab been investigated in Finley, Joachims 2008 "Training Structural SVMs when Exact...">
-
-.. figure:: ./images/thumb/multi_label.png
-    :target: ./multi_label.html
-
-    :ref:`example_multi_label.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./multi_label
-
+   /auto_examples/image_segmentation
 
 .. raw:: html
 
     <div class="sphx-glr-thumbContainer" tooltip="Comparing different solvers on a standard multi-class SVM problem. ">
 
-.. figure:: ./images/thumb/multi_class_svm.png
-    :target: ./multi_class_svm.html
+.. only:: html
 
-    :ref:`example_multi_class_svm.py`
+    .. figure:: /auto_examples/images/thumb/sphx_glr_multi_class_svm_thumb.png
 
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./multi_class_svm
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid toy problem by introducing an additional layer of latent variables. ">
-
-.. figure:: ./images/thumb/plot_latent_node.png
-    :target: ./plot_latent_node.html
-
-    :ref:`example_plot_latent_node.py`
+        :ref:`sphx_glr_auto_examples_multi_class_svm.py`
 
 .. raw:: html
 
@@ -289,37 +37,17 @@ Gallery of Examples
 .. toctree::
    :hidden:
 
-   ./plot_latent_node
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="There are many parameters to tune and we can make 1-slack as good as the rest for the price of ...">
-
-.. figure:: ./images/thumb/plot_binary_svm.png
-    :target: ./plot_binary_svm.html
-
-    :ref:`example_plot_binary_svm.py`
+   /auto_examples/multi_class_svm
 
 .. raw:: html
 
-    </div>
+    <div class="sphx-glr-thumbContainer" tooltip="This method has been investigated in Finley, Joachims 2008 "Training Structural SVMs when Exact...">
 
+.. only:: html
 
-.. toctree::
-   :hidden:
+    .. figure:: /auto_examples/images/thumb/sphx_glr_multi_label_thumb.png
 
-   ./plot_binary_svm
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbContainer" tooltip="This dataset is specifically designed to require the pairwise interaction terms to be condition...">
-
-.. figure:: ./images/thumb/plot_snakes.png
-    :target: ./plot_snakes.html
-
-    :ref:`example_plot_snakes.py`
+        :ref:`sphx_glr_auto_examples_multi_label.py`
 
 .. raw:: html
 
@@ -329,17 +57,17 @@ Gallery of Examples
 .. toctree::
    :hidden:
 
-   ./plot_snakes
-
+   /auto_examples/multi_label
 
 .. raw:: html
 
     <div class="sphx-glr-thumbContainer" tooltip="This comparison is only meaningful in the sense that both libraries use general structured pred...">
 
-.. figure:: ./images/thumb/multiclass_comparision_svm_struct.png
-    :target: ./multiclass_comparision_svm_struct.html
+.. only:: html
 
-    :ref:`example_multiclass_comparision_svm_struct.py`
+    .. figure:: /auto_examples/images/thumb/sphx_glr_multiclass_comparision_svm_struct_thumb.png
+
+        :ref:`sphx_glr_auto_examples_multiclass_comparision_svm_struct.py`
 
 .. raw:: html
 
@@ -349,10 +77,268 @@ Gallery of Examples
 .. toctree::
    :hidden:
 
-   ./multiclass_comparision_svm_struct
-
+   /auto_examples/multiclass_comparision_svm_struct
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbContainer" tooltip="There are many parameters to tune and we can make 1-slack as good as the rest for the price of ...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_binary_svm_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_binary_svm.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_binary_svm
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="Simple pairwise model with arbitrary interactions on a 4-connected grid. There are different pa...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_directional_grid_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_directional_grid.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_directional_grid
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="This example illustrates the role of approximate inference and caching in exact learning of a 1...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_exact_learning_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_exact_learning.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_exact_learning
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="The center state is not encoded in the input, so that the task can not be solved without pairwi...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_grid_crf_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_grid_crf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_grid_crf
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid problem by introducing latent variable interactions.  The input data is the s...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_latent_crf_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_latent_crf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_latent_crf
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="Solving a 2d grid toy problem by introducing an additional layer of latent variables. ">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_latent_node_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_latent_node.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_latent_node
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="This example uses the scikit-learn digit classification dataset, but poses the problem as a bin...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_latent_svm_as_crf_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_latent_svm_as_crf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_latent_svm_as_crf
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="Each example consists of a handwritten word, that was presegmented into characters.  Each chara...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_letters_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_letters.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_letters
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="This example illustrates the use of ``plot_learning.py``, which can be used to analyze the lear...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_objective_curve_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_objective_curve.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_objective_curve
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="Simple comparison of inference times on a Potts model (smoothing) on a 2d grid of random noise ...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_potts_model_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_potts_model.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_potts_model
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="This dataset is specifically designed to require the pairwise interaction terms to be condition...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_snakes_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_snakes.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_snakes
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="As this is a small toy example, it is hard to generalize the results indicated in the plot to m...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_ssvm_objective_curves_thumb.png
+
+        :ref:`sphx_glr_auto_examples_plot_ssvm_objective_curves.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_ssvm_objective_curves
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbContainer" tooltip="A CRF with one node is the same as a multiclass SVM. Evaluation on iris dataset (really easy). ">
+
+.. only:: html
+
+    .. figure:: /auto_examples/images/thumb/sphx_glr_svm_as_crf_thumb.png
+
+        :ref:`sphx_glr_auto_examples_svm_as_crf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/svm_as_crf
+.. raw:: html
+
     <div style='clear:both'></div>
-    
+

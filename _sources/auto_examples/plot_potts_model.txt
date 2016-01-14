@@ -1,6 +1,6 @@
 
 
-.. _example_plot_potts_model.py:
+.. _sphx_glr_auto_examples_plot_potts_model.py:
 
 
 =================================================
@@ -21,17 +21,50 @@ the high quality solutions found by AD3.
 
 
 
-.. image:: images/plot_potts_model_001.png
+.. image:: /auto_examples/images/sphx_glr_plot_potts_model_001.png
     :align: center
 
 
 
 
-**Python source code:** :download:`plot_potts_model.py <plot_potts_model.py>`
 
-.. literalinclude:: plot_potts_model.py
-    :lines: 18-
+.. code-block:: python
 
-**Total running time of the example:**  44.36 seconds
-( 0 minutes  44.36 seconds)
-    
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    from time import time
+
+    from pystruct.inference import inference_dispatch, compute_energy
+    from pystruct.utils import make_grid_edges
+
+    size = 20
+    n_states = 5
+
+    rnd = np.random.RandomState(2)
+    x = rnd.normal(size=(size, size, n_states))
+    pairwise = np.eye(n_states)
+    edges = make_grid_edges(x)
+    unaries = x.reshape(-1, n_states)
+
+    fig, ax = plt.subplots(1, 5, figsize=(20, 5))
+    for a, inference_method in zip(ax, ['ad3', 'qpbo', 'max-product',
+                                        ('max-product', {'max_iter': 10}), 'lp']):
+        start = time()
+        y = inference_dispatch(unaries, pairwise, edges,
+                               inference_method=inference_method)
+        took = time() - start
+        a.matshow(y.reshape(size, size))
+        energy = compute_energy(unaries, pairwise, edges, y)
+        a.set_title(str(inference_method) + "\n time: %.2f energy %.2f" % (took, energy))
+        a.set_xticks(())
+        a.set_yticks(())
+    plt.show()
+
+**Total running time of the script:**
+(3 minutes 54.279 seconds)
+
+
+
+**Download Python source code:** :download:`plot_potts_model.py <plot_potts_model.py>`

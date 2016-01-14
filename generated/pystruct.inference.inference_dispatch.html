@@ -6,20 +6,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pystruct.inference.inference_dispatch &mdash; pystruct 0.1 documentation</title>
+    <title>pystruct.inference.inference_dispatch &mdash; pystruct 0.2.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1',
+        VERSION:     '0.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -30,18 +30,19 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
+    <link rel="top" title="pystruct 0.2.4 documentation" href="../index.html" />
     <link rel="up" title="Learning" href="../references.html" />
     <link rel="next" title="pystruct.inference.inference_qpbo" href="pystruct.inference.inference_qpbo.html" />
+    <link rel="prev" title="pystruct.models.DirectionalGridCRF" href="pystruct.models.DirectionalGridCRF.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -54,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           PyStruct</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -106,14 +107,14 @@
 <h1>pystruct.inference.inference_dispatch<a class="headerlink" href="#pystruct-inference-inference-dispatch" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pystruct.inference.inference_dispatch">
-<tt class="descclassname">pystruct.inference.</tt><tt class="descname">inference_dispatch</tt><big>(</big><em>unary_potentials</em>, <em>pairwise_potentials</em>, <em>edges</em>, <em>inference_method</em>, <em>return_energy=False</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pystruct.inference.inference_dispatch" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pystruct.inference.</code><code class="descname">inference_dispatch</code><span class="sig-paren">(</span><em>unary_potentials</em>, <em>pairwise_potentials</em>, <em>edges</em>, <em>inference_method</em>, <em>return_energy=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pystruct/inference/inference_methods.html#inference_dispatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pystruct.inference.inference_dispatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the maximizing assignment of a pairwise discrete energy function.</p>
 <p>Wrapper function to dispatch between inference method by string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array, shape (n_nodes, n_nodes)</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>unary_potentials</strong> : nd-array, shape (n_nodes, n_states)</p>
 <blockquote>
 <div><p>Unary potentials of energy function.</p>
 </div></blockquote>
@@ -145,7 +146,7 @@ the edge matters.</p>
 </dl>
 <p>It is also possible to pass a tuple (string, dict) where the dict
 contains additional keyword arguments, like
-<tt class="docutils literal"><span class="pre">('ad3',</span> <span class="pre">{'branch_and_bound':</span> <span class="pre">True})</span></tt>.</p>
+<code class="docutils literal"><span class="pre">('ad3',</span> <span class="pre">{'branch_and_bound':</span> <span class="pre">True})</span></code>.</p>
 </div></blockquote>
 <p><strong>relaxed</strong> : bool (default=False)</p>
 <blockquote>
@@ -195,7 +196,7 @@ from the LP relaxation.</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.<br/>
     </p>
   </div>
 </footer>

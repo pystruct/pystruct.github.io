@@ -6,20 +6,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Crammer-Singer Multi-Class SVM &mdash; pystruct 0.1 documentation</title>
+    <title>Crammer-Singer Multi-Class SVM &mdash; pystruct 0.2.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1',
+        VERSION:     '0.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -30,19 +30,19 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
-    <link rel="up" title="Gallery of Examples" href="index.html" />
-    <link rel="next" title="Latent Variable Hierarchical CRF" href="plot_latent_node.html" />
-    <link rel="prev" title="Multi-label classification" href="multi_label.html" />
+    <link rel="top" title="pystruct 0.2.4 documentation" href="../index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="next" title="Multi-label classification" href="multi_label.html" />
+    <link rel="prev" title="Semantic Image Segmentation on Pascal VOC" href="image_segmentation.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           PyStruct</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,43 +104,42 @@
 <div class="container content-container">
   
   <div class="section" id="crammer-singer-multi-class-svm">
-<span id="example-multi-class-svm-py"></span><h1>Crammer-Singer Multi-Class SVM<a class="headerlink" href="#crammer-singer-multi-class-svm" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-multi-class-svm-py"></span><h1>Crammer-Singer Multi-Class SVM<a class="headerlink" href="#crammer-singer-multi-class-svm" title="Permalink to this headline">¶</a></h1>
 <p>Comparing different solvers on a standard multi-class SVM problem.</p>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/multi_class_svm.py"><tt class="xref download docutils literal"><span class="pre">multi_class_svm.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="c">#from sklearn.datasets import fetch_mldata</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html#sklearn.datasets.load_digits"><span class="n">load_digits</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split"><span class="n">train_test_split</span></a>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC"><span class="n">LinearSVC</span></a>
 
-<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">MultiClassClf</span>
-<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="p">(</span><span class="n">NSlackSSVM</span><span class="p">,</span> <span class="n">OneSlackSSVM</span><span class="p">,</span>
-                               <span class="n">SubgradientSSVM</span><span class="p">,</span> <span class="n">FrankWolfeSSVM</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.MultiClassClf.html#pystruct.models.MultiClassClf"><span class="n">MultiClassClf</span></a>
+<span class="kn">from</span> <span class="nn">pystruct.learners</span> <span class="kn">import</span> <span class="p">(</span><a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">,</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">,</span>
+                               <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">SubgradientSSVM</span></a><span class="p">,</span> <a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">FrankWolfeSSVM</span></a><span class="p">)</span>
 
 <span class="c"># do a binary digit classification</span>
 <span class="c">#digits = fetch_mldata(&quot;USPS&quot;)</span>
-<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="n">digits</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html#sklearn.datasets.load_digits"><span class="n">load_digits</span></a><span class="p">()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
 <span class="c">#X = X / 255.</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span> <span class="o">/</span> <span class="mf">16.</span>
 <span class="c">#y = y.astype(np.int) - 1</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split"><span class="n">train_test_split</span></a><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c"># we add a constant 1 feature for the bias</span>
-<span class="n">X_train_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
-<span class="n">X_test_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
+<span class="n">X_train_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.ones.html#numpy.ones"><span class="n">np</span><span class="o">.</span><span class="n">ones</span></a><span class="p">((</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
+<span class="n">X_test_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_test</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.ones.html#numpy.ones"><span class="n">np</span><span class="o">.</span><span class="n">ones</span></a><span class="p">((</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">MultiClassClf</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="n">X_train_bias</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">n_slack_svm</span> <span class="o">=</span> <span class="n">NSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">check_constraints</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="n">model</span> <span class="o">=</span> <a href="../generated/pystruct.models.MultiClassClf.html#pystruct.models.MultiClassClf"><span class="n">MultiClassClf</span></a><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="n">X_train_bias</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">n_slack_svm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.NSlackSSVM.html#pystruct.learners.NSlackSSVM"><span class="n">NSlackSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">check_constraints</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
                          <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
-<span class="n">one_slack_svm</span> <span class="o">=</span> <span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">10</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">001</span><span class="p">)</span>
-<span class="n">subgradient_svm</span> <span class="o">=</span> <span class="n">SubgradientSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">,</span>
+<span class="n">one_slack_svm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.OneSlackSSVM.html#pystruct.learners.OneSlackSSVM"><span class="n">OneSlackSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">10</span><span class="p">,</span> <span class="n">tol</span><span class="o">=.</span><span class="mo">001</span><span class="p">)</span>
+<span class="n">subgradient_svm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.SubgradientSSVM.html#pystruct.learners.SubgradientSSVM"><span class="n">SubgradientSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">,</span>
                                   <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">fw_bc_svm</span> <span class="o">=</span> <span class="n">FrankWolfeSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">fw_batch_svm</span> <span class="o">=</span> <span class="n">FrankWolfeSSVM</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">batch_mode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">fw_bc_svm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">FrankWolfeSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">fw_batch_svm</span> <span class="o">=</span> <a href="../generated/pystruct.learners.FrankWolfeSSVM.html#pystruct.learners.FrankWolfeSSVM"><span class="n">FrankWolfeSSVM</span></a><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">batch_mode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c"># n-slack cutting plane ssvm</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
@@ -148,7 +147,7 @@
 <span class="n">time_n_slack_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">n_slack_svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct n-slack ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
-      <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_n_slack_svm</span><span class="p">))</span>
+      <span class="o">%</span> <span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_n_slack_svm</span><span class="p">))</span>
 
 <span class="c">## 1-slack cutting plane ssvm</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
@@ -156,7 +155,7 @@
 <span class="n">time_one_slack_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">one_slack_svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct 1-slack ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
-      <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_one_slack_svm</span><span class="p">))</span>
+      <span class="o">%</span> <span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_one_slack_svm</span><span class="p">))</span>
 
 <span class="c">#online subgradient ssvm</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
@@ -165,11 +164,11 @@
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">subgradient_svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct subgradient ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span>
-      <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_subgradient_svm</span><span class="p">))</span>
+      <span class="o">%</span> <span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_subgradient_svm</span><span class="p">))</span>
 
 <span class="c"># the standard one-vs-rest multi-class would probably be as good and faster</span>
 <span class="c"># but solving a different model</span>
-<span class="n">libsvm</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s">&#39;crammer_singer&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">libsvm</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC"><span class="n">LinearSVC</span></a><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s">&#39;crammer_singer&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
 <span class="n">libsvm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">time_libsvm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
@@ -182,16 +181,19 @@
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">fw_bc_svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">))</span>
 <span class="n">time_fw_bc_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct frankwolfe block coordinate ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span> <span class="o">%</span>
-      <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_fw_bc_svm</span><span class="p">))</span>
+      <span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_fw_bc_svm</span><span class="p">))</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
 <span class="n">fw_batch_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bias</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">fw_batch_svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_bias</span><span class="p">))</span>
 <span class="n">time_fw_batch_svm</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Score with pystruct frankwolfe batch ssvm: </span><span class="si">%f</span><span class="s"> (took </span><span class="si">%f</span><span class="s"> seconds)&quot;</span> <span class="o">%</span>
-      <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_fw_batch_svm</span><span class="p">))</span>
+      <span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">time_fw_batch_svm</span><span class="p">))</span>
 </pre></div>
 </div>
+<p><strong>Total running time of the script:</strong>
+(0 minutes 0.000 seconds)</p>
+<p><strong>Download Python source code:</strong> <a class="reference download internal" href="../_downloads/multi_class_svm.py"><code class="xref download docutils literal"><span class="pre">multi_class_svm.py</span></code></a></p>
 </div>
 
 
@@ -214,7 +216,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.<br/>
     </p>
   </div>
 </footer>

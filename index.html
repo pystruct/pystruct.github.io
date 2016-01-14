@@ -6,20 +6,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>PyStruct - Structured Learning in Python &mdash; pystruct 0.1 documentation</title>
+    <title>PyStruct - Structured Learning in Python &mdash; pystruct 0.2.4 documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1',
+        VERSION:     '0.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -30,17 +30,17 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1 documentation" href="#" />
-    <link rel="next" title="Gallery of Examples" href="auto_examples/index.html" />
+    <link rel="top" title="pystruct 0.2.4 documentation" href="#" />
+    <link rel="next" title="&lt;no title&gt;" href="auto_examples/index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -53,7 +53,7 @@
         </button>
         <a class="navbar-brand" href="#">
           PyStruct</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -110,16 +110,16 @@ which are often used loosely or differently in different communities.
 Common names are conditional random fields (CRFs), maximum-margin Markov
 random fields (M3N) or structural support vector machines.</p>
 <p>If you are new to structured learning,
-have a look at <a class="reference internal" href="intro.html#intro"><em>What is structured learning?</em></a>.</p>
-<p>An overview of the different models can be found in <a class="reference internal" href="user_guide.html#user-guide"><em>User Guide</em></a>.</p>
+have a look at <a class="reference internal" href="intro.html#intro"><span>What is structured learning?</span></a>.</p>
+<p>An overview of the different models can be found in <a class="reference internal" href="user_guide.html#user-guide"><span>User Guide</span></a>.</p>
 <p>The goal of PyStruct is to provide a well-documented tool for researchers as well as non-experts
 to make use of structured prediction algorithms.
 The design tries to stay as close as possible to the interface and conventions
 of <a class="reference external" href="http://scikit-learn.org/dev">scikit-learn</a>.</p>
-<p>The current version is PyStruct 0.2.2 which you can install via pip:</p>
+<p>The current version is PyStruct 0.2.4 which you can install via pip:</p>
 <blockquote>
 <div>pip install pystruct</div></blockquote>
-<p>Detailed installation instructions can be found under <a class="reference internal" href="installation.html#installation"><em>Installation</em></a>.</p>
+<p>Detailed installation instructions can be found under <a class="reference internal" href="installation.html#installation"><span>Installation</span></a>.</p>
 <p>Starting with this first stable release, PyStruct will remain
 stable with respect to API and will provide backward compatibility.</p>
 <p>You can contact the authors either via the <a class="reference external" href="https://groups.google.com/forum/#!forum/pystruct">mailing list</a>
@@ -142,7 +142,7 @@ or on <a class="reference external" href="https://github.com/pystruct/pystruct">
 <p>In order to do learning with PyStruct, you need to pick two or three things:
 a model structure, a learning algorithm and optionally an inference algorithm.
 By constructing a learner object from a model, you get an object that can
-<tt class="docutils literal"><span class="pre">fit</span></tt> to training data and can <tt class="docutils literal"><span class="pre">predict</span></tt> for unseen data (just like
+<code class="docutils literal"><span class="pre">fit</span></code> to training data and can <code class="docutils literal"><span class="pre">predict</span></code> for unseen data (just like
 scikit-learn estimators).</p>
 <div class="section" id="models-aka-crfs">
 <h2>Models, aka CRFs<a class="headerlink" href="#models-aka-crfs" title="Permalink to this headline">¶</a></h2>
@@ -150,7 +150,7 @@ scikit-learn estimators).</p>
 its graph structure and its loss function.
 There are several ready-to-use classes, for example for multi-label
 classification, chain CRFs and more complex models. You can find a
-full list in the <a class="reference internal" href="references.html#models"><em>Models</em></a> section of the references</p>
+full list in the <a class="reference internal" href="references.html#models"><span>Models</span></a> section of the references</p>
 </div>
 <div class="section" id="learning-algorithms">
 <h2>Learning algorithms<a class="headerlink" href="#learning-algorithms" title="Permalink to this headline">¶</a></h2>
@@ -159,7 +159,7 @@ full list in the <a class="reference internal" href="references.html#models"><em
 are possible and new models can be defined (to include, e.g., higher-order
 potentials) without changing the learner.</p>
 <p>The current learning algorithms implement max margin learning and
-a perceptron. See the <a class="reference internal" href="references.html#learning"><em>Learning</em></a> section of the references.</p>
+a perceptron. See the <a class="reference internal" href="references.html#learning"><span>Learning</span></a> section of the references.</p>
 </div>
 <div class="section" id="inference-solvers">
 <h2>Inference solvers<a class="headerlink" href="#inference-solvers" title="Permalink to this headline">¶</a></h2>
@@ -171,7 +171,7 @@ other methods on github, including LibDAI, QPBO, AD3.</p>
 <p>This is where the heavy lifting is done and in some sense these backends are
 interchangeable.</p>
 <p>Currently I would recommend AD3 for very accurate solutions and QPBO for larger models.
-The the cutting plane solvers include an option (<tt class="docutils literal"><span class="pre">switch_to</span></tt>) to switch the solver to
+The the cutting plane solvers include an option (<code class="docutils literal"><span class="pre">switch_to</span></code>) to switch the solver to
 a stronger or exact solver when no constraints can be found using the previous
 solver (which should be a faster undergenerating solver, such as QPBO).</p>
 <div class="toctree-wrapper compound">
@@ -199,7 +199,7 @@ solver (which should be a faster undergenerating solver, such as QPBO).</p>
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.<br/>
     </p>
   </div>
 </footer>

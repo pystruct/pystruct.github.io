@@ -6,20 +6,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Efficient exact learning of 1-slack SSVMs &mdash; pystruct 0.1 documentation</title>
+    <title>Efficient exact learning of 1-slack SSVMs &mdash; pystruct 0.2.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pystruct.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/cerulean/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/cerulean/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1',
+        VERSION:     '0.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -30,19 +30,19 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="pystruct 0.1 documentation" href="../index.html" />
-    <link rel="up" title="Gallery of Examples" href="index.html" />
-    <link rel="next" title="SVM as CRF" href="svm_as_crf.html" />
-    <link rel="prev" title="Plotting the objective and constraint caching in 1-slack SSVM" href="plot_objective_curve.html" />
+    <link rel="top" title="pystruct 0.2.4 documentation" href="../index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="next" title="Learning interactions on a 2d grid" href="plot_grid_crf.html" />
+    <link rel="prev" title="Learning directed interactions on a 2d grid" href="plot_directional_grid.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,7 +55,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           PyStruct</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2.4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,7 +104,7 @@
 <div class="container content-container">
   
   <div class="section" id="efficient-exact-learning-of-1-slack-ssvms">
-<span id="example-plot-exact-learning-py"></span><h1>Efficient exact learning of 1-slack SSVMs<a class="headerlink" href="#efficient-exact-learning-of-1-slack-ssvms" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-exact-learning-py"></span><h1>Efficient exact learning of 1-slack SSVMs<a class="headerlink" href="#efficient-exact-learning-of-1-slack-ssvms" title="Permalink to this headline">¶</a></h1>
 <p>This example illustrates the role of approximate inference and caching
 in exact learning of a 1-slack SSVM.</p>
 <p>Please see plot_objetive_curve.py for an interpretation of the curves.</p>
@@ -116,7 +116,7 @@ The switch to AD3 can be seen in the graph after the (approximate)
 primal objective and the cutting plane lower bound touch. (zoom in)</p>
 <p>After the switch to exact inference, the red circles show the true
 primal objective.</p>
-<img alt="../_images/plot_exact_learning_001.png" class="align-center" src="../_images/plot_exact_learning_001.png" />
+<img alt="../_images/sphx_glr_plot_exact_learning_001.png" class="align-center" src="../_images/sphx_glr_plot_exact_learning_001.png" />
 <p><strong>Script output</strong>:</p>
 <div class="sphx-glr-script-out highlight-python"><div class="highlight"><pre>OneSlackSSVM(C=1.0, break_on_bad=False, cache_tol=&#39;auto&#39;,
        check_constraints=False, inactive_threshold=1e-05,
@@ -130,25 +130,25 @@ Objective: 505.245528
 Gap: 0.004014
 </pre></div>
 </div>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_exact_learning.py"><tt class="xref download docutils literal"><span class="pre">plot_exact_learning.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <span class="n">DirectionalGridCRF</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pystruct.models</span> <span class="kn">import</span> <a href="../generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF"><span class="n">DirectionalGridCRF</span></a>
 <span class="kn">import</span> <span class="nn">pystruct.learners</span> <span class="kn">as</span> <span class="nn">ssvm</span>
 <span class="kn">from</span> <span class="nn">pystruct.datasets</span> <span class="kn">import</span> <span class="n">generate_blocks_multinomial</span>
-<span class="kn">from</span> <span class="nn">pystruct.plot_learning</span> <span class="kn">import</span> <span class="n">plot_learning</span>
+<span class="kn">from</span> <span class="nn">pystruct.plot_learning</span> <span class="kn">import</span> <a href="../generated/pystruct.plot_learning.plot_learning.html#pystruct.plot_learning"><span class="n">plot_learning</span></a>
 
 
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">generate_blocks_multinomial</span><span class="p">(</span><span class="n">noise</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">crf</span> <span class="o">=</span> <span class="n">DirectionalGridCRF</span><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;qpbo&quot;</span><span class="p">,</span> <span class="n">neighborhood</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">crf</span> <span class="o">=</span> <a href="../generated/pystruct.models.DirectionalGridCRF.html#pystruct.models.DirectionalGridCRF"><span class="n">DirectionalGridCRF</span></a><span class="p">(</span><span class="n">inference_method</span><span class="o">=</span><span class="s">&quot;qpbo&quot;</span><span class="p">,</span> <span class="n">neighborhood</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">ssvm</span><span class="o">.</span><span class="n">OneSlackSSVM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">crf</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">inference_cache</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                         <span class="n">show_loss_every</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                         <span class="n">switch_to</span><span class="o">=</span><span class="p">(</span><span class="s">&quot;ad3&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;branch_and_bound&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}))</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 
-<span class="n">plot_learning</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<a href="../generated/pystruct.plot_learning.plot_learning.html#pystruct.plot_learning"><span class="n">plot_learning</span></a><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  23.44 seconds
-( 0 minutes  23.44 seconds)</p>
+<p><strong>Total running time of the script:</strong>
+(0 minutes 28.284 seconds)</p>
+<p><strong>Download Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_exact_learning.py"><code class="xref download docutils literal"><span class="pre">plot_exact_learning.py</span></code></a></p>
 </div>
 
 
@@ -171,7 +171,7 @@ Gap: 0.004014
     </p>
     <p>
         &copy; Copyright 2013, Andreas Mueller.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.<br/>
     </p>
   </div>
 </footer>
